@@ -39,7 +39,7 @@ const getNews = async (id) => {
       return response.data;
     }
     return {};
-  } catch (error) {
+  } catch (error) { 
     return {};
   }
 };
@@ -76,6 +76,9 @@ const Index = async ({ params: { id } }) => {
   const newsDetails = await getNews(id);
   const newsList = await getNewsList();
   const adsList = await getAds();
+  console.log("document list ==>>>", document)
+
+
   console.log("id ==>>", id);
 //   console.log("newsDetails ==>>", newsDetails);
 
@@ -132,13 +135,13 @@ const Index = async ({ params: { id } }) => {
                 alt=""
               />
               {/* <p>{newsDetails.description}</p> */}
-              <div className="news-description-html">
+              {/* <div className="news-description-html">
                 <div
                   dangerouslySetInnerHTML={{
                     __html: newsDetails.htmlDescription,
                   }}
                 />
-              </div>
+              </div> */}
               {newsDetails?.createdAt && (
                 <div>
                   {" "}
