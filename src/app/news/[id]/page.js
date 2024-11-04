@@ -12,6 +12,12 @@ import textSlicer from "@/shared/functions/textSlicer";
 import TodaysNews from "@/shared/components/TodaysNews/TodaysNews";
 import Footer from "@/shared/components/Footer/Footer";
 import Share from "@/app/news/[id]/Modal/Share/Share";
+import getKeywords from "@/shared/functions/getKeywords";
+import {
+  newsDetailsDescription,
+  newsDetailsTitle,
+} from "@/shared/constants/defaultSeoVariables";
+import { getSeoTimeFormat } from "@/shared/functions/convertTime";
 
 const getAds = async () => {
   try {
@@ -39,7 +45,7 @@ const getNews = async (id) => {
       return response.data;
     }
     return {};
-  } catch (error) { 
+  } catch (error) {
     return {};
   }
 };
@@ -58,17 +64,66 @@ const getNewsList = async () => {
     return {};
   }
 };
-export const generateMetadata = async ({ params, searchParams }, parent) => {
-  const id = params.id;
-  const newsDetails = await getNews(id);
-  const previousImages = (await parent).openGraph?.images || [];
-  const currentImg = getImageUrl(newsDetails?.images);
+export const generateMetadata = async ({ params }) => {
+  const newsDetails = await getNews(params.id);
+  if (!newsDetails._id) {
+    return;
+  }
+  const pageUrl = `${process.env.SITE_URL}/news/${params.id}`;
+  const keywords = getKeywords(newsDetails);
+  const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
+    const currentImage = getImageUrl(imgInfo.src);
+    return { url: currentImage };
+  });
+  const jsonImages = await newsDetails?.images?.map((imgInfo) => {
+    const currentImage = getImageUrl(imgInfo.src);
+    return currentImage;
+  });
+  const currentImage = getImageUrl(newsDetails?.images);
 
   return {
-    title: newsDetails?.title,
-    description: newsDetails?.description,
+    title: newsDetails?.title || newsDetailsTitle,
+    description: newsDetails?.description || newsDetailsDescription,
+    keywords: keywords,
     openGraph: {
-      images: [currentImg, ...previousImages],
+      type: "article",
+      title: newsDetails?.title || newsDetailsTitle,
+      description: newsDetails?.description || newsDetailsDescription,
+      images: openGraphImages || [],
+      url: `${process.env.SITE_URL}/news/${params.id}`,
+      "article:section": newsDetails.category || "News",
+      "article:tag": newsDetails.tags?.join(", ") || keywords,
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@SomacharTV",
+      title: newsDetails?.title,
+      description: newsDetails?.description,
+      images: currentImage ? currentImage : undefined, // Use the first image for Twitter
+    },
+    schema: {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      headline: newsDetails?.title || newsDetailsTitle,
+      description: newsDetails?.description || newsDetailsDescription,
+      image: jsonImages,
+      datePublished: newsDetails?.createdAt,
+      dateModified: newsDetails?.updatedAt || newsDetails?.createdAt,
+      mainEntityOfPage: pageUrl,
+      author: {
+        "@type": "Organization",
+        name: "Somachar TV",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Somachar TV",
+        logo: {
+          "@type": "ImageObject",
+          url: `${process.env.SITE_URL}/logo.png`,
+        },
+      },
+      articleSection: newsDetails.category || "News",
+      keywords,
     },
   };
 };
@@ -76,127 +131,115 @@ const Index = async ({ params: { id } }) => {
   const newsDetails = await getNews(id);
   const newsList = await getNewsList();
   const adsList = await getAds();
-  console.log("document list ==>>>", document)
 
-
-  console.log("id ==>>", id);
-//   console.log("newsDetails ==>>", newsDetails);
 
   return (
     <>
       <Header />
-      <div className="container news-details-container">
-        <div className="news-details">
-          <div className="main-news-container">
-            <div className="categories-container">
-              <Link href="/">
-                <FaHome />
-              </Link>
-              <span>
-                <MdKeyboardArrowRight />
-              </span>
-              {newsDetails.category && (
+      <main className="container news-details-container">
+        <article className="news-details">
+          <nav className="breadcrumbs">
+            <Link href="/" aria-label="Home">
+              <FaHome />
+            </Link>
+            <MdKeyboardArrowRight />
+            {newsDetails.category && (
+              <>
                 <Link href={`/topic/${newsDetails.categoriesRoute}`}>
-                  <p>{newsDetails.category}</p>
+                  <span>{newsDetails.category}</span>
                 </Link>
-              )}
-              {newsDetails.subcategory && (
-                <>
-                  <span>
+                {newsDetails.subcategory && (
+                  <>
                     <MdKeyboardArrowRight />
-                  </span>
-                  <Link
-                    href={`/topic/${newsDetails.categoriesRoute}?subCategory=${newsDetails.subCategoriesRoute}`}
-                  >
-                    <p>{newsDetails.subcategory}</p>
-                  </Link>
-                </>
-              )}
-            </div>
-            <div className="news-container" id="news-container">
-              <div className="title-container">
-                <h2>{newsDetails.title}</h2>
-                {/* <div className="share-container">
-                                    <button>
-                                    <RiShareLine />
-                                    </button>
-                                    <button>
-                                    <GrPrint />
-                                    </button>    
-                                    <Share/>   
-                                </div> */}
-                <Share />
-              </div>
-
-              <Image
-                src={getImageUrl(newsDetails.images)}
-                height="100"
-                width="100"
-                alt=""
-              />
-              {/* <p>{newsDetails.description}</p> */}
-              {/* <div className="news-description-html">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: newsDetails.htmlDescription,
-                  }}
-                />
-              </div> */}
-              {newsDetails?.createdAt && (
-                <div>
-                  {" "}
-                  <WiTime8 />{" "}
-                  <p>
-                    প্রকাশিত: {convertedToBanglaDate(newsDetails.createdAt)}
-                  </p>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="related-news-container">
-            <div className="ads-section">
-              {adsList.slice(7, 9).map((adsInfo, index) => {
-                return (
-                  <Link href={adsInfo.targetLink} key={index}>
-                    <Image
-                      src={getImageUrl(adsInfo.images)}
-                      height={100}
-                      width={100}
-                      alt=""
-                    />
-                  </Link>
-                );
-              })}
-            </div>
-            <div className="news-section">
-              <div className="title">
-                <p>এ সম্পর্কিত খবর</p>
-              </div>
-              <div className="new-list">
-                {[...newsList].slice(0, 5).map((newsInfo, index) => {
-                  return (
                     <Link
-                      key={index}
-                      href={`/news/${newsInfo._id}`}
-                      className="cart"
+                      href={`/topic/${newsDetails.categoriesRoute}?subCategory=${newsDetails.subCategoriesRoute}`}
                     >
-                      <h6>{textSlicer(newsInfo.title, 79)}</h6>
-                      <Image
-                        src={getImageUrl(newsInfo.images)}
-                        height="100"
-                        width="100"
-                        alt=""
-                      />
+                      <span>{newsDetails.subcategory}</span>
                     </Link>
-                  );
-                })}
+                  </>
+                )}
+              </>
+            )}
+          </nav>
+
+          <header className="title-container">
+            <h1>{newsDetails.title}</h1>
+            <Share />
+            <Image
+              src={getImageUrl(newsDetails.images)}
+              height="600"
+              width="800"
+              alt={`${newsDetails.title} - ${newsDetails.category}`}
+              className="thumbnail"
+              priority
+            />
+          </header>
+
+          <section className="news-content">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: newsDetails.updateHtmlDescription,
+              }}
+            />
+            {newsDetails.createdAt && (
+              <div className="publication-info">
+                <WiTime8 />
+                <p>
+                  প্রকাশিত:{" "}
+                  <time dateTime={getSeoTimeFormat(newsDetails.createdAt)}>
+                    {" "}
+                    {convertedToBanglaDate(newsDetails.createdAt)}
+                  </time>{" "}
+                  | By Symul Kabir Pranta
+                </p>
               </div>
+            )}
+          </section>
+        </article>
+
+        <aside className="related-news-container">
+          <div className="ads-section">
+            {adsList.slice(7, 9).map((ad, index) => (
+              <Link href={ad.targetLink} key={index}>
+                <Image
+                  src={getImageUrl(ad.images)}
+                  height="250"
+                  width="300"
+                  alt={`Advertisement ${index + 1}`}
+                  className="ad-image"
+                  loading="lazy"
+                  priority={index === 0}
+                />
+              </Link>
+            ))}
+          </div>
+
+          <div className="news-section">
+            <h2>এ সম্পর্কিত খবর</h2>
+            <div className="related-news-list">
+              {newsList.slice(0, 5).map((news, index) => (
+                <Link
+                  href={`/news/${news._id}`}
+                  key={index}
+                  className="related-news-item"
+                >
+                  <Image
+                    src={getImageUrl(news.images)}
+                    height="100"
+                    width="100"
+                    alt={`${news.title} - Related News`}
+                    priority={index === 0}
+                    
+                  />
+                  <h3>{textSlicer(news.title, 79)}</h3>
+                </Link>
+              ))}
             </div>
           </div>
-        </div>
+        </aside>
+
         <TodaysNews />
-      </div>
-      {/* <Share/> */}
+      </main>
       <Footer />
     </>
   );
