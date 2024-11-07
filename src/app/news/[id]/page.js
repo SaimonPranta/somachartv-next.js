@@ -18,6 +18,7 @@ import {
   newsDetailsTitle,
 } from "@/shared/constants/defaultSeoVariables";
 import { getSeoTimeFormat } from "@/shared/functions/convertTime";
+import { IoCameraReverseOutline } from "react-icons/io5";
 
 const getAds = async () => {
   try {
@@ -132,13 +133,12 @@ const Index = async ({ params: { id } }) => {
   const newsList = await getNewsList();
   const adsList = await getAds();
 
-
   return (
     <>
       <Header />
       <main className="container news-details-container">
-        <article className="news-details">
-          <nav className="breadcrumbs">
+        <article className="news-details ">
+          <nav className="breadcrumbs categories-container ">
             <Link href="/" aria-label="Home">
               <FaHome />
             </Link>
@@ -162,20 +162,30 @@ const Index = async ({ params: { id } }) => {
             )}
           </nav>
 
-          <header className="title-container">
-            <h1>{newsDetails.title}</h1>
-            <Share />
-            <Image
-              src={getImageUrl(newsDetails.images)}
-              height="600"
-              width="800"
-              alt={`${newsDetails.title} - ${newsDetails.category}`}
-              className="thumbnail"
-              priority
-            />
+          <header className="title-container ">
+            <div className="title-section">
+              <h1>{newsDetails.title}</h1>
+              <Share />
+            </div>
+            <figure className="img-section">
+              <Image
+                src={getImageUrl(newsDetails.images)}
+                height="600"
+                width="800"
+                alt={`${newsDetails.title} - ${newsDetails.category}`}
+                className="thumbnail"
+                priority
+              />
+              <figcaption>
+                <span aria-hidden="true">
+                  <IoCameraReverseOutline />
+                </span>
+                {newsDetails.title}
+              </figcaption>
+            </figure>
           </header>
 
-          <section className="news-content">
+          <section className="news-content ">
             <div
               dangerouslySetInnerHTML={{
                 __html: newsDetails.updateHtmlDescription,
@@ -185,7 +195,7 @@ const Index = async ({ params: { id } }) => {
               <div className="publication-info">
                 <WiTime8 />
                 <p>
-                  প্রকাশিত:{" "}
+                 <strong> প্রকাশিত:</strong>{" "}
                   <time dateTime={getSeoTimeFormat(newsDetails.createdAt)}>
                     {" "}
                     {convertedToBanglaDate(newsDetails.createdAt)}
@@ -197,7 +207,7 @@ const Index = async ({ params: { id } }) => {
           </section>
         </article>
 
-        <aside className="related-news-container">
+        <aside className="related-news-container ">
           <div className="ads-section">
             {adsList.slice(7, 9).map((ad, index) => (
               <Link href={ad.targetLink} key={index}>
@@ -214,7 +224,7 @@ const Index = async ({ params: { id } }) => {
             ))}
           </div>
 
-          <div className="news-section">
+          <div className="news-section ">
             <h2>এ সম্পর্কিত খবর</h2>
             <div className="related-news-list">
               {newsList.slice(0, 5).map((news, index) => (
@@ -229,7 +239,6 @@ const Index = async ({ params: { id } }) => {
                     width="100"
                     alt={`${news.title} - Related News`}
                     priority={index === 0}
-                    
                   />
                   <h3>{textSlicer(news.title, 79)}</h3>
                 </Link>

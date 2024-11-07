@@ -1,37 +1,121 @@
 .news-details-container {
     margin-bottom: 40px;
 
+    // Common Styles Start
+    .common-bg {
+        background-color: #FFF;
+        padding: 10px;
+    }
+    .img-section {
+        margin: 0px;
+        background-color: #FFF;
+        padding: 10px;
+        width: 100%;
+        aspect-ratio: 16/ 10;
+        border: 1px solid #e4e4e4;
+        margin: 10px 0px;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        figcaption {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+
+            span {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10px;
+                margin-bottom: 2px
+            }
+        }
+    }
+
+    // Common Styles End
+
+
     .news-details {
-        display: grid;
-        grid-template-columns: 70% auto;
-        gap: 40px;
         margin-top: 20px;
+
+        .categories-container {
+            display: flex;
+            align-items: center !important;
+            color: #000;
+            font-size: 20px;
+
+
+            a {
+                text-decoration: none;
+
+            }
+
+            span {
+                height: 22px;
+                width: 22px;
+                // background-color: red;
+                display: flex;
+                align-items: center;
+
+            }
+
+        }
+
+        .title-container {
+            .title-section {
+                display: flex;
+                justify-content: space-between;
+
+                h2 {
+                    font-size: 28px;
+
+                }
+
+                .share-container {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+
+                    button {
+                        padding: 5px;
+                        border-radius: 4px;
+                        cursor: pointer;
+
+                        svg {
+                            height: 25px;
+                            width: 25px;
+                        }
+                    }
+
+                    // .share-modal{
+                    //     position: relative;
+                    // }
+                }
+
+            }
+
+        
+        }
+        .news-content{
+            .publication-info{
+                display: flex;
+                align-items: center; 
+                gap: 5px;
+                svg{
+                    height: 20px;
+                    width: 20px;
+                }
+            }
+        }
 
         .main-news-container {
             margin-bottom: 25px;
 
-            .categories-container {
-                display: flex;
-                align-items: center !important;
-                color: #000;
-                font-size: 20px;
 
-                a {
-                    text-decoration: none;
-
-                }
-
-                span {
-                    height: 22px;
-                    width: 22px;
-                    // background-color: red;
-                    display: flex;
-                    align-items: center;
-                    margin-bottom: 4px;
-
-                }
-
-            }
 
             .news-container {
                 display: flex;
@@ -39,40 +123,7 @@
                 gap: 10px;
                 margin-top: 20px;
 
-                .title-container {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    color: #000;
 
-                    h2 {
-                        font-size: 28px;
-
-                    }
-
-                    .share-container {
-                        position: relative;
-                        display: flex;
-                        align-items: center;
-                        gap: 15px;
-
-                        button {
-                            padding: 5px;
-                            border-radius: 4px;
-                            cursor: pointer;
-
-                            svg {
-                                height: 25px;
-                                width: 25px;
-                            }
-                        }
-
-                        // .share-modal{
-                        //     position: relative;
-                        // }
-                    }
-
-                }
 
 
                 img {
@@ -80,12 +131,13 @@
                     width: 100%;
                 }
 
-                 .news-description-html{
-                    P{
+                .news-description-html {
+                    P {
                         margin-bottom: 15px;
                         // font-weight: 700 !important;
                     }
-                 }
+                }
+               
             }
         }
 
