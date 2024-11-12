@@ -35,14 +35,15 @@ const Page = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        if (!input.title || !input.targetLink || !input.images) {
+console.log("input ==>>",input)
+        if (!input.title || !input.targetLink || !input.img) {
             return
         }
+        console.log("Hello after condition")
 
         const formData = new FormData()
         formData.append("data", JSON.stringify(input))
-        formData.append("img", input.images)
+        formData.append("img", input.img)
         fetch(`${BACKEND_URL}/admin/ads`, {
             method: 'POST',
             body: formData,
