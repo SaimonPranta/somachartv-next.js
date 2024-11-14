@@ -134,7 +134,7 @@
                 }
             }
 
-         
+
 
 
         }
@@ -142,46 +142,44 @@
         .related-news-container {
             .ads-section {
                 width: 100%;
-                img {
-                    width:400px;
-                    aspect-ratio:  16/2 !important;
-                    margin: 5px 0px;
+
+                a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100% !important;
+                    aspect-ratio: 16/9 !important;
+                    overflow: hidden;
+                    margin-bottom: 10px;
+
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        margin: 5px 0px;
+                    }
                 }
             }
 
             .news-section {
-                .title {
-                    font-size: 18px;
-                    font-weight: 600;
-                }
-
-                .new-list {
+                .related-news-list {
                     display: flex;
                     flex-direction: column;
-                    justify-content: space-between;
-
+                    gap: 10px;
+justify-content: center;
                     a {
                         display: flex;
-                        // grid-template-columns: calc(80% - 5px) 20%; 
-                        align-items: center;
                         text-decoration: none;
-                        //  gap: 5px;
-                        padding: 5px;
-
-                        h6 {
-                            width: 100%;
+                        gap: 10px;
+                        img{
+                            height: 100%;
+                            aspect-ratio: 16/9;
+                        }
+                        h3{
+                            font-size: 18px;
                             font-weight: 500;
-                            font-size: 16px;
+                            height: auto;
                         }
-
-                        img {
-                            width: 85px;
-                            height: 55px;
-                        }
-
-                        border-bottom: 1px solid #e9ebf0;
                     }
-
                 }
             }
         }
