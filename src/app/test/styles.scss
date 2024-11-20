@@ -1,0 +1,109 @@
+.text-editor-container {
+    background-color: #FFF;
+    border: 1px solid #e4e4e4;
+    margin: 30px;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+    .toolbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #f0f0f0;
+        padding: 10px;
+        flex-wrap: wrap;
+        width: 100%;
+        box-sizing: border-box;
+
+        button,
+        .input-field {
+            height: 30px;
+            max-height: 30px;
+            box-sizing: border-box;
+            border: 1px solid #e4e4e4;
+            border-radius: 4px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            cursor: pointer;
+
+            &:hover {
+                opacity: .6;
+            }
+
+        }
+
+        .input-field {
+            justify-content: start;
+            gap: 5px;
+
+            label,
+            select {
+                color: #000;
+                font-size: 16px;
+                font-width: 600;
+            }
+
+            input {
+                &[type="color"] {
+                    height: 25px;
+                    width: 25px;
+                    border-radius: 50%;
+                    padding: 0px;
+                    margin: 0px;
+
+                }
+            }
+
+            input,
+            select {
+                border: 1px solid #e4e4e4;
+                border: none;
+            }
+
+        }
+
+        button {
+            font-weight: 600;
+            padding: 7px 10px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                height: 15px;
+                width: 15px;
+            }
+
+            &.active {
+                background: #0048ba;
+                color: #FFF;
+            }
+        }
+
+    }
+
+    .text-input-field {
+        padding: 10px;
+        // background: #e4e4e4;
+        border-radius: 5px;
+
+        .tiptap {
+            border: none !important;
+            outline: none !important;
+
+            ul,
+            ol {
+                li {
+                    &::marker {
+                        color: #000;
+                    }
+                }
+            }
+
+        }
+    }
+}

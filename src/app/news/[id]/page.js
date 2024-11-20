@@ -225,7 +225,7 @@ const Index = async ({ params: { id } }) => {
             </div>
 
             <div className="news-section ">
-              <h2>এ সম্পর্কিত খবর</h2>
+              <h2 className="common-section-title">এ সম্পর্কিত খবর</h2>
               <div className="related-news-list">
                 {newsList.slice(0, 5).map((news, index) => (
                   <Link
@@ -240,7 +240,7 @@ const Index = async ({ params: { id } }) => {
                       alt={`${news.title} - Related News`}
                       priority={index === 0}
                     />
-                    <h3>{textSlicer(news.title, 79)}</h3>
+                    <h3>{news.title}</h3>
                   </Link>
                 ))}
               </div>
