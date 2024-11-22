@@ -60,8 +60,39 @@
                     select {
                         width: 300px;
                         min-width: 300px;
+
+                    }
+
+                    &.img-field {
+                        .img-container {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                            box-sizing: border-box;
+                            width: 300px;
+                            min-width: 300px; 
+                            border-bottom: 2px solid #a19a9a;
+
+                            input { 
+                                min-width:calc( 100% - 70px) !important;
+                                border: none;
+                          
+                            }
+                            div {
+                                height: 100%;
+                                max-height: 40px;
+                                width: 60px;
+                                img{
+                                    height: 100%;
+                                    width: 100%;
+                                }
+
+                            }
+                        }
+
                     }
                 }
+
 
                 &.image-preview {
                     display: flex;
@@ -69,13 +100,16 @@
                     align-items: center;
                     gap: 10px;
                     overflow-x: scroll;
-                    scrollbar-width: none; /* Firefox */
-                    -ms-overflow-style: none; /* IE and Edge */
-                  
+                    scrollbar-width: none;
+                    /* Firefox */
+                    -ms-overflow-style: none;
+                    /* IE and Edge */
+
                     /* For Webkit browsers like Chrome, Safari */
                     &::-webkit-scrollbar {
-                      display: none;
+                        display: none;
                     }
+
                     .cart {
                         height: 80px;
                         width: 75px;
@@ -130,6 +164,7 @@
                         cursor: pointer;
                     }
                 }
+
                 &.add-img-btn-container {
                     display: flex;
                     align-items: center;
@@ -146,7 +181,8 @@
                         cursor: pointer;
                         background-color: #FFF;
                         border: 1px solid #b3a7a7;
-                        svg{
+
+                        svg {
                             height: 20px;
                             width: 20px;
 

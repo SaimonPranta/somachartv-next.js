@@ -36,8 +36,9 @@ import { FaRegPaste } from "react-icons/fa6";
 import { SiPurescript } from "react-icons/si";
 
 const CustomEditor = ({
+  initValue="",
   value = "",
-  placeholder = "<p>Start writing here...</p>",
+  placeholder = "<p></p>",
   handleChange,
   name
 }) => {
@@ -61,9 +62,14 @@ const CustomEditor = ({
         multicolor: true
       })
     ],
-    content: value || placeholder
-    // content: "<p>Start writing here...</p>"
+    content: value || placeholder,
+  
   });
+  useEffect(() => {
+    if(initValue && editor){
+      editor.chain().focus().setContent(initValue).run();
+    }
+  }, [initValue])
 
   useEffect(() => {
     if (editor?.getHTML() && handleChange && name) {
@@ -186,7 +192,6 @@ const CustomEditor = ({
   };
 
   if (!editor) return null;
-  console.log("editor.getHTML()) ===>>", editor?.getHTML());
 
   return (
     <div className={`text-editor-container ${fullScreen ? "full-screen" : ""}`}>
@@ -194,12 +199,15 @@ const CustomEditor = ({
         <button
           onClick={() => editor.chain().focus().undo().run()}
           title="Undo"
+          type="button"
         >
           <FaUndo />
         </button>
         <button
           onClick={() => editor.chain().focus().redo().run()}
           title="Redo"
+          type="button"
+
         >
           <FaRedo />
         </button>
@@ -207,6 +215,8 @@ const CustomEditor = ({
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={editor.isActive("bold") ? "active" : ""}
           title="Bold"
+          type="button"
+
         >
           <FaBold />
         </button>
@@ -214,6 +224,8 @@ const CustomEditor = ({
           onClick={() => editor.chain().focus().toggleItalic().run()}
           className={editor.isActive("italic") ? "active" : ""}
           title="Italic"
+          type="button"
+
         >
           <FaItalic />
         </button>
@@ -221,16 +233,20 @@ const CustomEditor = ({
           onClick={() => editor.chain().focus().toggleUnderline().run()}
           className={editor.isActive("underline") ? "active" : ""}
           title="Underline"
+          type="button"
+
         >
           <FaUnderline />
         </button>
-        <button onClick={addHorizontalRule} title="Divider">
+         
+          <button onClick={addHorizontalRule} title="Divider"  type="button" >
           <FaRulerHorizontal />
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
           className={editor.isActive({ textAlign: "left" }) ? "active" : ""}
           title="Left Align"
+           type="button"
         >
           <FaAlignLeft />
         </button>
@@ -238,6 +254,7 @@ const CustomEditor = ({
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
           className={editor.isActive({ textAlign: "center" }) ? "active" : ""}
           title="Center Align"
+           type="button"
         >
           <FaAlignCenter />
         </button>
@@ -245,6 +262,7 @@ const CustomEditor = ({
           onClick={() => editor.chain().focus().setTextAlign("right").run()}
           className={editor.isActive({ textAlign: "right" }) ? "active" : ""}
           title="Right Align"
+           type="button"
         >
           <FaAlignRight />
         </button>
@@ -252,6 +270,7 @@ const CustomEditor = ({
           onClick={() => editor.chain().focus().setTextAlign("justify").run()}
           className={editor.isActive({ textAlign: "justify" }) ? "active" : ""}
           title="Justify Align"
+           type="button"
         >
           <FaAlignJustify />
         </button>
@@ -259,6 +278,7 @@ const CustomEditor = ({
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={editor.isActive("bulletList") ? "active" : ""}
           title="Bullet List"
+           type="button"
         >
           <FaListUl />
         </button>
@@ -266,6 +286,7 @@ const CustomEditor = ({
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
           className={editor.isActive("orderedList") ? "active" : ""}
           title="Ordered List"
+           type="button"
         >
           <FaListOl />
         </button>
@@ -273,6 +294,7 @@ const CustomEditor = ({
           onClick={handleLink}
           className={editor.isActive("link") ? "active" : ""}
           title="link"
+           type="button"
         >
           <FaLink />
         </button>
@@ -293,6 +315,7 @@ const CustomEditor = ({
         <button
           onClick={() => editor.chain().focus().unsetHighlight().run()}
           title="Erase Background"
+           type="button"
         >
           <FaEraser />
         </button>
@@ -308,6 +331,7 @@ const CustomEditor = ({
         <button
           onClick={() => editor.chain().focus().unsetColor().run()}
           title="Erase Color"
+           type="button"
         >
           <TfiEraser />
         </button>
@@ -331,26 +355,27 @@ const CustomEditor = ({
             <option value="28px">28px</option>
           </select>
         </div>
-        <button onClick={purifyScript} title="Remove Styles">
+        <button onClick={purifyScript} title="Remove Styles"  type="button">
           <SiPurescript />
         </button>
-        <button onClick={copyHtml} title="Copy HTML">
+        <button onClick={copyHtml} title="Copy HTML"  type="button">
           <GrCopy />
         </button>
-        <button onClick={pasteHtmlContent} title="Paste HTML">
+        <button onClick={pasteHtmlContent} title="Paste HTML"  type="button">
           <ImPaste />
         </button>
 
-        <button onClick={copyPlainText} title="Copy Text">
+        <button onClick={copyPlainText} title="Copy Text"  type="button">
           <FaRegCopy />
         </button>
-        <button onClick={pestPlainText} title="Paste Text">
+        <button onClick={pestPlainText} title="Paste Text"  type="button">
           <FaRegPaste />
         </button>
         <button
           className={"active"}
           onClick={() => setFullScreen((state) => !state)}
           title={fullScreen ? "Exit Full Screen" : "Full Screen"}
+           type="button"
         >
           {fullScreen && <RiFullscreenExitLine />}
           {!fullScreen && <RiFullscreenFill />}
