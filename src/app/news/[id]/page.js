@@ -15,10 +15,11 @@ import Share from "@/app/news/[id]/Modal/Share/Share";
 import getKeywords from "@/shared/functions/getKeywords";
 import {
   newsDetailsDescription,
-  newsDetailsTitle
+  newsDetailsTitle,
 } from "@/shared/constants/defaultSeoVariables";
 import { getSeoTimeFormat } from "@/shared/functions/convertTime";
 import { IoCameraReverseOutline } from "react-icons/io5";
+import processDangerouslySetInnerHTML from "@/shared/functions/processDangerouslySetInnerHTML";
 
 const getAds = async () => {
   try {
@@ -39,7 +40,7 @@ const getNews = async (id) => {
   try {
     let response = await (
       await fetch(`${BACKEND_URL}/public/news/${id}`, {
-        cache: "no-store"
+        cache: "no-store",
       })
     ).json();
     if (response.data._id) {
@@ -67,6 +68,7 @@ const getNewsList = async () => {
 };
 export const generateMetadata = async ({ params }) => {
   const newsDetails = await getNews(params.id);
+  console.log("newsDetails ==>>", newsDetails);
   if (!newsDetails._id) {
     return;
   }
@@ -93,14 +95,14 @@ export const generateMetadata = async ({ params }) => {
       images: openGraphImages || [],
       url: `${process.env.SITE_URL}/news/${params.id}`,
       "article:section": newsDetails.category || "News",
-      "article:tag": newsDetails.tags?.join(", ") || keywords
+      "article:tag": newsDetails.tags?.join(", ") || keywords,
     },
     twitter: {
       card: "summary_large_image",
       site: "@SomacharTV",
       title: newsDetails?.title,
       description: newsDetails?.description,
-      images: currentImage ? currentImage : undefined // Use the first image for Twitter
+      images: currentImage ? currentImage : undefined, // Use the first image for Twitter
     },
     schema: {
       "@context": "http://schema.org",
@@ -113,25 +115,26 @@ export const generateMetadata = async ({ params }) => {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "Somachar TV"
+        name: "Somachar TV",
       },
       publisher: {
         "@type": "Organization",
         name: "Somachar TV",
         logo: {
           "@type": "ImageObject",
-          url: `${process.env.SITE_URL}/logo.png`
-        }
+          url: `${process.env.SITE_URL}/logo.png`,
+        },
       },
       articleSection: newsDetails.category || "News",
-      keywords
-    }
+      keywords,
+    },
   };
 };
 const Index = async ({ params: { id } }) => {
   const newsDetails = await getNews(id);
   const newsList = await getNewsList();
   const adsList = await getAds();
+  const thumbnailInfo = newsDetails.images[0];
 
   return (
     <>
@@ -144,18 +147,18 @@ const Index = async ({ params: { id } }) => {
                 <FaHome />
               </Link>
               <MdKeyboardArrowRight />
-              {newsDetails.category && (
+              {newsDetails?.category?.label && (
                 <>
-                  <Link href={`/topic/${newsDetails.categoriesRoute}`}>
-                    <span>{newsDetails.category}</span>
+                  <Link href={`/topic/${newsDetails?.category?.route}`}>
+                    <span>{newsDetails?.category?.label}</span>
                   </Link>
-                  {newsDetails.subcategory && (
+                  {newsDetails?.subcategory?.label && (
                     <>
                       <MdKeyboardArrowRight />
                       <Link
-                        href={`/topic/${newsDetails.categoriesRoute}?subCategory=${newsDetails.subCategoriesRoute}`}
+                        href={`/topic/${newsDetails.categoriesRoute}?subCategory=${newsDetails?.subcategory?.route}`}
                       >
-                        <span>{newsDetails.subcategory}</span>
+                        <span>{newsDetails?.subcategory?.label}</span>
                       </Link>
                     </>
                   )}
@@ -168,12 +171,19 @@ const Index = async ({ params: { id } }) => {
                 <h1>{newsDetails.title}</h1>
                 <Share />
               </div>
-              <figure className="img-section">
+              <figure
+                className={`img-section ${
+                  !thumbnailInfo.figcaption ? "hidden-figcaption" : ""
+                }`}
+              >
                 <Image
-                  src={getImageUrl(newsDetails.images)}
+                  src={getImageUrl(thumbnailInfo.src)}
                   height="600"
                   width="800"
-                  alt={`${newsDetails.title} - ${newsDetails.category}`}
+                  alt={
+                    thumbnailInfo.alt ||
+                    `${newsDetails.title} - ${newsDetails?.category?.label}`
+                  }
                   className="thumbnail"
                   priority
                 />
@@ -181,15 +191,18 @@ const Index = async ({ params: { id } }) => {
                   <span aria-hidden="true">
                     <IoCameraReverseOutline />
                   </span>
-                  {newsDetails.title}
+                  {thumbnailInfo.figcaption || newsDetails.title}
                 </figcaption>
               </figure>
             </header>
 
             <section className="news-content ">
-              <div
+            <div
+                className="html-view-page"
                 dangerouslySetInnerHTML={{
-                  __html: newsDetails.updateHtmlDescription
+                  __html: processDangerouslySetInnerHTML(
+                    newsDetails.updateHtmlDescription
+                  ),
                 }}
               />
               {newsDetails.createdAt && (

@@ -43,6 +43,8 @@ const CustomEditor = ({
   name
 }) => {
   const [fullScreen, setFullScreen] = useState(false);
+  const editoryElement = document.querySelector(".tiptap")
+
   let editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -86,6 +88,14 @@ const CustomEditor = ({
       editor = null;
     };
   }, [editor?.getHTML()]);
+
+  useEffect(() => {
+    // const editoryElement = document.querySelector(".tiptap")
+    console.log("editoryElement ==>>", editoryElement)
+    if(editoryElement){
+      editoryElement.classList.add("html-view-page")
+    }
+  }, [editoryElement])
 
   const addLink = () => {
     const url = prompt("Enter the URL:");

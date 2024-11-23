@@ -119,16 +119,6 @@
             border: none !important;
             outline: none !important;
             box-sizing: border-box;
-
-            ul,
-            ol {
-                li {
-                    &::marker {
-                        color: #000;
-                    }
-                }
-            }
-
         }
     }
 }

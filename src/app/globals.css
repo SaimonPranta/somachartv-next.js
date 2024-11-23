@@ -16,25 +16,34 @@
   font-weight: 400;
   font-style: normal;
 }
+
+/* @font-face {
+  font-family: 'Kalpurush';
+  src: url('/fonts/kalpurush.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+} */
 @font-face {
   font-family: 'SolaimanLipi';
   src: url('/fonts/SiyamRupali.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Roboto';
   src: url('/fonts/Roboto.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
+
 @font-face {
   font-family: 'Times New Roman';
   src: url('/fonts/TimesNewRoman.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
- 
+
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -60,20 +69,58 @@ body {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  
+
+  .html-view-page {
+    &>p {
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 25px;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    span, strong {
+      color: inherit;
+    }
+
+    h2 {
+      background: red !important;
+      display: inline-block !important;
+    }
+
+    ul, ol {
+      margin: 0px 0px 20px 0px;
+
+      li {
+        &::marker {
+          color: #000;
+        }
+      }
+    }
+
+  }
+
 
 }
-.common-section-title{
-    padding-left: 10px;
-    border-left: 4px solid var(--default-color);
-    font: 600;
-    font-weight: 600;
+
+.common-section-title {
+  padding-left: 10px;
+  border-left: 4px solid var(--default-color);
+  font: 600;
+  font-weight: 600;
 }
+
 button {
   border: none;
   outline: none;
 }
-.eng{
+
+.eng {
   font-family: 'Times New Roman', 'Roboto';
 }
 
@@ -82,6 +129,10 @@ p, h1, h2, h3, h4, h5, h6, button, strong, span {
   padding: 0px;
   color: rgb(0, 0, 0);
   font-family: 'Kalpurush', 'SolaimanLipi', 'Roboto';
+}
+
+strong {
+  font-family: 'SolaimanLipi', 'Roboto';
 }
 
 
