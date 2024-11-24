@@ -10,7 +10,7 @@ import Footer from '@/shared/components/Footer/Footer';
 const Index = () => {
     
     return (
-        <div>
+        <>
             <Header/>
             <HeroSection/>
             <AdsList/>
@@ -18,7 +18,7 @@ const Index = () => {
             <VideoGallery />
             <SportsAndDebate />
             <Footer />
-        </div>
+        </>
     );
 };
 

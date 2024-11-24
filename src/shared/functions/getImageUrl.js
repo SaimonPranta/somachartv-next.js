@@ -1,16 +1,14 @@
-import { BACKEND_URL } from "../constants/ulrList";
-
 const getImageUrl = (img, index = 0) => {
   let url = "";
   if (Array.isArray(img)) {
     const firstElement = img[index];
     if (typeof firstElement === "object" && firstElement !== null) {
-      url = `${BACKEND_URL}/${firstElement.src}`;
+      url = `/api/media/${firstElement.src}`;
     }else{
-      url = `${BACKEND_URL}/${firstElement}`;
+      url = `/api/media/${firstElement}`;
     }
   } else {
-    url = `${BACKEND_URL}/${img}`;
+    url = `/api/media/${img}`;
   } 
   return url;
 };

@@ -11,7 +11,7 @@ const Index = ({subCategories, routeInfo}) => {
                 {
                     subCategories.map((subRouteInfo, subIndex) => {
                         return <li key={subRouteInfo._id} >
-                            <Link href={`/topic/${routeInfo.route}?subCategory=${subRouteInfo.route}`} >
+                            <Link href={`/topic/${routeInfo.route}/${subRouteInfo.route}`} >
                                 {subRouteInfo.label}
                             </Link> 
                             </li>

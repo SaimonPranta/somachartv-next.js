@@ -86,12 +86,7 @@ body {
 
     span, strong {
       color: inherit;
-    }
-
-    h2 {
-      background: red !important;
-      display: inline-block !important;
-    }
+    } 
 
     ul, ol {
       margin: 0px 0px 20px 0px;

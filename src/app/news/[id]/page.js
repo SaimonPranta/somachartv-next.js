@@ -68,7 +68,6 @@ const getNewsList = async () => {
 };
 export const generateMetadata = async ({ params }) => {
   const newsDetails = await getNews(params.id);
-  console.log("newsDetails ==>>", newsDetails);
   if (!newsDetails._id) {
     return;
   }
@@ -132,6 +131,9 @@ export const generateMetadata = async ({ params }) => {
 };
 const Index = async ({ params: { id } }) => {
   const newsDetails = await getNews(id);
+  if(!newsDetails._id){
+    return <></>
+  }
   const newsList = await getNewsList();
   const adsList = await getAds();
   const thumbnailInfo = newsDetails.images[0];
