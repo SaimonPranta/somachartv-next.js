@@ -116,7 +116,7 @@ const Index = async () => {
           </div>
           <div className="news-grid">
             {news.length > 0 &&
-              news.splice(0, 4).map((newsInfo, index) => {
+              news.splice(0, 3).map((newsInfo, index) => {
                 return (
                   <Link
                     href={`/news/${newsInfo._id}`}

@@ -60,17 +60,14 @@
         grid-template-columns: 1fr 300px;
         gap: 10px;
         width: 100%;
-        // aspect-ratio: 3 / 1 !important;
         height: $hero-section-height;
         box-sizing: border-box;
 
         .hero-news {
-            height: 100%;
-            height: $hero-section-height;
-
+            height: inherit;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5px; 
+            gap: 5px;
             box-sizing: border-box;
 
             .common-hero-news-cart {
@@ -103,8 +100,6 @@
                     left: 0px;
                     bottom: 0px;
                     width: 100%;
-                    // background: rgb(0, 0, 0);
-                    // background: linear-gradient(0deg, rgba(0, 0, 0, 0.8323704481792717) 23%, rgba(0, 0, 0, 0.3897934173669467) 100%, rgba(0, 0, 0, 0) 100%);
                     background: rgb(0, 0, 0);
                     background: linear-gradient(0deg, rgba(0, 0, 0, 0.8911939775910365) 23%, rgba(0, 0, 0, 0.05085784313725494) 100%, rgba(0, 0, 0, 0) 100%);
 
@@ -126,13 +121,13 @@
 
                     span {
                         font-size: 14px;
-                        letter-spacing: 1px;
                     }
 
                     .category {
                         display: inline-block;
                         background: #000;
                         padding: 3px 5px;
+                        letter-spacing: 1px;
                     }
 
                     .date {
@@ -154,8 +149,15 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 5px;
+                grid-auto-rows: minmax(0, 1fr);
+                height: inherit;
 
                 .cart {
+
+                    &:first-child {
+                        grid-column: span 2;
+                    }
+
                     h3 {
                         font-size: 18px;
                     }
@@ -167,12 +169,18 @@
     }
 
     .jobs-news {
-        height: $hero-section-height;
+        // height: $hero-section-height;
+        height: inherit;
+        display: grid;
+        grid-template-rows: minmax(0, 40%) minmax(0, 60%);
+        gap: 10px;
+        box-sizing: border-box;
 
         .job-news {
-            height: 45% !important;
+            // height: 40% !important;
             color: #000;
             background: #f3f3f3;
+            height: 100%;
 
             h3 {
                 width: 100%;
@@ -180,7 +188,7 @@
                 background-color: #233090;
                 color: #fff;
                 text-align: center;
-                padding: 8px 0px;
+                padding: 4px 0px;
             }
 
             .news-cart {
@@ -202,19 +210,23 @@
         }
 
         .all-news {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 5px;
+            background-color: #f3f3f3;
+
             .navigation-container {
                 display: flex;
                 align-items: center;
-                margin: 10px 0px 0px 0px;
                 background: transparent;
 
                 button {
                     width: 50%;
-                    height: 40px;
+                    height: 30px;
                     border: none;
                     outline: none;
                     border-radius: 10px !important;
-                    background: #f3f3f3;
+                    background: #e9e5e5;
                     font-size: 20px;
                     font-weight: 700;
                     cursor: pointer;
@@ -229,11 +241,8 @@
             }
 
             .news-list {
-                height: 440px !important;
-                // max-height: 350px;
+                height: 100%;
                 overflow-y: scroll !important;
-                padding-right: 5px;
-                margin-top: 20px;
 
                 .cart {
                     display: flex;

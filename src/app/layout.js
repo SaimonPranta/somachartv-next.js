@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-TWJDNTRE97"></script>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7281991904831824"
-          crossorigin="anonymous"></script>
+          crossOrigin="anonymous"></script>
      
         <script async src="https://cdn.jsdelivr.net/npm/jquery@3.6.0"></script>
         <script
