@@ -2,9 +2,10 @@ import React from 'react';
 import Header from "@/shared/components/header/header"
 import HeroSection from "./components/heroSection/heroSection"
 import AdsList from './components/AdsList/AdsList';
-import International from './components/International/International';
+import ForYouAndSports from './components/ForYou&Sports';
 import VideoGallery from './components/VideoGallery/VideoGallery';
-import SportsAndDebate from './components/SportsAndDebate/SportsAndDebate';
+import SportsAndInternational from './components/National&International';
+import LifestyleCultureAndTechnology from './components/LifestyleCulture&Technology';
 import Footer from '@/shared/components/Footer/Footer';
 
 const Index = () => {
@@ -13,10 +14,11 @@ const Index = () => {
         <>
             <Header/>
             <HeroSection/>
-            <AdsList/>
-            <International />
+            {/* <AdsList/> */}
+            <ForYouAndSports />
+            <SportsAndInternational />
+            <LifestyleCultureAndTechnology />
             <VideoGallery />
-            <SportsAndDebate />
             <Footer />
         </>
     );

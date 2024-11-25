@@ -7,7 +7,10 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --default-color: #DF0000;
-  --column-border: #ecdfdf:
+  --column-border: #ecdfdf;
+  --heading-color: #000;
+  --paragraph-color: #767676;
+  --heading-hover-color: #8954c1;
 }
 
 @font-face {
@@ -103,12 +106,42 @@ body {
 
 }
 
+
+ /* Common Styles  Start*/
 .common-section-title {
   padding-left: 10px;
   border-left: 4px solid var(--default-color);
   font: 600;
   font-weight: 600;
 }
+.section-gap{
+  margin-top: 20px;
+}
+.common-title {
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+  h2 {
+      width: max-content;
+      color: #000;
+      background: #f9c100;
+      padding:0px 5px;
+      font-size: 22px;
+      min-width: min-content;
+      &:after{
+          position: absolute;
+          content: "";
+          left: 0px;
+          bottom: 0px;
+          height: 3px;
+          width: 100%;
+          background-color: inherit;
+      }
+
+
+  }
+}
+ /* Common Styles  End */
 
 button {
   border: none;
@@ -119,7 +152,7 @@ button {
   font-family: 'Times New Roman', 'Roboto';
 }
 
-p, h1, h2, h3, h4, h5, h6, button, strong, span {
+p, h1, h2, h3, h4, h5, h6, button, strong, span, time {
   margin: 0px;
   padding: 0px;
   color: rgb(0, 0, 0);

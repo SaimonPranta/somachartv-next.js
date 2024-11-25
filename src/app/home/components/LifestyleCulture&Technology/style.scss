@@ -1,0 +1,248 @@
+.lifestyle-culture-and-technology-container {
+    color: #000;
+    $news-height: 400px;
+
+    .inner-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 300px;
+        gap: 10px;
+
+        .lifestyle-culture-section {
+            box-sizing: border-box;
+
+
+            .news-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                grid-auto-rows: minmax(0, 1fr);
+                gap: 20px;
+                height: $news-height;
+
+                .news-cart {
+                    text-decoration: none;
+                    display: inline-block;
+                    box-sizing: border-box;
+
+                    &:hover {
+                        .des-container {
+                            h3 {
+                                color: var(--heading-hover-color) !important;
+                            }
+                        }
+                    }
+
+                    .img-container {
+                        overflow: hidden;
+
+                        img {
+                            transition: .3s;
+
+                            &:hover {
+                                transform: scale(1.04)
+                            }
+                        }
+                    }
+
+                    .des-container {
+                        h3 {
+                            color: var(--heading-color)
+                        }
+
+                        p,
+                        time {
+                            color: var(--paragraph-color)
+                        }
+
+                    }
+
+
+
+
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    box-sizing: border-box;
+
+                    .img-container {
+                        height: 100%;
+                        width: 100%;
+
+                        img {
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+
+                    .des-container {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 5px;
+                        position: relative;
+
+
+                        h3 {
+                            font-size: 16px;
+                            display: inline-block;
+                            height: auto !important;
+                            width: 100%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 3;
+                            line-height: 20px;
+
+                        }
+
+                        p {
+                            position: absolute;
+                            height: 0px;
+                            width: 0px;
+                            visibility: hidden;
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+
+        .technology-section {
+            box-sizing: border-box;
+
+            .news-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-auto-rows: minmax(0, 1fr);
+                gap: 10px;
+                height: $news-height;
+
+
+
+                .news-cart {
+                    text-decoration: none;
+                    display: inline-block;
+                    box-sizing: border-box;
+
+                    &:hover {
+                        .des-container {
+                            h3 {
+                                color: var(--heading-hover-color)
+                            }
+                        }
+                    }
+
+                    .img-container {
+                        overflow: hidden;
+
+                        img {
+                            transition: .3s;
+
+                            &:hover {
+                                transform: scale(1.04)
+                            }
+                        }
+                    }
+
+
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    box-sizing: border-box;
+
+                    .img-container {
+                        height: 100%;
+                        width: 100%;
+
+                        img {
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+
+                    .des-container {
+
+                        h3 {
+                            font-size: 16px;
+                            display: inline-block;
+                            height: auto !important;
+                            width: 100%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            line-height: 20px;
+
+                        }
+
+                        p {
+                            color: var(--paragraph-color);
+                            font-size: 15px;
+                            display: inline-block;
+                            height: auto !important;
+                            width: 100%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 3;
+                            line-height: 20px;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+
+}
+
+// @media only screen and (min-width:200px) and (max-width:1000px) {
+
+//     .lifestyle-culture-and-technology-container {
+//         .bottom-container {
+//             display: grid;
+//             grid-template-columns: 1fr;
+
+//             .ads-section {
+//                 display: grid;
+//                 grid-template-columns: repeat(3, 1fr);
+//                 align-items: center;
+//                 justify-content: center;
+//                 gap: 10px;
+//             }
+//         }
+//     }
+
+// }
+// @media only screen and (min-width:200px) and (max-width:750px) {
+
+//     .lifestyle-culture-and-technology-container {
+//         .bottom-container { 
+//             .news-container { 
+//                 grid-template-columns: repeat(2, 1fr); 
+//                 gap: 10px;
+//                 a { 
+//                     &:last-child {
+//                         display: inline-block;
+//                     }
+//                     h2 {
+//                         color: #000;
+//                         font-weight: 600;
+//                         font-size: 17px;
+//                     }
+//                     p { 
+//                         font-weight: 400;
+//                         font-size: 14px;
+//                     } 
+
+//                 }
+//             }
+
+//         }
+//     }
+
+// }
