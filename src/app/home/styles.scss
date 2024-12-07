@@ -1,0 +1,14 @@
+.home-section{
+    display: grid;
+    grid-template-columns: 1fr var(--home-right-section-width);
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 950px) {
+    .home-section{
+        grid-template-columns: 1fr;
+        gap: 20px;  
+    }
+}

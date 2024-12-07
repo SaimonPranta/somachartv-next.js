@@ -37,97 +37,77 @@ const getAds = async () => {
     return [];
   }
 };
-const International = async () => {
+const Index = async () => {
   const internationalNews = await getInternalNews();
   const adsList = await getAds();
 
   return (
     <div className="container section-gap national-and-international-container">
-      <div className="inner-wrapper">
+      <div className="inner-wrapper home-section">
         <div className="national-news-section">
           <div className="common-title">
             <h2>জাতীয়</h2>
           </div>
-         <div className="news-grid-container">
-         <div className="news-grid-one">
-            {internationalNews.slice(0, 2).map((newsInfo, index) => {
-              return (
-                <Link
-                  key={index}
-                  href={`/news/${newsInfo._id}`}
-                  className="news-cart"
-                >
-                  <div className="img-container">
-                    <Image
-                      src={getImageUrl(newsInfo.images)}
-                      height={100}
-                      width={100}
-                      alt=""
-                    />
-                  </div>
-                  <div className="des-container">
-                    {" "}
-                    <h3>{newsInfo.title}</h3>
-                    <p>{newsInfo.description}</p>
-                    <time>২৪ নভেম্বর ২০২৪</time>
-                  </div>
-                </Link>
-              );
-            })}
+          <div className="news-grid-container">
+            <div className="news-grid-one">
+              {internationalNews.slice(0, 2).map((newsInfo, index) => {
+                return (
+                  <Link
+                    key={index}
+                    href={`/news/${newsInfo._id}`}
+                    className="news-cart"
+                  >
+                    <div className="img-container">
+                      <Image
+                        src={getImageUrl(newsInfo.images)}
+                        height={100}
+                        width={100}
+                        alt=""
+                      />
+                    </div>
+                    <div className="des-container">
+                      {" "}
+                      <h3>{newsInfo.title}</h3>
+                      <p>{newsInfo.description}</p>
+                      <time>২৪ নভেম্বর ২০২৪</time>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="news-grid-two">
+              {[
+                ...internationalNews,
+                ...internationalNews,
+                ...internationalNews,
+              ]
+                .slice(2, 6)
+                .map((newsInfo, index) => {
+                  return (
+                    <Link
+                      key={index}
+                      href={`/news/${newsInfo._id}`}
+                      className="news-cart"
+                    >
+                      <div className="img-container">
+                        <Image
+                          src={getImageUrl(newsInfo.images)}
+                          height={100}
+                          width={100}
+                          alt=""
+                        />
+                      </div>
+                      <div className="des-container">
+                        {" "}
+                        <h3>{newsInfo.title}</h3>
+                        <p>{newsInfo.description}</p>
+                        <time>২৪ নভেম্বর ২০২৪</time>
+                      </div>
+                    </Link>
+                  );
+                })}
+            </div>
           </div>
-          <div className="news-grid-two">
-            {[...internationalNews, ...internationalNews, ...internationalNews].slice(2, 6).map((newsInfo, index) => {
-              return (
-                <Link
-                  key={index}
-                  href={`/news/${newsInfo._id}`}
-                  className="news-cart"
-                >
-                  <div className="img-container">
-                    <Image
-                      src={getImageUrl(newsInfo.images)}
-                      height={100}
-                      width={100}
-                      alt=""
-                    />
-                  </div>
-                  <div className="des-container">
-                    {" "}
-                    <h3>{newsInfo.title}</h3>
-                    <p>{newsInfo.description}</p>
-                    <time>২৪ নভেম্বর ২০২৪</time>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-         </div>
-          {/* <div className="news-grid">
-            {internationalNews.map((newsInfo, index) => {
-              return (
-                <Link
-                  key={index}
-                  href={`/news/${newsInfo._id}`}
-                  className="news-cart"
-                >
-                  <div className="img-container">
-                    <Image
-                      src={getImageUrl(newsInfo.images)}
-                      height={100}
-                      width={100}
-                      alt=""
-                    />
-                  </div>
-                  <div className="des-container">
-                    {" "}
-                    <h3>{newsInfo.title}</h3>
-                    <p>{newsInfo.description}</p>
-                    <time>২৪ নভেম্বর ২০২৪</time>
-                  </div>
-                </Link>
-              );
-            })}
-          </div> */}
         </div>
         <div className="international-news-section">
           <div className="common-title">
@@ -152,7 +132,7 @@ const International = async () => {
                   <div className="des-container">
                     {" "}
                     <h3>{newsInfo.title}</h3>
-                    <p>{newsInfo.description}</p> 
+                    <p>{newsInfo.description}</p>
                   </div>
                 </Link>
               );
@@ -164,4 +144,4 @@ const International = async () => {
   );
 };
 
-export default International;
+export default Index;

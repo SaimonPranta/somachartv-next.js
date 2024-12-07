@@ -1,11 +1,11 @@
 .for-you-and-sports-container {
     color: #000;
-    $news-height: 400px;
+    // $news-height: 400px;
 
     .inner-wrapper {
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 10px;
+        // display: grid;
+        // grid-template-columns: 1fr var(--home-right-section-width);
+        // gap: 10px;
 
         .for-you-news-section {
             box-sizing: border-box;
@@ -14,13 +14,14 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 grid-auto-rows: minmax(0, 1fr);
-                gap: 20px;
-                height: $news-height;
-               
+                gap: var(--home-section-inner-gap);
+                height: var(--home-section-height);
+
                 .news-cart {
                     text-decoration: none;
                     display: inline-block;
                     box-sizing: border-box;
+
                     &:hover {
                         .des-container {
                             h3 {
@@ -28,6 +29,7 @@
                             }
                         }
                     }
+
                     .img-container {
                         overflow: hidden;
 
@@ -158,14 +160,13 @@
                 grid-template-columns: 1fr 1fr;
                 grid-auto-rows: minmax(0, 1fr);
                 gap: 10px;
-                height: $news-height;
-
-               
+                height: var(--home-section-height);
 
                 .news-cart {
                     text-decoration: none;
                     display: inline-block;
                     box-sizing: border-box;
+
                     &:hover {
                         .des-container {
                             h3 {
@@ -173,6 +174,7 @@
                             }
                         }
                     }
+
                     .img-container {
                         overflow: hidden;
 
@@ -234,49 +236,62 @@
 
 }
 
-// @media only screen and (min-width:200px) and (max-width:1000px) {
+@media (max-width: 650px) {
+    .for-you-and-sports-container {
 
-//     .for-you-and-sports-container {
-//         .bottom-container {
-//             display: grid;
-//             grid-template-columns: 1fr;
+        .inner-wrapper {
 
-//             .ads-section {
-//                 display: grid;
-//                 grid-template-columns: repeat(3, 1fr);
-//                 align-items: center;
-//                 justify-content: center;
-//                 gap: 10px;
-//             }
-//         }
-//     }
+            .for-you-news-section {
 
-// }
-// @media only screen and (min-width:200px) and (max-width:750px) {
+                .news-grid { 
+                    height: auto;
+                    grid-auto-rows: auto;
+                    .news-cart { 
 
-//     .for-you-and-sports-container {
-//         .bottom-container { 
-//             .news-container { 
-//                 grid-template-columns: repeat(2, 1fr); 
-//                 gap: 10px;
-//                 a { 
-//                     &:last-child {
-//                         display: inline-block;
-//                     }
-//                     h2 {
-//                         color: #000;
-//                         font-weight: 600;
-//                         font-size: 17px;
-//                     }
-//                     p { 
-//                         font-weight: 400;
-//                         font-size: 14px;
-//                     } 
 
-//                 }
-//             }
 
-//         }
-//     }
+                        &:first-child {
+                            grid-column: span 2;
+                            grid-row: span 1;
+                            display: grid;
+                            grid-template-columns: 40% calc(60% - 5px) !important;
+                            grid-template-rows: 1fr !important;
+                            gap: 5px;
 
-// }
+                            .img-container {
+                                height: 100%;
+                                width: 100%;
+                                // height: 200px;
+
+                                img {
+                                    height: 100%;
+                                    width: 100%;
+                                }
+                            }
+
+                          
+                        }
+
+                        &:not(:first-child) {
+                            display: grid;
+                            // grid-template-rows: 40% 60%;
+                            grid-template-rows: 130px auto;
+
+                            .img-container {
+                                height: 100%;
+                                width: 100%;
+                            }
+
+                           
+                        }
+                    }
+
+                }
+            }
+
+
+        }
+
+
+    }
+}

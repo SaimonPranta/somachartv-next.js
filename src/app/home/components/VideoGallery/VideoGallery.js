@@ -10,7 +10,7 @@ const getVideos = async () => {
   try {
     let response = await (
       await fetch(
-        `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=5&playlistId=${SITE_CONFIG.youtubeChannelID}&key=AIzaSyCnjHwqOkXQo1gNW-VR9uTdR4soiC9IAnc`,
+        `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=5&playlistId=${SITE_CONFIG?.ytChannel?.youtubeChannelID}&key=AIzaSyCnjHwqOkXQo1gNW-VR9uTdR4soiC9IAnc`,
         { cache: "no-store" }
       )
     ).json();

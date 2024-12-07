@@ -56,15 +56,8 @@
     }
 
     .bottom-section {
-        display: grid;
-        grid-template-columns: 1fr 300px;
-        gap: 10px;
-        width: 100%;
-        height: $hero-section-height;
-        box-sizing: border-box;
-
         .hero-news {
-            height: inherit;
+            height: $hero-section-height;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 5px;
@@ -143,7 +136,9 @@
 
             }
 
-            .single-news {}
+            .single-news {
+                height: inherit;
+            }
 
             .news-grid {
                 display: grid;
@@ -166,146 +161,213 @@
 
 
         }
-    }
 
-    .jobs-news {
-        // height: $hero-section-height;
-        height: inherit;
-        display: grid;
-        grid-template-rows: minmax(0, 40%) minmax(0, 60%);
-        gap: 10px;
-        box-sizing: border-box;
 
-        .job-news {
-            // height: 40% !important;
-            color: #000;
-            background: #f3f3f3;
-            height: 100%;
-
-            h3 {
-                width: 100%;
-                // background: var(--default-color);
-                background-color: #233090;
-                color: #fff;
-                text-align: center;
-                padding: 4px 0px;
-            }
-
-            .news-cart {
-                display: inline-block;
-                text-decoration: none;
-                min-width: 100%;
-
-                img {
-                    height: 200px;
-                    width: 100%;
-                    min-width: 100%;
-                }
-
-                h2 {
-                    padding: 2px 5px 10px 5px;
-                    text-align: center;
-                }
-            }
-        }
-
-        .all-news {
+        .jobs-news {
+            height: $hero-section-height;
             display: grid;
-            grid-template-rows: auto auto;
-            gap: 5px;
-            background-color: #f3f3f3;
+            grid-template-rows: minmax(0, 40%) minmax(0, 60%);
+            gap: 10px;
+            box-sizing: border-box;
 
-            .navigation-container {
-                display: flex;
-                align-items: center;
-                background: transparent;
-
-                button {
-                    width: 50%;
-                    height: 30px;
-                    border: none;
-                    outline: none;
-                    border-radius: 10px !important;
-                    background: #e9e5e5;
-                    font-size: 20px;
-                    font-weight: 700;
-                    cursor: pointer;
-
-                    &:active,
-                    &:hover,
-                    &.active {
-                        background: #1c516a;
-                        color: #FFF
-                    }
-                }
-            }
-
-            .news-list {
+            .job-news {
+                // height: 40% !important;
+                color: #000;
+                background: #f3f3f3;
                 height: 100%;
-                overflow-y: scroll !important;
 
-                .cart {
-                    display: flex;
-                    color: #000;
-                    gap: 10px;
-                    padding: 5px;
+                h3 {
+                    width: 100%;
+                    // background: var(--default-color);
+                    background-color: #233090;
+                    color: #fff;
+                    text-align: center;
+                    padding: 4px 0px;
+                }
+
+                .news-cart {
+                    display: inline-block;
                     text-decoration: none;
-
-                    &:hover {
-                        background: #e4e4e4;
-                    }
+                    min-width: 100%;
 
                     img {
-                        width: 80px;
-                        height: 50px;
+                        height: 200px;
+                        width: 100%;
+                        min-width: 100%;
                     }
 
                     h2 {
-                        font-size: 14px;
-                        font-weight: 400;
+                        padding: 2px 5px 10px 5px;
+                        text-align: center;
+                    }
+                }
+            }
+
+            .all-news {
+                display: grid;
+                grid-template-rows: auto auto;
+                gap: 5px;
+                background-color: #f3f3f3;
+
+                .navigation-container {
+                    display: flex;
+                    align-items: center;
+                    background: transparent;
+
+                    button {
+                        width: 50%;
+                        height: 30px;
+                        border: none;
+                        outline: none;
+                        border-radius: 10px !important;
+                        background: #e9e5e5;
+                        font-size: 20px;
+                        font-weight: 700;
+                        cursor: pointer;
+
+                        &:active,
+                        &:hover,
+                        &.active {
+                            background: #1c516a;
+                            color: #FFF
+                        }
                     }
                 }
 
-                .skeleton {
-                    display: flex;
-                    color: #000;
-                    gap: 10px;
-                    padding: 5px;
-                    text-decoration: none;
+                .news-list {
+                    height: 100%;
+                    overflow-y: scroll !important;
 
-                    .images,
-                    .h2 {
-                        background: #eaecef !important;
-                        display: inline-block;
+                    .cart {
+                        display: flex;
+                        color: #000;
+                        gap: 10px;
+                        padding: 5px;
+                        text-decoration: none;
 
-                    }
-
-                    div {
-                        width: 100%;
-                        height: 50px !important;
-
-                        .h2 {
-                            width: 100%;
-                            height: 20px;
-                            border-radius: 5px;
-
-                            &:last-child {
-                                width: 60%
-                            }
+                        &:hover {
+                            background: #e4e4e4;
                         }
 
+                        img {
+                            width: 80px;
+                            height: 50px;
+                        }
+
+                        h2 {
+                            font-size: 14px;
+                            font-weight: 400;
+                        }
                     }
 
-                    .images {
-                        width: 80px;
-                        height: 50px;
+                    .skeleton {
+                        display: flex;
+                        color: #000;
+                        gap: 10px;
+                        padding: 5px;
+                        text-decoration: none;
+
+                        .images,
+                        .h2 {
+                            background: #eaecef !important;
+                            display: inline-block;
+
+                        }
+
+                        div {
+                            width: 100%;
+                            height: 50px !important;
+
+                            .h2 {
+                                width: 100%;
+                                height: 20px;
+                                border-radius: 5px;
+
+                                &:last-child {
+                                    width: 60%
+                                }
+                            }
+
+                        }
+
+                        .images {
+                            width: 80px;
+                            height: 50px;
+                        }
+
+
                     }
-
-
                 }
+            }
+        }
+    }
+
+
+}
+
+@media (max-width: 950px) {
+    .hero-section {
+        $hero-section-height: 400px;
+
+        .bottom-section {
+
+            .hero-news {
+                height: $hero-section-height;
+
+            }
+
+            .jobs-news {
+                height: 300px;
+                display: grid;
+                grid-template-rows: 100%;
+                grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+                gap: 10px;
+                box-sizing: border-box;
             }
         }
     }
 }
 
-// @media only screen and (min-width:200px) and (max-width:1000px) {
+@media (max-width: 800px) {
+    .hero-section {
+        $hero-section-height: 300px;
+
+        .bottom-section {
+
+            .hero-news {
+                height: $hero-section-height;
+
+            }
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    .hero-section {
+        $hero-section-height: auto;
+
+        .bottom-section {
+            .hero-news {
+                height: $hero-section-height;
+                grid-template-columns: 1fr;
+
+                .single-news {
+                    a {
+                        height: auto;
+                        aspect-ratio: 16/9;
+                    }
+                }
+            }
+
+            .news-grid {
+                display: flex !important;
+
+                .cart {
+                    &:last-child {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

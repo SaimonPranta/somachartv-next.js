@@ -1,12 +1,12 @@
 "use client"
 import Link from 'next/link'
 import React from 'react'
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
+import { IoMdArrowDropdown } from 'react-icons/io'
 
 const Index = ({subCategories, routeInfo}) => {
     return (
         <>
-            <button> <MdOutlineKeyboardArrowDown /> </button>
+            <button> <IoMdArrowDropdown /> </button>
             <ul>
                 {
                     subCategories.map((subRouteInfo, subIndex) => {

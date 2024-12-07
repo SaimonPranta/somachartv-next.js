@@ -37,13 +37,13 @@ const getAds = async () => {
     return [];
   }
 };
-const International = async () => {
+const Index = async () => {
   const internationalNews = await getInternalNews();
   const adsList = await getAds();
 
   return (
     <div className="container section-gap for-you-and-sports-container">
-      <div className="inner-wrapper">
+      <div className="inner-wrapper home-section">
         <div className="for-you-news-section">
           <div className="common-title">
             <h2>আপনার জন্য</h2>
@@ -110,4 +110,4 @@ const International = async () => {
   );
 };
 
-export default International;
+export default Index;

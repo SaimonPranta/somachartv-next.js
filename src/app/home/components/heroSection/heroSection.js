@@ -62,7 +62,6 @@ const Index = async () => {
   const news = await getHeroNews();
   const jobsNews = await getJobsNews();
   const slidingNews = await getSlidingNews();
-  // console.log("news ===>>", news)
 
   return (
     <main className="container hero-section">
@@ -84,7 +83,7 @@ const Index = async () => {
           </ul>
         </marquee>
       </div>
-      <div className="bottom-section">
+      <div className="bottom-section home-section">
         <div className="hero-news">
           <div className="single-news">
             {news.length > 0 &&
@@ -142,18 +141,6 @@ const Index = async () => {
               })}
           </div>
         </div>
-        {/* <div className="middle-section">
-                    {news.length > 0 && news.splice(3, 4).map((newsInfo, index) => {
-                        return <Link href={`/news/${newsInfo._id}`} key={index * Math.random() * Math.random()} className="cart" >
-                            <h2>{textSlicer(newsInfo.title, 78)}</h2>
-                            <div className="inner-cart" >
-                                <p>{`${textSlicer(newsInfo.description, 180)}...`}</p>
-                                <Image height={100} width={100} src={getImageUrl(newsInfo.images)} alt='' />
-                            </div>
-                        </Link>
-
-                    })}
-                </div> */}
         <div className="jobs-news">
           <div className="job-news">
             <h3>চাকরি বাজার</h3>

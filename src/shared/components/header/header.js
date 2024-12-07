@@ -7,7 +7,7 @@ import TopHeader from '@/shared/components/header/Modules/TopHeader/Index';
 // import OthersNavigation from '@/shared/components/header/Modules/OthersNavigation/Index';
 import OtherNavItem from '@/shared/components/header/Modules/OtherNavItem/index';
 import OtherNavigation from '@/shared/components/header/Modules/OtherNavigation/index';
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { IoMdArrowDropdown } from 'react-icons/io'
 
 const getCategories = async () => {
     try {
@@ -32,8 +32,8 @@ const Index = async () => {
     return (
         <header className="header">
             <TopHeader />
-            <nav className="container navigation-container" id="navigation" >
-                <ul>
+            <nav className="navigation-container" id="navigation" >
+                <ul  className="container">
                     <li >
                         <NavItem currentPath="/" currentLabel="প্রচ্ছদ" />
                     </li>
@@ -52,7 +52,7 @@ const Index = async () => {
                     <li className="other-li">
                         <OtherNavItem />
                         <button>
-                            <MdOutlineKeyboardArrowDown />
+                            <IoMdArrowDropdown />
                         </button>
                         <OtherNavigation categories={otherCategories} />
 

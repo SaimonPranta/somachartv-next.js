@@ -208,230 +208,42 @@
 }
 
 
-@media only screen and (min-width:999999999200px) and (max-width:1000px) {
+@media (max-width: 1400px) {
     .news-details-page {
-        margin-bottom: 40px;
 
-        .news-details {
-            grid-template-columns: 70% auto;
-            gap: 10px;
-
-            .main-news-container {
-                margin-bottom: 25px;
-
-                .categories-container {
-                    display: flex;
-                    align-items: center;
-                    color: #000;
-                    font-size: 15px;
-
-                    a {
-                        text-decoration: none;
-                        display: flex !important;
-                        align-items: center;
-
-                        svg {
-                            margin-bottom: 4px;
-                        }
-                    }
-
-
-                    span,
-                    svg {
-                        height: 22px;
-                        width: 22px;
-                    }
-
-                }
-
-                .news-container {
-
-                    h2 {
-                        font-size: 23px;
-
-                    }
-
-                    img {
-                        height: 300px;
-                    }
-                }
-            }
-
-            .related-news-container {
-                .ads-section {
-                    width: 100%;
-                    max-width: 400px;
-
-                    img {
-                        width: 100%;
-                        height: 200px;
-                        margin: 5px 0px;
-                    }
-                }
-
-                .news-section {
-                    .title {
-                        font-size: 18px;
-                        font-weight: 600;
-                    }
-
-                    .new-list {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-
-                        a {
-                            display: flex;
-                            // grid-template-columns: calc(80% - 5px) 20%; 
-                            align-items: center;
-                            text-decoration: none;
-                            //  gap: 5px;
-                            padding: 5px;
-
-                            h6 {
-                                font-size: 14px;
-                            }
-                        }
-
-                    }
-                }
-            }
+        .news-details-top-section {
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
         }
     }
 }
 
-@media only screen and (min-width:99999999200px) and (max-width:800px) {
+@media (max-width: 1000px) {
     .news-details-page {
-        margin-bottom: 40px;
 
-        .news-details {
+        .news-details-top-section {
+            grid-template-columns: 1fr 250px;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .news-details-page {
+
+        .news-details-top-section {
             grid-template-columns: 1fr;
-            gap: 10px;
-            margin-top: 20px;
-
-            .main-news-container {
-
-                .categories-container {
-                    display: flex;
-                    align-items: center;
-                    color: #000;
-
-                    a {
-                        text-decoration: none;
-                    }
-
-                    span {
-                        height: 22px;
-                        width: 22px;
-                    }
-
-                }
-
-                .news-container {
-
-                    h2 {
-                        font-size: 23px;
-
-                    }
-
-                    img {
-                        height: 300px;
-                    }
-                }
-            }
 
             .related-news-container {
+
                 .ads-section {
-                    width: 100%;
-                    max-width: 100%;
-
-                    img {
-                        width: 100%;
-                        height: 200px;
-                        margin: 5px 0px;
-                    }
-                }
-
-                .news-section {
-                    .title {
-                        font-size: 18px;
-                        font-weight: 600;
-                    }
-
-                    .new-list {
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
-
-                        a {
-                            display: flex;
-                            align-items: center;
-                            text-decoration: none;
-                            padding: 5px;
-
-                            h6 {
-                                font-size: 14px;
-                            }
-
-                            img {
-                                width: 200px;
-                            }
-                        }
-
-                    }
-                }
-            }
-        }
-    }
-}
-
-@media only screen and (min-width:99999999999999200px) and (max-width:650px) {
-    .news-details-page {
-        .news-details {
-            .main-news-container {
-                .categories-container {
                     display: flex;
                     align-items: center;
-                    color: #000;
+                    justify-content: center;
 
                     a {
-                        text-decoration: none;
-                    }
-
-                    span {
-                        height: 22px;
-                        width: 22px;
-                    }
-
-                }
-
-                .news-container {
-
-                    h2 {
-                        font-size: 18px;
-
-                    }
-
-                    p {
-                        font-size: 14px;
-                    }
-
-                    img {
-                        height: 200px;
+                        max-width: 400px;
                     }
                 }
-            }
-
-            .related-news-container {
-                .ads-section {
-
-                    img {
-                        width: 100%;
-                        height: 140px;
-                    }
-                }
-
-
             }
         }
     }
