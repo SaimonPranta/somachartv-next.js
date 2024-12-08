@@ -314,7 +314,7 @@
                     align-items: center;
                     justify-content: center;
 
-                    &:hover, &.active {
+                    &:hover {
                         border: 1px solid var(--default-color);
 
                         svg {

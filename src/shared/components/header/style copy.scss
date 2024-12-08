@@ -314,7 +314,7 @@
                     align-items: center;
                     justify-content: center;
 
-                    &:hover, &.active {
+                    &:hover {
                         border: 1px solid var(--default-color);
 
                         svg {
@@ -396,128 +396,128 @@
 
 }
 
-// @media only screen and (min-width:200px) and (max-width:1300px) {
-//     .header {
+@media only screen and (min-width:200px) and (max-width:1300px) {
+    .header {
 
-//         .navigation-wrapper {
-//             ul {
-//                 gap: 5px;
+        .navigation-wrapper {
+            ul {
+                gap: 5px;
 
-//                 li {
+                li {
 
-//                     a {
-//                         font-size: 18px;
-//                         font-weight: 500;
-//                     }
+                    a {
+                        font-size: 18px;
+                        font-weight: 500;
+                    }
 
-//                     ul {
-//                         width: 200px;
-//                         top: 38px;
+                    ul {
+                        width: 200px;
+                        top: 38px;
 
-//                         li {
-//                             a {
-//                                 padding: 5px 10px;
-//                             }
+                        li {
+                            a {
+                                padding: 5px 10px;
+                            }
 
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-// }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
-// @media only screen and (min-width:200px) and (max-width:1000px) {
-//     .header {
-//         width: 100vw !important;
-//         max-width: 100vw !important;
+@media only screen and (min-width:200px) and (max-width:1000px) {
+    .header {
+        width: 100vw !important;
+        max-width: 100vw !important;
 
-//         .top-section {
-//             .top-inner-container {
-//                 .left {
-//                     p {
-//                         font-size: 10px;
-//                     }
-//                 }
-//             }
-//         }
+        .top-section {
+            .top-inner-container {
+                .left {
+                    p {
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
 
         
 
-//         .navigation-wrapper {
-//             position: absolute;
-//             background: #FFF;
-//             width: 100%;
-//             left: 101%;
-//             transition: 0.5s ease-in, 0.5s ease-out;
-//             z-index: 999;
-//             display: none;
-//             height: calc(100vh - 150px);
-//             overflow-X: scroll;
-//             scrollbar-width: none;
+        .navigation-wrapper {
+            position: absolute;
+            background: #FFF;
+            width: 100%;
+            left: 101%;
+            transition: 0.5s ease-in, 0.5s ease-out;
+            z-index: 999;
+            display: none;
+            height: calc(100vh - 150px);
+            overflow-X: scroll;
+            scrollbar-width: none;
 
-//             &::-webkit-scrollbar {
-//                 display: none;
-//             }
+            &::-webkit-scrollbar {
+                display: none;
+            }
 
-//             &.active {
-//                 left: 0px;
-//                 display: inline-block;
-//             }
+            &.active {
+                left: 0px;
+                display: inline-block;
+            }
 
-//             ul {
-//                 display: flex;
-//                 flex-direction: column !important;
-//                 gap: 5px;
-//                 padding: 0px 15px;
-//                 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            ul {
+                display: flex;
+                flex-direction: column !important;
+                gap: 5px;
+                padding: 0px 15px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-//                 li {
-//                     &.mobile-li {
-//                         display: flex;
-//                     }
+                li {
+                    &.mobile-li {
+                        display: flex;
+                    }
 
-//                     &.other-li {
-//                         display: none;
-//                     }
+                    &.other-li {
+                        display: none;
+                    }
 
-//                     &:last-child {
-//                         border-bottom: none;
-//                     }
+                    &:last-child {
+                        border-bottom: none;
+                    }
 
 
-//                     a {
-//                         font-size: 18px;
-//                         font-weight: 500;
-//                         border-bottom: 1px solid #e4e4e4;
-//                         display: block;
-//                         width: 100%;
-//                         position: relative;
+                    a {
+                        font-size: 18px;
+                        font-weight: 500;
+                        border-bottom: 1px solid #e4e4e4;
+                        display: block;
+                        width: 100%;
+                        position: relative;
 
-//                         &:hover {
-//                             background: #ede4e4;
-//                         }
+                        &:hover {
+                            background: #ede4e4;
+                        }
 
-//                     }
+                    }
 
-//                     ul {
-//                         width: 200px;
-//                         top: 38px;
-//                         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                    ul {
+                        width: 200px;
+                        top: 38px;
+                        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
-//                         li {
-//                             a {
-//                                 padding: 5px 10px;
-//                             }
+                        li {
+                            a {
+                                padding: 5px 10px;
+                            }
 
-//                         }
-//                     }
-//                 }
-//             }
-//         }
+                        }
+                    }
+                }
+            }
+        }
 
-//         .others-navigation {
-//             display: none;
-//         }
-//     }
-// }
+        .others-navigation {
+            display: none;
+        }
+    }
+}

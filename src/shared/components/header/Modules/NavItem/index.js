@@ -3,11 +3,11 @@ import React from 'react';
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
 
-const Index = ({currentPath, currentLabel}) => {
+const Index = ({currentPath, currentLabel, icon}) => {
         const pathname = usePathname();
     return (
         <Link href={currentPath} className={currentPath === pathname ? "active" : ""} >
-            {currentLabel}
+            {icon || currentLabel}
         </Link>
     );
 };

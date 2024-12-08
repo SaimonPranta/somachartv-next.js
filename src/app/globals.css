@@ -6,7 +6,11 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --default-color: #DF0000;
+  --default-color: #233090;
+  --default-text-color: #fff;
+  /* --default-color: #0048ba; */
+  /* --default-color: #00aae3; */
+  /* --default-color: #DF0000; */
   --column-border: #ecdfdf;
   --heading-color: #000;
   --paragraph-color: #767676;
@@ -167,7 +171,15 @@ body {
 
   }
 }
+.rm-scroll-bar{
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;  
 
+  &::-webkit-scrollbar {
+    display: none;  
+  }
+}
 /* Common Styles  End */
 
 button {
