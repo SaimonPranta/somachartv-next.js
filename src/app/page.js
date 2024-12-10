@@ -4,11 +4,12 @@ import "./globals.css";
 import HomePage from "./home/home";
 import Loading from "@/shared/components/Loading/index";
 
-export default function Home() {
+export default function Home(props) { 
+// export default function Home({searchParams: {route}}) { 
   return (
     <Loading>
       <main>
-        <HomePage />
+        <HomePage {...props} />
       </main>
     </Loading>
   );

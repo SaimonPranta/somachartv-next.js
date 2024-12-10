@@ -1,17 +1,23 @@
 .mobile-navigation {
+    width: 100%;
     background-color: #FFF;
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.0901960784);
     padding-bottom: 20px;
     display: none;
-    &.active{
-    display: block;
+    position: absolute;
+    left: 0px;
+    top: 100%;
+
+    &.active {
+        display: block;
 
     }
-    .inner-container {
+
+    .navigation-inner-container {
         .nav-container {
             height: auto;
             max-height: 500px;
-            overflow-y: scroll;
+            overflow-X: scroll; 
 
             ul {
                 padding: 0px;
@@ -20,6 +26,7 @@
                 grid-template-columns: 1fr 1fr 1fr;
                 row-gap: 2px;
                 column-gap: 20px;
+                box-sizing: border-box;
 
                 li {
                     list-style: none;
@@ -28,11 +35,11 @@
                     height: 100%;
                     background: #f8f1f1;
                     width: 100%;
-                    padding: 3px 10px;
                     border-bottom: 2px solid #e4e4e4;
                     display: flex;
                     justify-content: space-between;
                     position: relative;
+
 
                     &:hover {
                         border-bottom: 2px solid blue;
@@ -41,7 +48,7 @@
 
                     ul {
                         display: none;
-                       
+
 
                         li {
                             border: none;
@@ -55,7 +62,8 @@
 
                     }
 
-                    &:hover, &:focus-within {
+                    &:hover,
+                    &:focus-within {
                         ul {
                             display: flex;
                             flex-direction: column;
@@ -79,6 +87,8 @@
                         display: inline-block;
                         height: 100%;
                         width: 100%;
+                        padding: 3px 0px 3px 10px;
+
                     }
 
                     button {
@@ -86,13 +96,40 @@
                         outline: none;
                         background: transparent;
                         margin: 0px;
+                        margin-right: 10px;
                         padding: 0px;
                         cursor: pointer;
+
                         svg {
                             height: 20px;
                             width: 20px;
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .mobile-navigation {
+        .navigation-inner-container {
+            .nav-container { 
+                max-height: 70vh; 
+
+                ul {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 600px) {
+    .mobile-navigation {
+        .navigation-inner-container {
+            .nav-container {  
+                ul {
+                    grid-template-columns: 1fr;
                 }
             }
         }

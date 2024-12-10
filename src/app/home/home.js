@@ -9,11 +9,11 @@ import NationalAndInternational from './components/National&International';
 import LifestyleCultureAndTechnology from './components/LifestyleCulture&Technology';
 import Footer from '@/shared/components/Footer/Footer';
 
-const Index = () => {
+const Index = (props) => { 
     
     return (
         <>
-            <Header/>
+            <Header {...props} />
             <HeroSection/>
             {/* <AdsList/> */}
             <ForYouAndSports />

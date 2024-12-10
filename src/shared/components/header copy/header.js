@@ -8,9 +8,10 @@ import { FaHome } from "react-icons/fa";
 import SearchSection from "@/shared/components/header/Modules/SearchSection/index";
 import MenuBtnSection from "@/shared/components/header/Modules/MenuBtnSection/index";
 import MobileNavigation from "@/shared/components/MobileNavigation/index";
-    import Link from "next/link";
-    
 
+
+
+const homeIcon = <FaHome />;
 const getCategories = async () => {
   try {
     const response = await (
@@ -26,53 +27,58 @@ const getCategories = async () => {
   }
 };
 
-const Index = async (props) => {
-  const pageRoute = props?.searchParams?.route;
+const Index = async () => {
   const categories = await getCategories();
+  // const mainCategories = await [...categories].slice(0, 7)
+  const otherCategories = await categories.slice(
+    7,
+    Number(categories.length + 1)
+  );
+ 
+
   return (
     <header className="header">
       <TopHeader />
       <div className="navigation-container ">
         <div className="inner-container container">
-          <nav className="navigation-wrapper rm-scroll-bar" id="header-nav">
+          <nav className="navigation-wrapper rm-scroll-bar">
             <ul className="">
-              <li className={`${"/" === pageRoute ? "active" : ""}`}>
-               
-                <Link href={"/"}>
-                  <FaHome />
-                </Link>
+              <li>
+                <NavItem
+                  currentPath="/"
+                  currentLabel="প্রচ্ছদ"
+                  icon={homeIcon}
+                />
               </li>
               {categories?.length > 0 &&
-                categories.map((routeInfo, index) => {
-                  let itemRoute = `/topic/${routeInfo.route}`;
+                [...categories].map((routeInfo, index) => {
                   return (
                     <li
                       key={routeInfo._id}
-                      className={`${index > 15 ? "mobile-li" : ""} ${
-                        itemRoute === pageRoute ? "active" : ""
-                      }`}
+                      className={index > 6 ? "mobile-li" : ""}
                     >
-                      <Link href={itemRoute}>{routeInfo.label}</Link>
-                      {/* <NavItem  /> */}
+                      <NavItem
+                        currentPath={`/topic/${routeInfo.route}`}
+                        currentLabel={routeInfo.label}
+                      />
                       {routeInfo?.subCategories?.length > 0 && (
                         <>
                           <SubCategory
                             subCategories={routeInfo?.subCategories}
                             routeInfo={routeInfo}
-                            pageRoute={pageRoute}
                           />
                         </>
                       )}
                     </li>
                   );
-                })}
+                })} 
             </ul>
             {/* <OthersNavigation/> */}
           </nav>
-          <MenuBtnSection />
+         <MenuBtnSection/>
         </div>
-        <SearchSection />
-        <MobileNavigation />
+        <SearchSection/>
+      <MobileNavigation/>
       </div>
     </header>
   );

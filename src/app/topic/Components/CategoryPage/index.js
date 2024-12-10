@@ -32,13 +32,14 @@ const getNews = async (categoryLabel, subCategoryLabel) => {
         return []
     }
 }
-const Index = async ({ params: { category, subCategory } }) => {
+const Index = async (props) => {
+  const { params: { category, subCategory } } = props
     const { categoryLabel, subCategoryLabel } = await getCategory(category, subCategory)
     const newsList = await getNews(categoryLabel, subCategoryLabel)
 
     return (
         <div className="news-topic-container">
-            <Header />
+            <Header {...props} />
             <div className="container main-section">
                 <div className="top-section">
                     <div className="title-section">

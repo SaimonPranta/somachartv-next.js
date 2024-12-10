@@ -5,6 +5,8 @@ import Image from "next/image";
 import { BACKEND_URL } from "@/shared/constants/ulrList";
 import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
+import MoreNews from '@/app/home/components/MoreNews'
+
 
 const getInternalNews = async () => {
   try {
@@ -47,6 +49,7 @@ const Index = async () => {
         <div className="lifestyle-culture-section">
           <div className="common-title">
             <h2>জীবনধারা ও সংস্কৃতি</h2>
+            <MoreNews route="/" />
           </div>
           <div className="news-grid">
             {internationalNews.map((newsInfo, index) => {
@@ -78,6 +81,9 @@ const Index = async () => {
         <div className="technology-section">
           <div className="common-title">
             <h2>প্রযুক্তি</h2>
+
+            <MoreNews route="/" />
+
           </div>
           <div className="news-grid">
             {internationalNews.slice(0, 2).map((newsInfo, index) => {

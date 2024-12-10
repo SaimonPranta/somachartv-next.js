@@ -5,6 +5,7 @@ import Image from "next/image";
 import { BACKEND_URL } from "@/shared/constants/ulrList";
 import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
+import MoreNews from '@/app/home/components/MoreNews'
 
 const getInternalNews = async () => {
   try {
@@ -39,7 +40,7 @@ const getAds = async () => {
 };
 const Index = async () => {
   const internationalNews = await getInternalNews();
-  const adsList = await getAds();
+const adsList = await getAds();
 
   return (
     <div className="container section-gap for-you-and-sports-container">
@@ -47,6 +48,7 @@ const Index = async () => {
         <div className="for-you-news-section">
           <div className="common-title">
             <h2>আপনার জন্য</h2>
+            <MoreNews route="/" />
           </div>
           <div className="news-grid">
             {internationalNews.map((newsInfo, index) => {
@@ -78,6 +80,7 @@ const Index = async () => {
         <div className="sports-news-section">
           <div className="common-title">
             <h2>খেলা</h2>
+            <MoreNews route="/" />
           </div>
           <div className="news-grid">
             {internationalNews.map((newsInfo, index) => {

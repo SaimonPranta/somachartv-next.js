@@ -1,9 +1,10 @@
 import { Inter } from "next/font/google";
-import {Suspense} from 'react'
+import { Suspense } from "react";
 import "./globals.css";
 import { Provider } from "react-redux";
 import store from "../store/store";
 import App from "./app.js";
+import Script from "./scripts/script.js";
 
 // import Loading from '@/shared/components/Loading/index'
 const inter = Inter({ subsets: ["latin"] });
@@ -71,10 +72,11 @@ export default function RootLayout({ children }) {
             `,
           }}
         />
+        <Script />
       </head>
 
       <App>
-          <body className={inter.className}>{children}</body>
+        <body className={inter.className}>{children}</body>
       </App>
     </html>
   );

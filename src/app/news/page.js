@@ -22,8 +22,15 @@ const getNews = async (search) => {
     }
 }
 
-const Index = async ({searchParams: {search}}) => { 
-    const vidList = await getNews(search)
+const Index = async (props) => { 
+// const Index = async ({searchParams: {search}, params, url}) => { 
+    console.log("params, url ==>>", {
+        props
+    })
+    const vidList = await []
+    // const vidList = await getNews(search)
+
+
     return (
         <>
             <Header />
@@ -35,9 +42,9 @@ const Index = async ({searchParams: {search}}) => {
                     <span>
                         <MdKeyboardArrowRight />
                     </span>
-                    {
+                    {/* {
                      !search ? <a >  খবর </a> :   search === "undefine" ? <a >  খবর </a> : <a >  ফলাফল </a>
-                    }
+                    } */}
                     
                 </div>
                 <div className="video-section" >

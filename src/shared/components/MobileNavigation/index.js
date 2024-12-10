@@ -23,7 +23,7 @@ const Index = async () => {
 
   return (
     <div className="mobile-navigation" id="navigation">
-      <div className="inner-container container ">
+      <div className="navigation-inner-container container ">
         <nav className="nav-container rm-scroll-bar">
           <ul>
             {[

@@ -19,11 +19,14 @@
   --home-section-height: 400px;
   --home-right-section-width: 400px;
   --home-section-inner-gap: 20px;
- 
+  --title-color: #282828;
+
+
 
   @media (max-width: 1600px) {
     --home-section-height: 500px;
   }
+
   @media (max-width: 1200px) {
     --home-right-section-width: 300px;
     --home-section-inner-gap: 5px;
@@ -32,6 +35,7 @@
   @media (max-width: 1000px) {
     --home-right-section-width: 250px;
   }
+
   @media (max-width: 950px) {
     --home-section-height: 400px;
 
@@ -93,7 +97,6 @@ body {
   background-color: #f8f9fa !important;
   width: 100vw !important;
   max-width: 100vw !important;
-  overflow-x: hidden;
   font-family: 'Kalpurush', 'SolaimanLipi', 'Roboto';
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -145,41 +148,76 @@ body {
   margin-top: 40px !important;
 }
 
-.common-title {
+.common-title {  
   width: 100%;
   position: relative;
   margin-bottom: 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFF;
 
   h2 {
     width: max-content;
-    color: #000;
-    background: #f9c100;
-    padding: 0px 5px;
-    font-size: 22px;
+    color: #FFF;
+    background: var(--title-color);
+    padding: 0px 10px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 20px;
+    text-decoration: none;
     min-width: min-content;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
 
     &:after {
-      position: absolute;
       content: "";
-      left: 0px;
-      bottom: 0px;
-      height: 3px;
-      width: 100%;
-      background-color: inherit;
+      position: absolute;
+      right: -20px;
+      bottom: 0;
+      width: 0;
+      height: 0;
+      border-left: 20px solid var(--title-color);
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
     }
 
 
   }
-}
-.rm-scroll-bar{
-  overflow: -moz-scrollbars-none;
-  scrollbar-width: none;
-  -ms-overflow-style: none;  
 
-  &::-webkit-scrollbar {
-    display: none;  
+  .more-section {
+    font-size: 17px;
+    text-decoration: none;
+    padding-right: 5px;
+    text-decoration: none;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+
+    svg {
+      height: 16px;
+      width: 16px;
+      color: var(--title-color);
+    }
   }
 }
+
+.rm-scroll-bar {
+  overflow: -moz-scrollbars-none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 /* Common Styles  End */
 
 button {
@@ -191,7 +229,7 @@ button {
   font-family: 'Times New Roman', 'Roboto';
 }
 
-p, h1, h2, h3, h4, h5, h6, button, strong, span,a, time {
+p, h1, h2, h3, h4, h5, h6, button, strong, span, a, time {
   margin: 0px;
   padding: 0px;
   color: rgb(0, 0, 0);
@@ -218,11 +256,13 @@ strong {
 
   }
 }
+
 @media (max-width: 1400px) {
 
   /* Styles for extra-extra large devices */
 
 }
+
 @media (max-width: 1200px) {
 
   /* Styles for extra-large devices */
@@ -231,13 +271,16 @@ strong {
 
   }
 }
+
 @media (max-width: 992px) {
   /* Styles for large devices */
-   
+
 }
+
 @media (max-width: 768px) {
   /* Styles for medium devices */
 }
+
 @media (max-width: 576px) {
   /* Styles for small devices */
 }
@@ -246,5 +289,3 @@ strong {
 @media (max-width: 3756px) {
   /* Styles for extra small devices */
 }
-
-
