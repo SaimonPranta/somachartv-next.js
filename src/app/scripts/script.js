@@ -11,9 +11,8 @@ const setNavPosition = (e) => {
   const posX = rect.left;
   const posY = rect.top;
   const subCategoryElements = document.querySelectorAll(".sub-category-nav");
-
   subCategoryElements.forEach((ele) => {
-    ele.style.top = `${posY + eleHeight + 10}px`;
+    ele.style.top = `${posY + eleHeight + 6}px`;
     ele.style.left = `${posX - 10}px`;
   });
 };
@@ -24,11 +23,12 @@ export default function Index() {
   useEffect(() => {
     // return
     const headerNav = document.getElementById("header-nav");
-    const aElements = headerNav?.querySelectorAll("a");
-    const ulElements = headerNav?.querySelectorAll("ul");
+    const aElements = headerNav?.querySelectorAll(".nav-item");
+    
 
     if (aElements) {
       aElements.forEach((element) => {
+        console.log("element ==>>", element.innerText)
         element.addEventListener("click", setNavPosition);
         element.addEventListener("mouseover", setNavPosition);
 
