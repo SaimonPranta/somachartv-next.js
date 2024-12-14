@@ -1,6 +1,5 @@
 import "./style.scss";
 import { BACKEND_URL } from "../../../shared/constants/ulrList";
-import NavItem from "@/shared/components/header/Modules/NavItem";
 import SubCategory from "@/shared/components/header/Modules/SubCategory";
 import TopHeader from "@/shared/components/header/Modules/TopHeader/Index";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -53,7 +52,6 @@ const Index = async (props) => {
                       }`}
                     >
                       <Link href={itemRoute}>{routeInfo.label}</Link>
-                      {/* <NavItem  /> */}
                       {routeInfo?.subCategories?.length > 0 && (
                         <>
                           <SubCategory
