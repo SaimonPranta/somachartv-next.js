@@ -70,7 +70,7 @@
     .navigation-container {
         background: #FFF;
         box-shadow: 1px 1px 1px 1px #00000017;
-        height: 50px;
+        height: 40px;
         box-sizing: border-box;
         position: relative;
 
@@ -78,6 +78,7 @@
             height: 100%;
             display: grid;
             grid-template-columns: calc(100% - 120px) 100px;
+            grid-template-rows: 1fr;
             align-items: center;
             justify-content: space-between;
 
@@ -86,13 +87,8 @@
                 position: relative;
                 height: 100%;
                 width: 100%;
-                overflow-x: scroll;
 
-                &::-webkit-scrollbar {
-                    width: 0px !important;
-                    height: 0px  !important;
-                    display: none  !important;
-                }
+
 
                 ul {
                     padding: 0px;
@@ -109,7 +105,22 @@
                         display: flex;
                         align-items: center;
                         position: relative;
-                        border-bottom: 2px solid transparent;
+
+                        // border-bottom: 2px solid transparent;
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            left: 50%;
+                            top: 0px;
+                            height: 100%;
+                            width: 0%;
+                            z-index: 1;
+                            background: transparent;
+                            transition: .5s;
+                            border-bottom: 2px solid blue;
+                            box-sizing: border-box;
+
+                        }
 
                         &.mobile-li {
                             display: none;
@@ -118,15 +129,22 @@
                         &.active,
                         &:hover {
                             background: #eae5e5;
-                            color: blue;
-                            border-bottom: 2px solid blue;
+
+                            &::after {
+                                left: 0px;
+                                width: 100%;
+                                border-bottom: 2px solid blue;
+                            }
+
+                            a {
+                                color: blue;
+                            }
                         }
 
                         .subnav-position-holder {
                             position: absolute;
                             height: 100%;
-                            width: 100%;
-                            background: red;
+                            width: 100%; 
                             left: 0px;
                             top: 0px;
                             // z-index: -1;
@@ -142,6 +160,10 @@
                             justify-content: center;
                             align-items: center;
                             padding-top: 3px;
+                            z-index: 2;
+                            height: 100%;
+                            width: 100%;
+                            box-sizing: border-box;
 
                             svg {
                                 height: 22px;

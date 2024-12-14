@@ -40,7 +40,7 @@ const Index = async (props) => {
                 </Link>
               </li>
               {categories?.length > 0 &&
-                categories.map((routeInfo, index) => {
+                [...categories, ...categories, ...categories, ...categories, ...categories, ...categories, ...categories, ...categories, ...categories, ...categories].map((routeInfo, index) => {
                   let itemRoute = `/topic/${routeInfo.route}`;
                   return (
                     <li

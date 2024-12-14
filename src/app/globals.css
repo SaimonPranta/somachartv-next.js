@@ -194,6 +194,7 @@ body {
 }
 
 .rm-scroll-bar {
+  overflow-x: scroll;
   overflow: -moz-scrollbars-none;
   scrollbar-width: none;
   -ms-overflow-style: none;
