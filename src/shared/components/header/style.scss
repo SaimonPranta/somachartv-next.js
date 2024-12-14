@@ -88,6 +88,12 @@
                 width: 100%;
                 overflow-x: scroll;
 
+                &::-webkit-scrollbar {
+                    width: 0px !important;
+                    height: 0px  !important;
+                    display: none  !important;
+                }
+
                 ul {
                     padding: 0px;
                     margin: 0px;

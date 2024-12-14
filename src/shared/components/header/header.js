@@ -7,8 +7,7 @@ import { FaHome } from "react-icons/fa";
 import SearchSection from "@/shared/components/header/Modules/SearchSection/index";
 import MenuBtnSection from "@/shared/components/header/Modules/MenuBtnSection/index";
 import MobileNavigation from "@/shared/components/MobileNavigation/index";
-    import Link from "next/link";
-    
+import Link from "next/link";
 
 const getCategories = async () => {
   try {
@@ -36,7 +35,6 @@ const Index = async (props) => {
           <nav className="navigation-wrapper rm-scroll-bar" id="header-nav">
             <ul className="">
               <li className={`${"/" === pageRoute ? "active" : ""}`}>
-               
                 <Link href={"/"}>
                   <FaHome />
                 </Link>
@@ -51,7 +49,7 @@ const Index = async (props) => {
                         itemRoute === pageRoute ? "active" : ""
                       }`}
                     >
-                      <Link href={itemRoute}>{routeInfo.label}</Link>
+                      <Link href={itemRoute} className="nav-item">{routeInfo.label}</Link>
                       {routeInfo?.subCategories?.length > 0 && (
                         <>
                           <SubCategory

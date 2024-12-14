@@ -1,7 +1,47 @@
-.video-gallery-section { 
+.video-gallery-section {
+    $color: #363636;
+    $border-color: #DF2029;
+    background: #000;
+    padding: 20px 0px;
 
-    .inner-gallery { 
- 
+    .inner-gallery {
+        .title-section {
+            width: 100%;
+            height: 45px;
+            position: relative;
+            margin-bottom: 20px;
+
+            &:after {
+                position: absolute;
+                content: "";
+                bottom: 0px;
+                left: 0px;
+                height: 2px;
+                width: 100%;
+                background: $border-color;
+            }
+
+            h2 {
+                background-color: #363636;
+                margin: 0;
+                color: #fff;
+                left: 11px;
+                font-size: 20px;
+                padding: 0px 20px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                position: relative;
+                width: max-content;
+                transform: rotate(0) scale(1.003) skew(-26deg) translate(0);
+                -webkit-transform: rotate(0) scale(1.003) skew(-26deg) translate(0);
+                -moz-transform: rotate(0) scale(1.003) skew(-26deg) translate(0);
+                -o-transform: rotate(0) scale(1.003) skew(-26deg) translate(0);
+                -ms-transform: rotate(0) scale(1.003) skew(-26deg) translate(0);
+
+
+            }
+        }
 
         .video-section {
             height: 80% !important;
@@ -19,11 +59,15 @@
                 height: calc(200px - 10px);
                 box-sizing: border-box;
                 overflow: hidden !important;
+                border: 1px solid $border-color;
+                border-radius: 5px;
+                overflow: hidden;
 
                 &:nth-child(1) {
                     grid-row: 1/4;
-                    background: red !important;
                     height: 400px;
+                    border-radius: 8px;
+
 
                     img {
                         height: 100%;
@@ -80,8 +124,8 @@
 
 @media only screen and (min-width:200px) and (max-width:850px) {
     .video-gallery-section {
-        .inner-gallery { 
- 
+        .inner-gallery {
+
 
             .video-section {
                 height: 80% !important;
@@ -118,10 +162,10 @@
                         width: 40px !important;
                     }
 
-                    h3 { 
+                    h3 {
                         font-size: 14px;
-                        font-weight: 400; 
-                        height: 30px; 
+                        font-weight: 400;
+                        height: 30px;
                     }
 
                 }

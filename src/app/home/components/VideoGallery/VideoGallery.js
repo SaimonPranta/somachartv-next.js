@@ -28,9 +28,9 @@ const VideoGallery = async () => {
   const vidList = await getVideos();
 
   return (
-    <div className=" container video-gallery-section section-gap">
-      <div className="inner-gallery">
-        <div className="common-title">
+    <div className="  video-gallery-section section-gap">
+      <div className="inner-gallery container">
+        <div className="title-section">
           <h2>ভিডিও গ্যালারী</h2>
         </div>
         <div className="video-section">
