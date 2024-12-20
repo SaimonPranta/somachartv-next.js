@@ -183,7 +183,8 @@
 
                         &:hover {
                             ul {
-                                display: flex;
+                                visibility: visible;
+
                             }
                         }
 
@@ -192,13 +193,14 @@
                             // left: 50%;
                             // top: 40px;
                             position: fixed;
-                            // transform: translateX(-50%);
+                            // transform: translateX(-50%)
+                            transition-delay: .5s;
                             height: auto;
                             max-height: 550px;
                             overflow-y: scroll;
                             background-color: #FFF;
-                            display: none;
-                            // display: flex;
+                            // display: none;
+                            display: flex;
                             flex-direction: column;
                             justify-content: start !important;
                             align-items: start !important;
@@ -210,7 +212,7 @@
                             box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.0901960784);
                             border-radius: 0px 0px 5px 5px;
                             overflow-y: scroll;
-
+visibility: hidden;
                             padding: 0px;
 
                             li {

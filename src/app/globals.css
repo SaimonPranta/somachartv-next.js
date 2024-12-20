@@ -101,6 +101,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  display: block !important;
 
   .html-view-page {
     &>p {
@@ -148,7 +149,7 @@ body {
   margin-top: 40px !important;
 }
 
-.common-title {  
+.common-title {
   width: 100%;
   position: relative;
   margin-bottom: 10px;
@@ -190,7 +191,7 @@ body {
 
   }
 
-  
+
 }
 
 .rm-scroll-bar {
@@ -198,9 +199,10 @@ body {
   overflow: -moz-scrollbars-none;
   scrollbar-width: none;
   -ms-overflow-style: none;
+
   &::-webkit-scrollbar {
-    width: 0px; 
-    height: 0px; 
+    width: 0px;
+    height: 0px;
     display: none;
   }
 }

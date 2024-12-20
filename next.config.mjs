@@ -26,13 +26,13 @@ const nextConfig = {
       },
       {
         protocol: "http",
-        hostname: "server.dainikpatrapatrika.com",
+        hostname: "server.somacharnews.com",
         port: "",
         pathname: "/**",
       },
       {
         protocol: "https",
-        hostname: "server.dainikpatrapatrika.com",
+        hostname: "server.somacharnews.com",
         port: "",
         pathname: "/**",
       },

@@ -21,7 +21,7 @@ const Page = () => {
                     setInput(data.data)
                 }
             }).catch((error) => {})
-    }, [])
+    }, [id])
    
 
 

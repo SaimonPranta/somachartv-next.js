@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import TextStyle from "@tiptap/extension-text-style";
@@ -43,7 +43,8 @@ const CustomEditor = ({
   name
 }) => {
   const [fullScreen, setFullScreen] = useState(false);
-  const editorRef = useRef(null) 
+  const editoryElement = document?.querySelector(".tiptap")
+console.log("editoryElement =========>>", editoryElement)
   let editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -87,16 +88,14 @@ const CustomEditor = ({
       editor = null;
     };
   }, [editor?.getHTML()]);
-useEffect(() => {
-  if(editorRef.current){
-    const editorElement = editorRef.current?.querySelector(".tiptap") 
-    if(editorElement){
-          editorElement.classList.add("html-view-page")
-        }
-  } 
-}, [editorRef.current])
 
-  
+  useEffect(() => {
+    // const editoryElement = document.querySelector(".tiptap")
+    console.log("editoryElement ==>>", editoryElement)
+    if(editoryElement){
+      editoryElement.classList.add("html-view-page")
+    }
+  }, [editoryElement])
 
   const addLink = () => {
     const url = prompt("Enter the URL:");
@@ -205,7 +204,7 @@ useEffect(() => {
   if (!editor) return null;
 
   return (
-    <div className={`text-editor-container ${fullScreen ? "full-screen" : ""}`} ref={editorRef} >
+    <div className={`text-editor-container ${fullScreen ? "full-screen" : ""}`} >
       <div className="toolbar">
         <button
           onClick={() => editor.chain().focus().undo().run()}

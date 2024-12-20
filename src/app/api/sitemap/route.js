@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {
   try {
-    const siteUrl = "https://somachartv.com";
+    const siteUrl = "https://somacharnews.com";
     console.log("siteUrl ==>>", siteUrl);
 
     // const response = await fetch(`${BACKEND_URL}/media/${params.path}`);

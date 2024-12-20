@@ -9,9 +9,6 @@ const Index = () => {
   const [search, setSearch] = useState("");
   const router = useRouter();
 
-  
-
-
   const handleSearchNavigation = () => {
     router.push(`/news?search=${search}`);
   };
@@ -22,11 +19,12 @@ const Index = () => {
           className="container search-box-container"
           id="search-box-container"
         >
-          <div className="inner-container">
+          <div className="inner-search-container">
             <label>অনুসন্ধান</label>{" "}
             <input
               type="text"
               value={search}
+              autoFocus
               onChange={(e) => setSearch(e.target.value)}
             />{" "}
             <button onClick={handleSearchNavigation}>

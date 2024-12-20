@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req, res) {
   try {
-    const siteUrl = "https://somachartv.com";
+    const siteUrl = "https://somacharnews.com";
 
     // Fetch the list of news articles
     const newsJson = await fetch(`${BACKEND_URL}/public/news/sitemap`, {

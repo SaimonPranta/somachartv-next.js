@@ -4,13 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 // import palyIcons from "../../../../assets/images/home/red-play-icon.png";
 import palyIcons from "../../../../assets/images/home/video-play-icon-11397.png";
-import { SITE_CONFIG } from "@/shared/constants/siteConfig";
+import { YOUTUBE_CHANNEL_URL } from "@/shared/constants/ulrList";
 
 const getVideos = async () => {
   try {
     let response = await (
       await fetch(
-        `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=5&playlistId=${SITE_CONFIG?.ytChannel?.youtubeChannelID}&key=AIzaSyCnjHwqOkXQo1gNW-VR9uTdR4soiC9IAnc`,
+        YOUTUBE_CHANNEL_URL,
         { cache: "no-store" }
       )
     ).json();

@@ -5,13 +5,6 @@ import { BACKEND_URL } from '@/shared/constants/ulrList';
 export const middleware = async (request) => {
 
     try {
-      const route = request?.nextUrl?.pathname;
-      const url = request?.nextUrl?.clone();
-      url?.searchParams?.set("route", route);
-      if (!request?.url?.includes("/admin")) {
-        return NextResponse.rewrite(url);
-      }
-  
         const token = await request.cookies.get("adminAuthToken")?.value || null
         if (!token) {
 
@@ -49,5 +42,5 @@ export const middleware = async (request) => {
 };
 
 export const config = {
-    matcher: ['/admin/signin', '/admin/:path*', "/:path*"],
+    matcher: ['/admin/signin', '/admin/:path*'],
 };

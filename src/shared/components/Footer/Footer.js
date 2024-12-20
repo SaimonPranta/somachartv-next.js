@@ -23,7 +23,7 @@ const routes = [
 const socialList = [
   {
     svg: <FaFacebookF />,
-    link: "https://www.facebook.com/dainikpatrapatrika24",
+    link: "https://www.facebook.com/somacharnews",
     color: "#216ed3",
     label: "Facebook",
   },
@@ -35,19 +35,19 @@ const socialList = [
   },
   {
     svg: <FaYoutube />,
-    link: "https://www.youtube.com/@dainikpatrapatrikanews",
+    link: "https://www.youtube.com/@somacharnews",
     color: "#ff0000",
     label: "YouTube",
   },
   {
     svg: <FaInstagram />,
-    link: "https://www.instagram.com/dainikpatrapatrika",
+    link: "https://www.instagram.com/somacharnews",
     color: "#c038be",
     label: "Instagram",
   },
   {
     svg: <FaLinkedinIn />,
-    link: "https://www.linkedin.com/in/dainik-patra-patrika",
+    link: "https://www.linkedin.com/in/somacharnews",
     color: "#0177b5",
     label: "LinkedIn",
   },

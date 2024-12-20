@@ -9,4 +9,4 @@ Disallow: /error/
 Disallow: /404/
 Disallow: /404.html
 
-Sitemap: https://www.dainikpatrapatrika.com/sitemap.xml
+Sitemap: https://www.somacharnews.com/sitemap.xml

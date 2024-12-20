@@ -98,7 +98,7 @@ export const generateMetadata = async ({ params }) => {
     },
     twitter: {
       card: "summary_large_image",
-      site: "@SomacharTV",
+      site: "@SomacharNews",
       title: newsDetails?.title,
       description: newsDetails?.description,
       images: currentImage ? currentImage : undefined, // Use the first image for Twitter

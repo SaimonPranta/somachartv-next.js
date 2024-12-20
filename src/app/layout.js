@@ -24,10 +24,10 @@ export default function RootLayout({ children }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="next-size-adjust" content="100%" />
-        <meta
+        {/* <meta
           name="google-adsense-account"
           content="ca-pub-7281991904831824"
-        ></meta>
+        ></meta> */}
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link
           rel="apple-touch-icon"
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
         />
 
         {/* Google tag (gtag.js) */}
-        <script
+        {/* <script
           async
           src="https://www.googletagmanager.com/gtag/js?id=G-TWJDNTRE97"
         ></script>
@@ -71,7 +71,7 @@ export default function RootLayout({ children }) {
               gtag('config', 'G-TWJDNTRE97');
             `,
           }}
-        />
+        /> */}
         <Script />
       </head>
 

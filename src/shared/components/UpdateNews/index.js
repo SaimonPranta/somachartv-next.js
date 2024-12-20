@@ -28,7 +28,6 @@ const Index = ({title=""}) => {
   const router = useRouter();
   const { id } = useParams();
 
-  console.log("categories  =>>", categories);
   useEffect(() => {
     if (input.category) {
       const findCategory = categories.value.find(
@@ -67,7 +66,6 @@ const Index = ({title=""}) => {
   };
 
   const handleInputChange = (e) => {
-    console.log("e", e);
     const name = e.target.name;
     let value = e.target.value;
 
@@ -103,7 +101,6 @@ const Index = ({title=""}) => {
     });
   };
 
-  console.log("input ===>>", input);
 
   const addImage = () => {
     const file = input.img;
@@ -114,7 +111,7 @@ const Index = ({title=""}) => {
       src: file,
       imgKey: `src-${Number(Date.now() * Math.random()) * Math.random()}`,
     };
-    const imgField = document.getElementById("img-input-field");
+    const imgField = document?.getElementById("img-input-field");
     if (imgField) {
       imgField.value = "";
     }
@@ -130,7 +127,6 @@ const Index = ({title=""}) => {
         state["images"] = [];
       }
       const images = [...state.images, imgObj];
-      console.log("state.images ==>?>", state.images);
       return {
         ...state,
         images: images,
@@ -175,7 +171,6 @@ const Index = ({title=""}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("input ==>>", input);
     if (
       !input.title ||
       !input.htmlDescription ||
@@ -216,7 +211,7 @@ const Index = ({title=""}) => {
     const imgObj = {
       img: imgInfo.src,
     };
-    const imgField = document.getElementById("img-input-field");
+    const imgField = document?.getElementById("img-input-field");
     if (imgInfo?.src?.name) {
       // imgField.value = imgInfo?.src;
     }

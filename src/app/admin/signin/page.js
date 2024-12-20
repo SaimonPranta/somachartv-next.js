@@ -14,6 +14,8 @@ const Index = () => {
 
     const onSubmit = (e) => { 
         e.preventDefault()
+        console.log("Hello from onSubmit")
+        console.log("Input,  -->>", input)
         fetch(`${BACKEND_URL}/admin/auth`, {
             method: "POST",
             headers: {
@@ -48,10 +50,11 @@ const Index = () => {
     return (
         <div>
             {/* <Header /> */}
-            <div className="signin-container">
-                <form className="contact2-form validate-form" autoComplete='false' onSubmit={onSubmit}>
+            <div className="signin-container"  >
+                <form className="contact2-form validate-form" autoComplete='false' >
+                {/* <form className="contact2-form validate-form" autoComplete='false' onSubmit={onSubmit}> */}
                     <span className="contact2-form-title">
-                        Admin Singin
+                        Admin Signin
                     </span>
 
                     <div className="validate-input">
@@ -63,7 +66,7 @@ const Index = () => {
                         <span className="focus-input2">Password</span>
                     </div>
                     <div className="container-contact2-form-btn">
-                        <button type='submit'>Submit</button>
+                        <button type='button' onClick={onSubmit}>Submit</button>
                     </div>
                 </form>
             </div>

@@ -83,7 +83,7 @@
 
                     .cart-footer {
                         .category {
-                            background: var(--default-color);
+                            background: #000;
                         }
                     }
                 }
@@ -123,7 +123,8 @@
 
                     .category {
                         display: inline-block;
-                        background: #000;
+                        background: var(--default-color);
+                        color: #FFF;
                         padding: 3px 5px;
                         letter-spacing: 1px;
                     }

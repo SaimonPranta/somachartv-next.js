@@ -1,15 +1,16 @@
 import React from 'react';
 import "./style.scss"
 import Image from 'next/image';
-import getImageUrl from '@/shared/functions/getImageUrl';
-import { BACKEND_URL } from '@/shared/constants/ulrList';
+import {  YOUTUBE_CHANNEL_URL } from '@/shared/constants/ulrList';
+
 import textSlicer from '@/shared/functions/textSlicer';
 
 
 
 const getVideos = async () => {
     try {
-        let response = await (await fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=5&playlistId=UUw0CEllkYUTZqVkYgEBZw4Q&key=AIzaSyCnjHwqOkXQo1gNW-VR9uTdR4soiC9IAnc`)).json()
+        let response = await (await fetch(YOUTUBE_CHANNEL_URL, { 'cache': 'no-store'})).json()
+
         if (response.items) {
             return response.items
         }

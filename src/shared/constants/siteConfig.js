@@ -16,7 +16,7 @@ const SITE_CONFIG = {
       bn: "+৮৮০ ১৩০০০১৯৬৯০",
       eng: "+880 1300019690",
     },
-    email: "somachartv@gmail.com",
+    email: "somacharnews@gmail.com",
     address: {
       bn: "খিলক্ষেত বাজার, ঢাকা- ১২২৯, বাংলাদেশ",
       eng: "Khilkhet Bazar, Dhaka- 1229, Bangladesh"
