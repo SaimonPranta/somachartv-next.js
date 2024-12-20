@@ -3,9 +3,9 @@ import { BACKEND_URL } from "@/shared/constants/ulrList";
 
 export const middleware = async (request) => {
   try {
-    const route = request.nextUrl.pathname;
-    const url = request.nextUrl.clone();
-    url.searchParams.set("route", route);
+    const route = request?.nextUrl?.pathname;
+    const url = request?.nextUrl?.clone();
+    url?.searchParams?.set("route", route);
     if (!request?.url?.includes("/admin")) {
       return NextResponse.rewrite(url);
     }

@@ -11,7 +11,6 @@ export const middleware = async (request) => {
       if (!request?.url?.includes("/admin")) {
         return NextResponse.rewrite(url);
       }
-  
         const token = await request.cookies.get("adminAuthToken")?.value || null
         if (!token) {
 
@@ -49,5 +48,5 @@ export const middleware = async (request) => {
 };
 
 export const config = {
-    matcher: ['/admin/signin', '/admin/:path*', "/:path*"],
+    matcher: ['/admin/signin', '/admin/:path*, /:path*'],
 };
