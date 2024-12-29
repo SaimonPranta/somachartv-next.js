@@ -20,6 +20,7 @@ import {
 import { getSeoTimeFormat } from "@/shared/functions/convertTime";
 import { IoCameraReverseOutline } from "react-icons/io5";
 import processDangerouslySetInnerHTML from "@/shared/functions/processDangerouslySetInnerHTML";
+import Head from "next/head";
 
 const getAds = async () => {
   try {
@@ -71,7 +72,8 @@ export const generateMetadata = async ({ params }) => {
   if (!newsDetails._id) {
     return;
   }
-  const fakeImg = "https://somacharnews.com/api/media/%E0%A6%93%E0%A6%9F%E0%A6%9F%E0%A6%B0%20%E0%A6%86%E0%A6%B2%E0%A7%8B%E0%A6%9A%E0%A6%A4%20%E0%A6%B8%E0%A6%B0%E0%A6%9C.jpeg"
+  const fakeImg =
+    "https://somacharnews.com/api/media/%E0%A6%93%E0%A6%9F%E0%A6%9F%E0%A6%B0%20%E0%A6%86%E0%A6%B2%E0%A7%8B%E0%A6%9A%E0%A6%A4%20%E0%A6%B8%E0%A6%B0%E0%A6%9C.jpeg";
   const pageUrl = `${process.env.SITE_URL}/news/${params.id}`;
   const keywords = getKeywords(newsDetails);
   const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
@@ -90,9 +92,9 @@ export const generateMetadata = async ({ params }) => {
   //   const currentImage = getImageUrl(imgInfo.src);
   //   return currentImage;
   // });
-  const currentImage = fakeImg
+  const currentImage = fakeImg;
   // const currentImage = getImageUrl(newsDetails?.images);
-console.log("jsonImages ============>>>", jsonImages)
+  console.log("jsonImages ============>>>", jsonImages);
   return {
     title: newsDetails?.title || newsDetailsTitle,
     description: newsDetails?.description || newsDetailsDescription,
@@ -141,15 +143,23 @@ console.log("jsonImages ============>>>", jsonImages)
 };
 const Index = async ({ params: { id } }) => {
   const newsDetails = await getNews(id);
-  if(!newsDetails._id){
-    return <></>
+  if (!newsDetails._id) {
+    return <></>;
   }
   const newsList = await getNewsList();
   const adsList = await getAds();
   const thumbnailInfo = newsDetails.images[0];
-
+  const fakeImg =
+  "https://somacharnews.com/api/media/%E0%A6%93%E0%A6%9F%E0%A6%9F%E0%A6%B0%20%E0%A6%86%E0%A6%B2%E0%A7%8B%E0%A6%9A%E0%A6%A4%20%E0%A6%B8%E0%A6%B0%E0%A6%9C.jpeg";
   return (
     <>
+      <Head>
+        <meta
+          property="og:image"
+          content={fakeImg}
+        />
+      </Head>
+
       <Header />
       <main className="container news-details-page">
         <div className="news-details-top-section">
@@ -209,7 +219,7 @@ const Index = async ({ params: { id } }) => {
             </header>
 
             <section className="news-content ">
-            <div
+              <div
                 className="html-view-page"
                 dangerouslySetInnerHTML={{
                   __html: processDangerouslySetInnerHTML(
