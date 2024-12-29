@@ -156,12 +156,12 @@ const Index = async ({ params: { id } }) => {
   "https://somacharnews.com/api/media/%E0%A6%93%E0%A6%9F%E0%A6%9F%E0%A6%B0%20%E0%A6%86%E0%A6%B2%E0%A7%8B%E0%A6%9A%E0%A6%A4%20%E0%A6%B8%E0%A6%B0%E0%A6%9C.jpeg";
   return (
     <>
-      <Head>
+      {/* <Head>
         <meta
           property="og:image"
           content={fakeImg}
         />
-      </Head>
+      </Head> */}
 
       <Header />
       <main className="container news-details-page">
