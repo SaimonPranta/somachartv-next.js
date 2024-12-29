@@ -18,7 +18,7 @@ export async function GET(req, { params }) {
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
     sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
     // Add static pages
-    const staticPages = ["/", "/about", "/contact"]; // Add your static pages here
+    const staticPages = ["/"]; // Add your static pages here
     staticPages.forEach((page) => {
       sitemap += `  <url>\n`;
       sitemap += `    <loc>${siteUrl}${page}</loc>\n`;

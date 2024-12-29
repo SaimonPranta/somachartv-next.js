@@ -266,6 +266,10 @@ strong {
 
 @media (max-width: 768px) {
   /* Styles for medium devices */
+  .container {
+    width: calc(100% - 20px);
+
+  }
 }
 
 @media (max-width: 576px) {
