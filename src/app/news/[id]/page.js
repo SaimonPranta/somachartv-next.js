@@ -71,18 +71,28 @@ export const generateMetadata = async ({ params }) => {
   if (!newsDetails._id) {
     return;
   }
+  const fakeImg = "https://somacharnews.com/api/media/%E0%A6%93%E0%A6%9F%E0%A6%9F%E0%A6%B0%20%E0%A6%86%E0%A6%B2%E0%A7%8B%E0%A6%9A%E0%A6%A4%20%E0%A6%B8%E0%A6%B0%E0%A6%9C.jpeg"
   const pageUrl = `${process.env.SITE_URL}/news/${params.id}`;
   const keywords = getKeywords(newsDetails);
   const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
-    return { url: currentImage };
+    return { url: fakeImg };
   });
+  // const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
+  //   const currentImage = getImageUrl(imgInfo.src);
+  //   return { url: currentImage };
+  // });
   const jsonImages = await newsDetails?.images?.map((imgInfo) => {
-    const currentImage = getImageUrl(imgInfo.src);
-    return currentImage;
+    // const currentImage = getImageUrl(imgInfo.src);
+    return fakeImg;
   });
-  const currentImage = getImageUrl(newsDetails?.images);
-
+  // const jsonImages = await newsDetails?.images?.map((imgInfo) => {
+  //   const currentImage = getImageUrl(imgInfo.src);
+  //   return currentImage;
+  // });
+  const currentImage = fakeImg
+  // const currentImage = getImageUrl(newsDetails?.images);
+console.log("jsonImages ============>>>", jsonImages)
   return {
     title: newsDetails?.title || newsDetailsTitle,
     description: newsDetails?.description || newsDetailsDescription,
@@ -114,11 +124,11 @@ export const generateMetadata = async ({ params }) => {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "Somachar TV",
+        name: "Somachar News",
       },
       publisher: {
         "@type": "Organization",
-        name: "Somachar TV",
+        name: "Somachar News",
         logo: {
           "@type": "ImageObject",
           url: `${process.env.SITE_URL}/logo.png`,
