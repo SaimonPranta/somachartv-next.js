@@ -1,0 +1,124 @@
+.text-editor-container {
+    background-color: #FFF;
+    border: 1px solid #e4e4e4;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+    &.full-screen {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100vw;
+        height: 100%;
+
+        .text-input-field {
+            height: calc(100vh - 100px);
+        }
+    }
+
+    .toolbar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #f0f0f0;
+        padding: 10px;
+        flex-wrap: wrap;
+        width: 100%;
+        box-sizing: border-box;
+        min-height: 90px;
+        position: sticky;
+        top: 0px;
+        z-index: 9;
+
+        button,
+        .input-field {
+            height: 30px;
+            max-height: 30px;
+            box-sizing: border-box;
+            border: 1px solid #e4e4e4;
+            border-radius: 4px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            cursor: pointer;
+
+            &:hover {
+                opacity: .6;
+            }
+
+        }
+
+        .input-field {
+            justify-content: start;
+            gap: 5px;
+
+            label,
+            select {
+                color: #000;
+                font-size: 16px;
+                font-weight: 500;
+                text-transform: capitalize;
+            }
+
+            input {
+                &[type="color"] {
+                    height: 25px;
+                    width: 25px;
+                    border-radius: 50%;
+                    padding: 0px;
+                    margin: 0px;
+
+                }
+            }
+
+            input,
+            select {
+                border: 1px solid #e4e4e4;
+                border: none;
+            }
+
+        }
+
+        button {
+            font-weight: 600;
+            padding: 7px 10px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                height: 15px;
+                width: 15px;
+            }
+
+            &.active {
+                background: #0048ba;
+                color: #FFF;
+            }
+        }
+
+    }
+
+    .text-input-field {
+        padding: 10px; 
+        border-radius: 5px;
+        min-height: 200px;
+        overflow-y: auto; 
+        box-sizing: border-box;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+      
+        /* For Webkit browsers like Chrome, Safari */
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        .tiptap {
+            border: none !important;
+            outline: none !important;
+            box-sizing: border-box;
+        }
+    }
+}

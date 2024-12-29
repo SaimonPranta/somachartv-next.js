@@ -1,0 +1,11 @@
+# robots.txt for somacharnews.com
+
+# Allow all user agents to crawl the website
+User-agent: *
+
+# Disallow access to /admin/ pages
+Disallow: /admin/
+
+# Sitemap files
+Sitemap: https://somacharnews.com/sitemap.xml
+Sitemap: https://somacharnews.com/image-sitemap.xml

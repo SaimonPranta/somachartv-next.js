@@ -1,0 +1,186 @@
+.add-news-page {
+    margin: 20px;
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #FFF;
+        border-radius: 10px;
+        padding: 20px;
+
+        h6 {
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            height: 25px;
+            width: 80px;
+            border-radius: 4px;
+            background-color: #e4e4e4;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+    }
+
+    .add-news {
+        background: #FFFFFF;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+        margin: auto;
+        border-radius: 10px;
+        margin-top: 20px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            &>div {
+                display: flex;
+                flex-direction: column;
+
+                &.inline {
+                    flex-direction: row;
+
+                    label {
+                        width: 100%;
+                    }
+
+                    input,
+                    select {
+                        width: 300px;
+                        min-width: 300px;
+
+                    }
+
+                    &.img-field {
+                        .img-container {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                            box-sizing: border-box;
+                            width: 300px;
+                            min-width: 300px;
+                            border-bottom: 2px solid #a19a9a;
+
+                            input {
+                                min-width: calc(100% - 70px) !important;
+                                border: none;
+
+                            }
+
+                            div {
+                                height: 100%;
+                                max-height: 40px;
+                                width: 60px;
+
+                                img {
+                                    height: 100%;
+                                    width: 100%;
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+
+                &.category-list {
+                    display: felx;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 10px;
+
+                    div {
+                        display: flex;
+                        align-items: center;
+                        flex-direction: row;
+                        width: max-content;
+                        height: 30px;
+                        background: #e4e4e4;
+                        border-radius: 5px;
+                        display: flex;
+                        align-items: center;
+                        overflow: hidden;
+
+                        span {
+                            padding: 0px 4px;
+
+                        }
+
+                        button {
+                            height: 100%;
+                            width: 30px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 0px;
+                            padding-bottom: 2px;
+                            outline: none;
+                            border: none;
+                            cursor: pointer;
+                        }
+                    }
+
+                }
+
+
+
+                &.action-btn-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    button {
+                        border: none;
+                        outline: none;
+                        border-radius: 5px;
+                        padding: 5px 20px;
+                        background: var(--default-color);
+                        color: #FFF;
+                        font-size: 16px;
+                        font-weight: 600;
+                        cursor: pointer;
+                    }
+                }
+
+
+
+                label {
+                    color: rgb(161, 154, 154);
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+
+                input,
+                textarea,
+                select {
+                    border: none;
+                    outline: none;
+                    border-bottom: 2px solid #a19a9a;
+                    padding: 5px;
+                    max-height: 100px;
+                    // max-width: 330px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    font-size: 16px;
+                    font-weight: 500;
+
+                }
+
+
+            }
+        }
+    }
+}

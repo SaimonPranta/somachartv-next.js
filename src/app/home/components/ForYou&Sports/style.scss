@@ -1,0 +1,297 @@
+.for-you-and-sports-container {
+    color: #000;
+    // $news-height: 400px;
+
+    .inner-wrapper {
+        // display: grid;
+        // grid-template-columns: 1fr var(--home-right-section-width);
+        // gap: 10px;
+
+        .for-you-news-section {
+            box-sizing: border-box;
+
+            .news-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: minmax(0, 1fr);
+                gap: var(--home-section-inner-gap);
+                height: var(--home-section-height);
+
+                .news-cart {
+                    text-decoration: none;
+                    display: inline-block;
+                    box-sizing: border-box;
+
+                    &:hover {
+                        .des-container {
+                            h3 {
+                                color: var(--heading-hover-color) !important;
+                            }
+                        }
+                    }
+
+                    .img-container {
+                        overflow: hidden;
+
+                        img {
+                            transition: .3s;
+
+                            &:hover {
+                                transform: scale(1.04)
+                            }
+                        }
+                    }
+
+                    .des-container {
+                        h3 {
+                            color: var(--heading-color)
+                        }
+
+                        p,
+                        time {
+                            color: var(--paragraph-color)
+                        }
+
+                    }
+
+
+                    &:first-child {
+                        grid-row: span 4;
+                        display: grid;
+                        grid-template-rows: calc(100% - 100px) 100px;
+
+
+                        .img-container {
+                            height: 100%;
+                            width: 100%;
+                            // height: 200px;
+
+                            img {
+                                height: 100%;
+                                width: 100%;
+                            }
+                        }
+
+                        .des-container {
+
+                            h3 {
+                                font-size: 21px !important;
+
+                            }
+
+                            p {
+                                font-size: 14px;
+                                display: inline-block;
+                                width: 100%;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 3;
+                                line-height: 20px;
+
+                            }
+
+                            time {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    &:not(:first-child) {
+                        display: flex;
+
+                        gap: 10px;
+                        box-sizing: border-box;
+
+                        .img-container {
+                            height: 100%;
+                            width: 150px;
+                            min-width: 150px;
+
+                            img {
+                                height: 100%;
+                                width: 100%;
+                            }
+                        }
+
+                        .des-container {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 5px;
+                            // justify-content: space-between;
+
+                            h3 {
+                                font-size: 16px !important;
+
+                            }
+
+                            p {
+                                font-size: 14px;
+                                display: inline-block;
+                                height: auto !important;
+                                width: 100%;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;
+                                -webkit-line-clamp: 2;
+                                line-height: 20px;
+                                height: 0px;
+
+                            }
+
+                            time {
+                                font-size: 11px;
+                                color: #767676;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .sports-news-section {
+            box-sizing: border-box;
+
+            .news-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: minmax(0, 1fr);
+                gap: 10px;
+                height: var(--home-section-height);
+
+                .news-cart {
+                    text-decoration: none;
+                    display: inline-block;
+                    box-sizing: border-box;
+
+                    &:hover {
+                        .des-container {
+                            h3 {
+                                color: var(--heading-hover-color)
+                            }
+                        }
+                    }
+
+                    .img-container {
+                        overflow: hidden;
+
+                        img {
+                            transition: .3s;
+
+                            &:hover {
+                                transform: scale(1.04)
+                            }
+                        }
+                    }
+
+
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    box-sizing: border-box;
+
+                    .img-container {
+                        height: 100%;
+                        width: 100%;
+
+                        img {
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+
+                    .des-container {
+                        position: relative;
+
+                        h3 {
+                            font-size: 15px;
+                            display: inline-block;
+                            height: auto !important;
+                            width: 100%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 2;
+                            line-height: 20px;
+                            height: 0px;
+
+                        }
+
+                        p {
+                            position: absolute;
+                            visibility: hidden;
+
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+
+}
+
+@media (max-width: 650px) {
+    .for-you-and-sports-container {
+
+        .inner-wrapper {
+
+            .for-you-news-section {
+
+                .news-grid { 
+                    height: auto;
+                    grid-auto-rows: auto;
+                    .news-cart { 
+
+
+
+                        &:first-child {
+                            grid-column: span 2;
+                            grid-row: span 1;
+                            display: grid;
+                            grid-template-columns: 40% calc(60% - 5px) !important;
+                            grid-template-rows: 1fr !important;
+                            gap: 5px;
+
+                            .img-container {
+                                height: 100%;
+                                width: 100%;
+                                // height: 200px;
+
+                                img {
+                                    height: 100%;
+                                    width: 100%;
+                                }
+                            }
+
+                          
+                        }
+
+                        &:not(:first-child) {
+                            display: grid;
+                            // grid-template-rows: 40% 60%;
+                            grid-template-rows: 130px auto;
+
+                            .img-container {
+                                height: 100%;
+                                width: 100%;
+                            }
+
+                           
+                        }
+                    }
+
+                }
+            }
+
+
+        }
+
+
+    }
+}

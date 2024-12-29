@@ -1,0 +1,220 @@
+.add-news-page {
+    margin: 20px;
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #FFF;
+        border-radius: 10px;
+        padding: 20px;
+
+        h6 {
+            font-size: 18px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            height: 25px;
+            width: 80px;
+            border-radius: 4px;
+            background-color: #e4e4e4;
+            color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+    }
+
+    .add-news {
+        background: #FFFFFF;
+        padding: 20px;
+        width: 100%;
+        box-sizing: border-box;
+        margin: auto;
+        border-radius: 10px;
+        margin-top: 20px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            &>div {
+                display: flex;
+                flex-direction: column;
+
+                &.inline {
+                    flex-direction: row;
+
+                    label {
+                        width: 100%;
+                    }
+
+                    input,
+                    select {
+                        width: 300px;
+                        min-width: 300px;
+
+                    }
+
+                    &.img-field {
+                        .img-container {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;
+                            box-sizing: border-box;
+                            width: 300px;
+                            min-width: 300px; 
+                            border-bottom: 2px solid #a19a9a;
+
+                            input { 
+                                min-width:calc( 100% - 70px) !important;
+                                border: none;
+                          
+                            }
+                            div {
+                                height: 100%;
+                                max-height: 40px;
+                                width: 60px;
+                                img{
+                                    height: 100%;
+                                    width: 100%;
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+
+
+                &.image-preview {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 10px;
+                    overflow-x: scroll;
+                    scrollbar-width: none;
+                    /* Firefox */
+                    -ms-overflow-style: none;
+                    /* IE and Edge */
+
+                    /* For Webkit browsers like Chrome, Safari */
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    .cart {
+                        height: 80px;
+                        width: 75px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 3px;
+
+                        img {
+                            height: 100%;
+                            width: 100%;
+                            border-radius: 4px;
+                            overflow: hidden;
+                        }
+
+                        button {
+                            height: 28px;
+                            width: 100%;
+                            position: relative;
+                            border-radius: 4px;
+                            overflow: hidden;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: #f7c425;
+                            cursor: pointer;
+
+                            &:hover {
+                                opacity: .8;
+                            }
+
+                            svg {
+                                color: #FFF
+                            }
+                        }
+                    }
+                }
+
+                &.action-btn-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    button {
+                        border: none;
+                        outline: none;
+                        border-radius: 5px;
+                        padding: 5px 20px;
+                        background: var(--default-color);
+                        color: #FFF;
+                        font-size: 16px;
+                        font-weight: 600;
+                        cursor: pointer;
+                    }
+                }
+
+                &.add-img-btn-container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    button {
+                        border: none;
+                        outline: none;
+                        border-radius: 5px;
+                        padding: 5px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                        background-color: #FFF;
+                        border: 1px solid #b3a7a7;
+
+                        svg {
+                            height: 20px;
+                            width: 20px;
+
+                        }
+                    }
+                }
+
+                label {
+                    color: rgb(161, 154, 154);
+                    font-size: 16px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+
+                input,
+                textarea,
+                select {
+                    border: none;
+                    outline: none;
+                    border-bottom: 2px solid #a19a9a;
+                    padding: 5px;
+                    max-height: 100px;
+                    // max-width: 330px;
+                    width: 100%;
+                    box-sizing: border-box;
+                    font-size: 16px;
+                    font-weight: 500;
+
+                }
+
+
+            }
+        }
+    }
+}
