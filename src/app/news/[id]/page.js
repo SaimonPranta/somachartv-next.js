@@ -67,14 +67,7 @@ const getNewsList = async () => {
     return {};
   }
 };
-export const metadata = {
-  title: "Somachar TV || Bangla Newspaper",
-  description:
-    "Somachar TV: Uncover the truth with insightful reporting and a commitment to authentic storytelling. Stay informed and engaged!",
-  keywords:
-    "Somachar TV, news, journalism, truth, insights, articles, unbiased reporting, current events, media",
-  author: "Somachar TV"
-};
+ 
 export const generateMetadata = async ({ params }) => {
   const newsDetails = await getNews(params.id);
   if (!newsDetails._id) {
