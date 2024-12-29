@@ -78,7 +78,7 @@ export const generateMetadata = async ({ params }) => {
   const keywords = getKeywords(newsDetails);
   const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
-    return { url: currentImage };
+    return { url: `${process.env.SITE_URL}${currentImage}` };
   });
   // const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
   //   const currentImage = getImageUrl(imgInfo.src);
@@ -86,7 +86,7 @@ export const generateMetadata = async ({ params }) => {
   // });
   const jsonImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
-    return currentImage;
+    return  `${process.env.SITE_URL}${currentImage}`;
   });
   // const jsonImages = await newsDetails?.images?.map((imgInfo) => {
   //   const currentImage = getImageUrl(imgInfo.src);
@@ -95,6 +95,7 @@ export const generateMetadata = async ({ params }) => {
   // const currentImage = fakeImg;
   const currentImage = getImageUrl(newsDetails?.images);
   console.log("jsonImages ============>>>", jsonImages);
+  console.log("currentImage with siteurl ============>>>",  `${process.env.SITE_URL}${currentImage}`);
   return {
     title: newsDetails?.title || newsDetailsTitle,
     description: newsDetails?.description || newsDetailsDescription,
@@ -103,7 +104,7 @@ export const generateMetadata = async ({ params }) => {
       type: "article",
       title: newsDetails?.title || newsDetailsTitle,
       description: newsDetails?.description || newsDetailsDescription,
-      images: currentImage,
+      images:  `${process.env.SITE_URL}${currentImage}`,
       // images: openGraphImages || [],
       url: `${process.env.SITE_URL}/news/${params.id}`,
       "article:section": newsDetails.category || "News",
