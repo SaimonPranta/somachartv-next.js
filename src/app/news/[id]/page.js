@@ -21,20 +21,20 @@ import { getSeoTimeFormat } from "@/shared/functions/convertTime";
 import { IoCameraReverseOutline } from "react-icons/io5";
 import processDangerouslySetInnerHTML from "@/shared/functions/processDangerouslySetInnerHTML";
 
-const getAds = async () => {
-  try {
-    const response = await (
-      await fetch(`${BACKEND_URL}/admin/ads?page=1`, { cache: "no-store" })
-    ).json();
+// const getAds = async () => {
+//   try {
+//     const response = await (
+//       await fetch(`${BACKEND_URL}/admin/ads?page=1`, { cache: "no-store" })
+//     ).json();
 
-    if (response.data?.length) {
-      return response.data;
-    }
-    return [];
-  } catch (error) {
-    return [];
-  }
-};
+//     if (response.data?.length) {
+//       return response.data;
+//     }
+//     return [];
+//   } catch (error) {
+//     return [];
+//   }
+// };
 
 const getNews = async (id) => {
   try {
@@ -145,7 +145,7 @@ const Index = async ({ params: { id } }) => {
     return <></>
   }
   const newsList = await getNewsList();
-  const adsList = await getAds();
+  // const adsList = await getAds();
   const thumbnailInfo = newsDetails.images[0];
 
   return (
@@ -233,7 +233,7 @@ const Index = async ({ params: { id } }) => {
             </section>
           </article>
 
-          <aside className="related-news-container ">
+          {/* <aside className="related-news-container ">
             <div className="ads-section">
               {adsList.slice(0, 2).map((ad, index) => (
                 <Link href={ad.targetLink} key={index}>
@@ -270,7 +270,7 @@ const Index = async ({ params: { id } }) => {
                 ))}
               </div>
             </div>
-          </aside>
+          </aside> */}
         </div>
 
         <TodaysNews />
