@@ -67,7 +67,14 @@ const getNewsList = async () => {
     return {};
   }
 };
-
+export const metadata = {
+  title: "Somachar TV || Bangla Newspaper",
+  description:
+    "Somachar TV: Uncover the truth with insightful reporting and a commitment to authentic storytelling. Stay informed and engaged!",
+  keywords:
+    "Somachar TV, news, journalism, truth, insights, articles, unbiased reporting, current events, media",
+  author: "Somachar TV"
+};
 export const generateMetadata = async ({ params }) => {
   const newsDetails = await getNews(params.id);
   if (!newsDetails._id) {
@@ -104,7 +111,7 @@ export const generateMetadata = async ({ params }) => {
       type: "article",
       title: newsDetails?.title || newsDetailsTitle,
       description: newsDetails?.description || newsDetailsDescription,
-      images: [ { url: fakeImg }],
+      images: fakeImg,
       // images: openGraphImages || [],
       url: `${process.env.SITE_URL}/news/${params.id}`,
       "article:section": newsDetails.category || "News",
@@ -122,8 +129,7 @@ export const generateMetadata = async ({ params }) => {
       "@type": "NewsArticle",
       headline: newsDetails?.title || newsDetailsTitle,
       description: newsDetails?.description || newsDetailsDescription,
-      image: fakeImg,
-      // image: jsonImages,
+      image: jsonImages,
       datePublished: newsDetails?.createdAt,
       dateModified: newsDetails?.updatedAt || newsDetails?.createdAt,
       mainEntityOfPage: pageUrl,
@@ -156,12 +162,12 @@ const Index = async ({ params: { id } }) => {
   "https://somacharnews.com/api/media/%E0%A6%93%E0%A6%9F%E0%A6%9F%E0%A6%B0%20%E0%A6%86%E0%A6%B2%E0%A7%8B%E0%A6%9A%E0%A6%A4%20%E0%A6%B8%E0%A6%B0%E0%A6%9C.jpeg";
   return (
     <>
-      {/* <Head>
+      <Head>
         <meta
           property="og:image"
           content={fakeImg}
         />
-      </Head> */}
+      </Head>
 
       <Header />
       <main className="container news-details-page">
