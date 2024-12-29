@@ -233,7 +233,7 @@ const Index = async ({ params: { id } }) => {
             </section>
           </article>
 
-          <aside className="related-news-container ">
+          {/* <aside className="related-news-container ">
             <div className="ads-section">
               {adsList.slice(0, 2).map((ad, index) => (
                 <Link href={ad.targetLink} key={index}>
@@ -270,7 +270,7 @@ const Index = async ({ params: { id } }) => {
                 ))}
               </div>
             </div>
-          </aside>
+          </aside> */}
         </div>
 
         <TodaysNews />
