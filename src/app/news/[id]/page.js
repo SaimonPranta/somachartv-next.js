@@ -79,22 +79,22 @@ export const generateMetadata = async ({ params }) => {
   const keywords = getKeywords(newsDetails);
   const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
-    return { url: currentImage };
+    return { url: fakeImg };
   });
   // const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
   //   const currentImage = getImageUrl(imgInfo.src);
   //   return { url: currentImage };
   // });
   const jsonImages = await newsDetails?.images?.map((imgInfo) => {
-    const currentImage = getImageUrl(imgInfo.src);
-    return currentImage;
+    // const currentImage = getImageUrl(imgInfo.src);
+    return fakeImg;
   });
   // const jsonImages = await newsDetails?.images?.map((imgInfo) => {
   //   const currentImage = getImageUrl(imgInfo.src);
   //   return currentImage;
   // });
-  // const currentImage = fakeImg;
-  const currentImage = getImageUrl(newsDetails?.images);
+  const currentImage = fakeImg;
+  // const currentImage = getImageUrl(newsDetails?.images);
   console.log("jsonImages ============>>>", jsonImages);
   return {
     title: newsDetails?.title || newsDetailsTitle,
@@ -104,8 +104,8 @@ export const generateMetadata = async ({ params }) => {
       type: "article",
       title: newsDetails?.title || newsDetailsTitle,
       description: newsDetails?.description || newsDetailsDescription,
-      images: `${process.env.SITE_URL}${currentImage}`,
-      // images: currentImage,
+      images: fakeImg,
+      // images: openGraphImages || [],
       url: `${process.env.SITE_URL}/news/${params.id}`,
       "article:section": newsDetails.category || "News",
       "article:tag": newsDetails.tags?.join(", ") || keywords,
