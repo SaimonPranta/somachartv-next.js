@@ -104,7 +104,7 @@ export const generateMetadata = async ({ params }) => {
       type: "article",
       title: newsDetails?.title || newsDetailsTitle,
       description: newsDetails?.description || newsDetailsDescription,
-      images: currentImage,
+      images: fakeImg,
       // images: openGraphImages || [],
       url: `${process.env.SITE_URL}/news/${params.id}`,
       "article:section": newsDetails.category || "News",
