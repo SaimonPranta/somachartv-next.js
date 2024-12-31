@@ -46,29 +46,26 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
 
-        {/* Google tag (gtag.js) */}
-        {/* <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-TWJDNTRE97"
-        ></script>
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7281991904831824"
-          crossOrigin="anonymous"
-        ></script>
 
-        <script async src="https://cdn.jsdelivr.net/npm/jquery@3.6.0"></script>
+        {/* Google Tag Manager from Google analytics -- code start --*/}
+
+<script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-59WNXYEQBZ"
+        ></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-TWJDNTRE97');
+              gtag('config', 'G-59WNXYEQBZ');
             `,
           }}
-        /> */}
-        <Script />
+        ></script>
+        {/* Google Tag Manager from Google analytics -- code end --*/}
+ 
+          <Script />
       </head>
 
       <App>
