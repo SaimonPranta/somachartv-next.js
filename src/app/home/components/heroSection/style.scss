@@ -14,7 +14,8 @@
             font-weight: 600;
             background-color: var(--default-color);
 
-            h2, span{
+            h2,
+            span {
                 color: var(--default-text-color);
 
             }
@@ -161,6 +162,11 @@
 
                     h3 {
                         font-size: 18px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
                     }
                 }
             }
@@ -197,7 +203,7 @@
                     min-width: 100%;
 
                     img {
-                        height: 200px;
+                        height: 180px;
                         width: 100%;
                         min-width: 100%;
                     }
@@ -205,6 +211,12 @@
                     h2 {
                         padding: 2px 5px 10px 5px;
                         text-align: center;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                        height: 75px;
                     }
                 }
             }
@@ -330,6 +342,30 @@
                 gap: 10px;
                 box-sizing: border-box;
             }
+
+            .news-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 5px;
+                grid-auto-rows: minmax(0, 1fr);
+                height: inherit;
+
+                .cart {
+
+                    &:first-child {
+                        grid-column: span 2;
+                    }
+
+                    h3 {
+                        font-size: 18px;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
+                    }
+                }
+            }
         }
     }
 }
@@ -363,17 +399,38 @@
                         aspect-ratio: 16/9;
                     }
                 }
+                .news-grid {
+                    display: flex !important;
+
+                    .cart {
+                        &:last-child {
+                            display: none;
+                        }
+                        h3{
+                            font-size: 16px;
+                           }
+                    }
+                }
+
+               
             }
 
-            .news-grid {
-                display: flex !important;
+            .jobs-news {
+                grid-template-columns: 1fr;
+                height: 750px;
+                grid-template-rows: 40% calc(60% - 10px);
 
-                .cart {
-                    &:last-child {
-                        display: none;
+                .news-cart {
+                    h2 {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                        -webkit-line-clamp: 2;
                     }
                 }
             }
+
         }
     }
 }

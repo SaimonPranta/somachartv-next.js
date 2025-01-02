@@ -6,6 +6,7 @@ import { BACKEND_URL } from "@/shared/constants/ulrList";
 import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
 import MoreNews from '@/app/home/components/MoreNews'
+import getBanglaDateMonthYear from  '@/shared/functions/getBanglaDateMonthYear'
 
 const getNationalNews = async () => {
   try {
@@ -90,7 +91,7 @@ const Index = async () => {
                       {" "}
                       <h3>{newsInfo.title}</h3>
                       <p>{newsInfo.description}</p>
-                      <time>২৪ নভেম্বর ২০২৪</time>
+                      <time>{getBanglaDateMonthYear(newsInfo.createdAt)}</time>
                     </div>
                   </Link>
                 );
@@ -120,7 +121,7 @@ const Index = async () => {
                         {" "}
                         <h3>{newsInfo.title}</h3>
                         <p>{newsInfo.description}</p>
-                        <time>২৪ নভেম্বর ২০২৪</time>
+                        <time>{getBanglaDateMonthYear(newsInfo.createdAt)}</time>
                       </div>
                     </Link>
                   );

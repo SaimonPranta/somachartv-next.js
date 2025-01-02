@@ -12,7 +12,7 @@ const getLifeStyleAndCultureNews = async () => {
   try {
     const response = await (
       await fetch(
-        `${BACKEND_URL}/public/news?limit=${5}&categoryGroup=জীবনধারা ও সংস্কৃতি`,
+        `${BACKEND_URL}/public/news?limit=${8}&categoryGroup=জীবনধারা ও সংস্কৃতি`,
         { cache: "no-store" }
       )
     ).json();

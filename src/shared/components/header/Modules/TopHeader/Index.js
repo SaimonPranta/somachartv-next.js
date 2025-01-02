@@ -35,11 +35,11 @@ const Index = () => {
       <div className="top-section">
         <div className="top-inner-container container">
           <div className="left">
-            <p>{`ঢাকা | ${getBengaliDate()}`}</p>
+            <p>{`${getBengaliDate()}`}</p>
           </div>
           <div className="middle">
             <Link href="/">
-              <h1>𝓢𝓞𝓜𝓐𝓒𝓗𝓡 𝓣𝓥</h1>
+              <h1>𝚂𝚘𝚖𝚊𝚌𝚑𝚊𝚛 𝙽𝚎𝚠𝚜</h1>
             </Link>
           </div>
           <div className="right">

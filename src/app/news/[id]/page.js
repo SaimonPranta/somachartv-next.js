@@ -161,7 +161,7 @@ const Index = async ({ params: { id } }) => {
               <Link href="/" aria-label="Home">
                 <FaHome />
               </Link>
-              <MdKeyboardArrowRight />
+              <MdKeyboardArrowRight className="arrow-svg" />
               {newsDetails?.category?.label && (
                 <>
                   <Link href={`/topic/${newsDetails?.category?.route}`}>

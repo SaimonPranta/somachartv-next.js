@@ -75,10 +75,13 @@
                     text-decoration: none;
 
                 }
+                .arrow-svg{
+                    margin-bottom: 5px;
+                }
 
                 span {
                     height: 22px;
-                    width: 22px;
+                    width: max-content;
                     // background-color: red;
                     display: flex;
                     align-items: center;
