@@ -1,17 +1,31 @@
 import { BACKEND_URL } from "@/shared/constants/ulrList";
 import { NextResponse } from "next/server";
 
-export async function GET(req, res) {
+// Utility function to build XML for a news article's image
+const buildXml = (sitemap, { loc, imageLoc, imageTitle, imageCaption }) => {
+  sitemap += `  <url>\n`;
+  sitemap += `    <loc>${loc}</loc>\n`;
+  sitemap += `    <image:image>\n`;
+  sitemap += `      <image:loc>${imageLoc}</image:loc>\n`;
+  sitemap += `      <image:title>${imageTitle}</image:title>\n`;
+  sitemap += `      <image:caption>${imageCaption}</image:caption>\n`;
+  sitemap += `    </image:image>\n`;
+  sitemap += `  </url>\n`;
+  return sitemap;
+};
+
+export const dynamic = "force-dynamic"; // Make the page dynamic in production
+
+export async function GET(req) {
   try {
     const siteUrl = "https://somacharnews.com";
 
-    // Fetch the list of news articles
     const newsJson = await fetch(`${BACKEND_URL}/public/news/sitemap`, {
       cache: "no-store",
     });
     const newsResponse = await newsJson.json();
-    const newsData = await newsResponse.data;
-    console.log("newsData ==>", newsData);
+    const newsData = newsResponse?.data || [];
+
     // Start building the image sitemap XML
     let imageSitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
     imageSitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n`;
@@ -19,16 +33,12 @@ export async function GET(req, res) {
     // Add images for each news article
     newsData.forEach((news) => {
       news.images.forEach((image) => {
-        imageSitemap += `  <url>\n`;
-        imageSitemap += `    <loc>${siteUrl}/news/${news._id}</loc>\n`;
-        imageSitemap += `    <image:image>\n`;
-        imageSitemap += `      <image:loc>${siteUrl}/api/media/${image.src}</image:loc>\n`;
-        imageSitemap += `      <image:title>${news.title}</image:title>\n`;
-        imageSitemap += `      <image:caption>${
-          image.figcaption || news.title
-        }</image:caption>\n`;
-        imageSitemap += `    </image:image>\n`;
-        imageSitemap += `  </url>\n`;
+        imageSitemap = buildXml(imageSitemap, {
+          loc: `${siteUrl}/news/${news._id}`,
+          imageLoc: `${siteUrl}/api/media/${image.src}`,
+          imageTitle: news.title,
+          imageCaption: image.figcaption || news.title,
+        });
       });
     });
 

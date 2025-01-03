@@ -9,18 +9,9 @@ import Footer from '@/shared/components/Footer/Footer';
 import palyIcons from "../../assets/images/home/video-play-icon-11397.png";
 import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
+import Loading from "@/shared/components/Loading/index";
 
-const getNews = async (search) => {
-    try {
-        const response = await (await fetch(`${BACKEND_URL}/public/news?search=${search}`, { 'cache': 'no-store',})).json();
-        if (response.data?.length) {
-            return response.data
-        }
-        return []
-    } catch (error) {
-        return []
-    }
-}
+
 
 const Index = async (props) => { 
  
@@ -29,7 +20,7 @@ const Index = async (props) => {
 
 
     return (
-        <>
+        <Loading>
             <Header />
             <div className="container all-news-container">
                 <div className="categories-container">
@@ -58,7 +49,7 @@ const Index = async (props) => {
                 {/* <TodaysVideos /> */}
             </div>
             <Footer />
-        </>
+        </Loading>
     );
 };
 

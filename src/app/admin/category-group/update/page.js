@@ -1,23 +1,19 @@
-"use client";
+'use client'
+
 import React, { useEffect, useRef, useState } from "react";
 import "./styles.scss";
 import AdminLayouts from "@/shared/layouts/AdminLayouts/AdminLayouts";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategories } from "@/store/categories/reducer";
 import { BACKEND_URL } from "@/shared/constants/ulrList";
-import { MdArrowBackIosNew, MdDeleteOutline } from "react-icons/md";
-import { useRouter, useSearchParams } from "next/navigation";
+import { MdArrowBackIosNew } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
-const Index = ({ title = "" }) => {
+const Index = ({searchParams: {id}}) => { 
   const [input, setInput] = useState({});
   const { categories } = useSelector((state) => state);
-  const searchParams = useSearchParams()
- 
-  const id = searchParams.get('id')
   const dispatch = useDispatch();
   const router = useRouter();
-  // const queryParams = new URLSearchParams(history.location.search);
-  //   const id = queryParams.get("id");
 
   useEffect(() => {
     if (input.category) {
@@ -131,7 +127,7 @@ const Index = ({ title = "" }) => {
           <button onClick={handleBackNavigation}>
             <MdArrowBackIosNew /> <span>Back</span>
           </button>
-          <h6>{title}</h6>
+          <h6>{id ? "Update Category Group" : "Add Category Group"}</h6>
         </div>
         <div className="add-news">
           <form autoComplete="off" onSubmit={handleSubmit}>

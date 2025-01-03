@@ -9,7 +9,7 @@ const App = ({children}) => {
     return (
         <Provider store={store}>
             {children}
-        </Provider>
+      </Provider>
 
     );
 };

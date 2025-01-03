@@ -1,21 +1,23 @@
+/* eslint-disable @next/next/no-page-custom-font */
 import { Inter } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import { Provider } from "react-redux";
 import store from "../store/store";
 import App from "./app.js";
-import Script from "./scripts/script.js";
+import CustomScript from "../shared/scripts/script.js";
+import Script from "next/script";
 
 // import Loading from '@/shared/components/Loading/index'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Somachar TV || Bangla Newspaper",
+  title: "Somachar News || Bangla Newspaper",
   description:
-    "Somachar TV: Uncover the truth with insightful reporting and a commitment to authentic storytelling. Stay informed and engaged!",
+    "Somachar News: Uncover the truth with insightful reporting and a commitment to authentic storytelling. Stay informed and engaged!",
   keywords:
-    "Somachar TV, news, journalism, truth, insights, articles, unbiased reporting, current events, media",
-  author: "Somachar TV"
+    "Somachar News, Somachar TV, Somachar, somachar tv, bd news, BD News, bd newspaper, News of Bangladesh,  news, journalism, truth, insights, articles, unbiased reporting, current events, media",
+  author: "Somachar News",
 };
 
 export default function RootLayout({ children }) {
@@ -46,13 +48,9 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
 
-
         {/* Google Tag Manager from Google analytics -- code start --*/}
 
-<script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-59WNXYEQBZ"
-        ></script>
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-59WNXYEQBZ" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -62,10 +60,10 @@ export default function RootLayout({ children }) {
               gtag('config', 'G-59WNXYEQBZ');
             `,
           }}
-        ></script>
+        />
         {/* Google Tag Manager from Google analytics -- code end --*/}
- 
-          <Script />
+
+        <CustomScript />
       </head>
 
       <App>

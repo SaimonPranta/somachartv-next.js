@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { BACKEND_URL } from '@/shared/constants/ulrList';
 import getImageUrl from '@/shared/functions/getImageUrl';
 import dateToDateString from '@/shared/functions/dateToDateString';
+import Loading from "@/shared/components/Loading/index";
 
 
 const getProfileInfo = async (id) => {
@@ -30,7 +31,7 @@ const Page = async ({ params, searchParams },) => {
     }
 
     return (
-        <>
+        <Loading>
             <Header />
             <div className='employ-profile'>
                 <div className="container inner-container">
@@ -63,7 +64,7 @@ const Page = async ({ params, searchParams },) => {
                     </div>
                 </div>
             </div>
-        </>
+        </Loading>
     )
 }
 

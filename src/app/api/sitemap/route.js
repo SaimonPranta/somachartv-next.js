@@ -1,70 +1,86 @@
 import { BACKEND_URL } from "@/shared/constants/ulrList";
 import { NextResponse } from "next/server";
 
-export const revalidate = 10
+// Utility function to build XML for a URL
+const buildXml = (sitemap, { loc, lastmod, changefreq, priority }) => {
+  sitemap += `  <url>\n`;
+  sitemap += `    <loc>${loc}</loc>\n`;
+  sitemap += `    <lastmod>${lastmod}</lastmod>\n`;
+  sitemap += `    <changefreq>${changefreq}</changefreq>\n`;
+  sitemap += `    <priority>${priority}</priority>\n`;
+  sitemap += `  </url>\n`;
+  return sitemap;
+};
 
-export async function GET(req, { params }) {
+export const dynamic = "force-dynamic"; // Make the page dynamic in production
+
+export async function GET(req) {
   try {
     const siteUrl = "https://somacharnews.com";
-    // const response = await fetch(`${BACKEND_URL}/media/${params.path}`);
-    const newsJson = await fetch(`${BACKEND_URL}/public/news/sitemap`, {
+
+    // Fetch news and categories data
+    const newsResponse = await fetch(`${BACKEND_URL}/public/news/sitemap`, {
       cache: "no-store",
     });
-    const newsResponse = await newsJson.json();
-    const newsData = await newsResponse.data;
-    // Base URL for your website
+    const categoriesResponse = await fetch(`${BACKEND_URL}/public/categories`, {
+      cache: "no-store",
+    });
 
+    const newsData = (await (await newsResponse.json())?.data) || [];
+    const categories = (await (await categoriesResponse.json())?.data) || [];
     // Start building the sitemap XML
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n`;
     sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+
     // Add static pages
     const staticPages = ["/"]; // Add your static pages here
     staticPages.forEach((page) => {
-      sitemap += `  <url>\n`;
-      sitemap += `    <loc>${siteUrl}${page}</loc>\n`;
-      sitemap += `    <lastmod>${new Date().toISOString()}</lastmod>\n`;
-      sitemap += `    <changefreq>monthly</changefreq>\n`;
-      sitemap += `    <priority>0.8</priority>\n`;
-      sitemap += `  </url>\n`;
+      sitemap = buildXml(sitemap, {
+        loc: `${siteUrl}${page}`,
+        lastmod: new Date().toISOString(),
+        changefreq: "monthly",
+        priority: "0.8",
+      });
+    });
+
+    // Add category pages
+    categories.forEach((category) => {
+      sitemap = buildXml(sitemap, {
+        loc: `${siteUrl}/topic/${category.route}`, // Ensure `category.path` is correctly set
+        lastmod: new Date().toISOString(),
+        changefreq: "weekly",
+        priority: "0.8",
+      });
+      if (category?.subCategories?.length > 0) {
+        category?.subCategories.forEach((subCategory) => {
+          sitemap = buildXml(sitemap, {
+            loc: `${siteUrl}/topic/${category.route}/${subCategory.route}`, // Ensure `category.path` is correctly set
+            lastmod: new Date().toISOString(),
+            changefreq: "weekly",
+            priority: "0.8",
+          });
+        })
+      }
     });
 
     // Add dynamic news pages
     newsData.forEach((news) => {
-      sitemap += `  <url>\n`;
-      sitemap += `    <loc>${siteUrl}/news/${news._id}</loc>\n`;
-      sitemap += `    <lastmod>${new Date(
-        news.updatedAt
-      ).toISOString()}</lastmod>\n`;
-      sitemap += `    <changefreq>daily</changefreq>\n`;
-      sitemap += `    <priority>0.9</priority>\n`;
-      sitemap += `  </url>\n`;
+      sitemap = buildXml(sitemap, {
+        loc: `${siteUrl}/news/${news._id}`,
+        lastmod: new Date(news.updatedAt).toISOString(),
+        changefreq: "daily",
+        priority: "0.9",
+      });
     });
 
     sitemap += `</urlset>`;
 
-    // Set response headers and send the sitemap
-    // return new NextResponse(sitemap, {
-    //   headers: { "Content-Type": "application/xml" },
-    // });
-
-    // Send the sitemap as an XML response
-    // return new NextResponse(sitemap, {
-    //   headers: {
-    //     "Content-Type": "application/xml",
-    //     "Cache-Control": "public, max-age=60", // Cache for 1 minute
-    //   },
-    // });
-
+    // Return the generated sitemap
     return new NextResponse(sitemap, {
-      headers: {
-        "Content-Type": "application/xml",
-        "Cache-Control": "public, max-age=10, stale-while-revalidate=30", // Cache for 1 minute, allow revalidation for 5 minutes
-      },
+      headers: { "Content-Type": "application/xml" },
     });
-
-   
   } catch (error) {
     console.error("Error generating sitemap:", error.message);
-    res.status(500).end("Failed to generate sitemap");
+    return new NextResponse("Failed to generate sitemap", { status: 500 });
   }
 }

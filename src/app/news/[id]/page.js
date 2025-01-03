@@ -20,7 +20,7 @@ import {
 import { getSeoTimeFormat } from "@/shared/functions/convertTime";
 import { IoCameraReverseOutline } from "react-icons/io5";
 import processDangerouslySetInnerHTML from "@/shared/functions/processDangerouslySetInnerHTML";
-import Head from "next/head";
+import Loading from "@/shared/components/Loading/index";
 
 const getAds = async () => {
   try {
@@ -151,7 +151,7 @@ const Index = async ({ params: { id } }) => {
   const thumbnailInfo = newsDetails.images[0];
  
   return (
-    <> 
+    <Loading> 
 
       <Header />
       <main className="container news-details-page">
@@ -279,7 +279,7 @@ const Index = async ({ params: { id } }) => {
         <TodaysNews />
       </main>
       <Footer />
-    </>
+    </Loading>
   );
 };
 
