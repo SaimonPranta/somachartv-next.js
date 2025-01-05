@@ -1,52 +1,70 @@
 import { NextResponse } from 'next/server';
 import { BACKEND_URL } from '@/shared/constants/ulrList';
 
-
 export const middleware = async (request) => {
-
     try {
-      const route = request?.nextUrl?.pathname;
-      const url = request?.nextUrl?.clone();
-      url?.searchParams?.set("route", route);
-      if (!request?.url?.includes("/admin")) {
-        return NextResponse.rewrite(url);
-      }
-        const token = await request.cookies.get("adminAuthToken")?.value || null
-        if (!token) {
-
-        }
-        const res = await fetch(`${BACKEND_URL}/admin/auth/check-token`, {
-            method: "GET",
-            headers: {
-                authorization: `Bearer ${token}`, // Add this if you have the token available
-            },
-        });
-
-        // Check for response.ok or handle status errors
-        if (!res.ok) {
-            throw new Error(`Request failed with status ${res.status}`);
+        const route = request?.nextUrl?.pathname;
+        // Skip middleware for static files
+        if (route.startsWith('/_next')) {
+            return NextResponse.next();
         }
 
-        const data = await res.json();
-        if (request.nextUrl.pathname === "/admin/signin") {
-            if (data.verified) {
-                return NextResponse.redirect(new URL('/admin/news', request.url))
-            } else {
+        const url = request?.nextUrl?.clone();
+        url?.searchParams?.set("route", route);
+
+        if (!request?.url?.includes("/admin")) {
+            return NextResponse.rewrite(url);
+        }
+
+        const token = await request.cookies.get("adminAuthToken")?.value || null;
+
+        if (route === '/admin/signin') {
+            // Allow unauthenticated access to signin page
+            if (!token) {
                 return NextResponse.next();
             }
+
+            const res = await fetch(`${BACKEND_URL}/admin/auth/check-token`, {
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+            });
+            console.log("res ==>", res)
+
+            const data = await res?.json();
+            console.log("data ==>", data)
+            if (data.verified) {
+                return NextResponse.redirect(new URL('/admin/news', request.url));
+            }
+
+            return NextResponse.next();
         }
 
-        if (data.verified) {
-            return NextResponse.next();
+        if (token) {
+            const res = await fetch(`${BACKEND_URL}/admin/auth/check-token`, {
+                method: "GET",
+                headers: {
+                    authorization: `Bearer ${token}`,
+                },
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                if (data.verified) {
+                    return NextResponse.next();
+                }
+            }
         }
 
     } catch (error) {
         console.error("Error in middleware ==>", error);
     }
-    return NextResponse.redirect(new URL('/admin/signin', request.url))
 
+    return NextResponse.redirect(new URL('/admin/signin', request.url));
 };
 
+
 export const config = {
-    matcher: ['/admin/signin', '/admin/:path*, /:path*'],
+    matcher: ['/:path*'],
 };
