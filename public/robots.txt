@@ -6,6 +6,9 @@ User-agent: *
 # Disallow access to /admin/ pages
 Disallow: /admin/
 
+# Disallow access to /_next/ pages
+Disallow: /_next/
+
 # Sitemap files
 Sitemap: https://somacharnews.com/sitemap.xml
 Sitemap: https://somacharnews.com/image-sitemap.xml
