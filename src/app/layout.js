@@ -22,23 +22,17 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const generateMetadata = async ({ params }) => {
   // const pageUrl = `${process.env.SITE_URL}/news/${params.id}`;
-  const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
-    // const currentImage = getImageUrl(imgInfo.src);
-    return {
-      url: `https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`,
-      width: 1260,
-      height: 800
-    };
-  });
+  const openGraphImages =  [{
+    url: `https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`,
+    width: 1260,
+    height: 800
+  }]
   // const jsonImages = await newsDetails?.images?.map((imgInfo) => {
   //   const currentImage = getImageUrl(imgInfo.src);
   //   return `${process.env.SITE_URL}${currentImage}`;
   // });
-  const jsonImages = await newsDetails?.images?.map((imgInfo) => {
-    // const currentImage = getImageUrl(imgInfo.src);
-    return `https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`;
-  });
-  const currentImage = getImageUrl(newsDetails?.images);
+  const jsonImages =  [`https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`]
+  const currentImage = `https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`
   const title = "Somachar News || Bangla Newspaper";
   const description = "Somachar News: Uncover the truth with insightful reporting and a commitment to authentic storytelling. Stay informed and engaged!";
   const author = "Somachar News";
