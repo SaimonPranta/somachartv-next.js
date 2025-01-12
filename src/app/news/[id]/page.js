@@ -78,8 +78,12 @@ export const generateMetadata = async ({ params }) => {
   const keywords = getKeywords(newsDetails);
   const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
+    let imgUrl = `${process.env.SITE_URL}${currentImage}`
+    if (currentImage.includes(".webp")) {
+      imgUrl = `${process.env.SITE_URL}/api/media/${imgInfo.src}?url=${imgUrl}`
+    }
     return {
-      url: `${process.env.SITE_URL}${currentImage}`,
+      url: imgUrl,
       width: 1260,
       height: 800
     };
