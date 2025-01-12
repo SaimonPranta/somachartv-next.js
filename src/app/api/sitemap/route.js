@@ -1,5 +1,7 @@
 import { BACKEND_URL } from "@/shared/constants/ulrList";
 import { NextResponse } from "next/server";
+import fs from 'fs'
+import path from 'path'
 
 // Utility function to build XML for a URL
 const buildXml = (sitemap, { loc, lastmod, changefreq, priority }) => {
@@ -16,6 +18,7 @@ export const dynamic = "force-dynamic"; // Make the page dynamic in production
 
 export async function GET(req) {
   try {
+    
     const siteUrl = "https://somacharnews.com";
 
     // Fetch news and categories data
@@ -74,7 +77,15 @@ export async function GET(req) {
     });
 
     sitemap += `</urlset>`;
-
+    
+    // const publicDir = path.join(__dirname, "../../../../../public")
+    
+    // const isExist  = fs.existsSync(publicDir) 
+    // if (isExist) {
+    //   const sitemapPath = path.join(publicDir, 'sitemap-test.xml');
+    //   fs.writeFileSync(sitemapPath, sitemap, 'utf-8');
+    // }
+  
     // Return the generated sitemap
     return new NextResponse(sitemap, {
       headers: { "Content-Type": "application/xml" },
