@@ -23,7 +23,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const generateMetadata = async ({ params }) => {
   // const pageUrl = `${process.env.SITE_URL}/news/${params.id}`;
   const openGraphImages =  [{
-    url: `https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`,
+    url: `https://somacharnews.com/api/media/%E0%A6%AC%E0%A6%AE%E0%A6%A8%20%E0%A6%AC%E0%A6%B2%E0%A6%A6%E0%A7%87%E0%A6%B6%20%E0%A6%8F%E0%A6%AF%E0%A6%B0%E0%A6%B2%E0%A6%87%E0%A6%A8%E0%A7%8D%E0%A6%B8%20%E0%A6%B2%E0%A6%AE%E0%A6%9F%E0%A7%87%E0%A6%A1%E0%A7%87%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A6%B8%E0%A7%8D%E0%A6%A5%E0%A6%A8%20%E0%A6%B8%E0%A7%81%E0%A6%AF%E0%A7%8B%E0%A6%97%20_1.jpg`,
     width: 1260,
     height: 800
   }]
@@ -31,8 +31,8 @@ export const generateMetadata = async ({ params }) => {
   //   const currentImage = getImageUrl(imgInfo.src);
   //   return `${process.env.SITE_URL}${currentImage}`;
   // });
-  const jsonImages =  [`https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`]
-  const currentImage = `https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`
+  const jsonImages =  [`https://somacharnews.com/api/media/%E0%A6%AC%E0%A6%AE%E0%A6%A8%20%E0%A6%AC%E0%A6%B2%E0%A6%A6%E0%A7%87%E0%A6%B6%20%E0%A6%8F%E0%A6%AF%E0%A6%B0%E0%A6%B2%E0%A6%87%E0%A6%A8%E0%A7%8D%E0%A6%B8%20%E0%A6%B2%E0%A6%AE%E0%A6%9F%E0%A7%87%E0%A6%A1%E0%A7%87%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A6%B8%E0%A7%8D%E0%A6%A5%E0%A6%A8%20%E0%A6%B8%E0%A7%81%E0%A6%AF%E0%A7%8B%E0%A6%97%20_1.jpg`]
+  const currentImage = `https://somacharnews.com/api/media/%E0%A6%AC%E0%A6%AE%E0%A6%A8%20%E0%A6%AC%E0%A6%B2%E0%A6%A6%E0%A7%87%E0%A6%B6%20%E0%A6%8F%E0%A6%AF%E0%A6%B0%E0%A6%B2%E0%A6%87%E0%A6%A8%E0%A7%8D%E0%A6%B8%20%E0%A6%B2%E0%A6%AE%E0%A6%9F%E0%A7%87%E0%A6%A1%E0%A7%87%20%E0%A6%95%E0%A6%B0%E0%A7%8D%E0%A6%AE%E0%A6%B8%E0%A6%B8%E0%A7%8D%E0%A6%A5%E0%A6%A8%20%E0%A6%B8%E0%A7%81%E0%A6%AF%E0%A7%8B%E0%A6%97%20_1.jpg`
   const title = "Somachar News || Bangla Newspaper";
   const description = "Somachar News: Uncover the truth with insightful reporting and a commitment to authentic storytelling. Stay informed and engaged!";
   const author = "Somachar News";
