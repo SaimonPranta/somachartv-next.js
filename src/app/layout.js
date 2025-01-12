@@ -25,7 +25,7 @@ export const generateMetadata = async ({ params }) => {
   const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
     // const currentImage = getImageUrl(imgInfo.src);
     return {
-      url: `https://api.screenshotone.com/capture?url=${process.env.SITE_URL}&width=1260&height=800`,
+      url: `https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`,
       width: 1260,
       height: 800
     };
@@ -36,7 +36,7 @@ export const generateMetadata = async ({ params }) => {
   // });
   const jsonImages = await newsDetails?.images?.map((imgInfo) => {
     // const currentImage = getImageUrl(imgInfo.src);
-    return `https://api.screenshotone.com/capture?url=${process.env.SITE_URL}&width=1260&height=800`;
+    return `https://api.urlbox.io/v1/PsI7KuKoOtznjkfO/png?url=https://somacharnews.com&width=1200&height=630`;
   });
   const currentImage = getImageUrl(newsDetails?.images);
   const title = "Somachar News || Bangla Newspaper";
