@@ -83,11 +83,7 @@ export const generateMetadata = async ({ params }) => {
       width: 1260,
       height: 800
     };
-  });
-  // const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
-  //   const currentImage = getImageUrl(imgInfo.src);
-  //   return { url: currentImage };
-  // });
+  }); 
   const jsonImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
     return `${process.env.SITE_URL}${currentImage}`;
@@ -95,8 +91,7 @@ export const generateMetadata = async ({ params }) => {
   // const jsonImages = await newsDetails?.images?.map((imgInfo) => {
   //   const currentImage = getImageUrl(imgInfo.src);
   //   return currentImage;
-  // });
-  // const currentImage = fakeImg;
+  // }); 
   const currentImage = getImageUrl(newsDetails?.images);
   return {
     title: newsDetails?.title || newsDetailsTitle,

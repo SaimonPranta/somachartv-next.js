@@ -11,13 +11,86 @@ import Script from "next/script";
 // import Loading from '@/shared/components/Loading/index'
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Somachar News || Bangla Newspaper",
-  description:
-    "Somachar News: Uncover the truth with insightful reporting and a commitment to authentic storytelling. Stay informed and engaged!",
-  keywords:
-    "Somachar News, Somachar TV, Somachar, somachar tv, bd news, BD News, bd newspaper, News of Bangladesh,  news, journalism, truth, insights, articles, unbiased reporting, current events, media",
-  author: "Somachar News",
+// export const metadata = {
+//   title: "Somachar News || Bangla Newspaper",
+//   description:
+//     "Somachar News: Uncover the truth with insightful reporting and a commitment to authentic storytelling. Stay informed and engaged!",
+//   keywords:
+//     "Somachar News, Somachar TV, Somachar, somachar tv, bd news, BD News, bd newspaper, News of Bangladesh,  news, journalism, truth, insights, articles, unbiased reporting, current events, media",
+//   author: "Somachar News",
+// };
+
+export const generateMetadata = async ({ params }) => {
+  // const pageUrl = `${process.env.SITE_URL}/news/${params.id}`;
+  const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
+    // const currentImage = getImageUrl(imgInfo.src);
+    return {
+      url: `https://api.screenshotone.com/capture?url=${process.env.SITE_URL}&width=1260&height=800`,
+      width: 1260,
+      height: 800
+    };
+  });
+  // const jsonImages = await newsDetails?.images?.map((imgInfo) => {
+  //   const currentImage = getImageUrl(imgInfo.src);
+  //   return `${process.env.SITE_URL}${currentImage}`;
+  // });
+  const jsonImages = await newsDetails?.images?.map((imgInfo) => {
+    // const currentImage = getImageUrl(imgInfo.src);
+    return `https://api.screenshotone.com/capture?url=${process.env.SITE_URL}&width=1260&height=800`;
+  });
+  const currentImage = getImageUrl(newsDetails?.images);
+  const title = "Somachar News || Bangla Newspaper";
+  const description = "Somachar News: Uncover the truth with insightful reporting and a commitment to authentic storytelling. Stay informed and engaged!";
+  const author = "Somachar News";
+ const keywords  = "Somachar News, Somachar TV, Somachar, somachar tv, bd news, BD News, bd newspaper, News of Bangladesh,  news, journalism, truth, insights, articles, unbiased reporting, current events, media";
+
+  
+    return {
+    title: title,
+    description: description,
+    keywords:keywords ,
+    author: author,
+    openGraph: {
+      type: "article",
+      title: title,
+      description: description, 
+      images: openGraphImages || [],
+      url: `${process.env.SITE_URL}`,
+      "article:section": "News",
+      "article:tag": keywords
+    },
+    twitter: {
+      card: "summary_large_image",
+      site: "@SomacharNews",
+      title: title,
+      description: description,
+      // images: currentImage ? currentImage : undefined // Use the first image for Twitter
+    },
+    schema: {
+      "@context": "http://schema.org",
+      "@type": "NewsArticle",
+      headline: title,
+      description: description,
+      image: jsonImages,
+      datePublished: new Date(),
+      dateModified: new Date(),
+      mainEntityOfPage: `${process.env.SITE_URL}`,
+      author: {
+        "@type": "Organization",
+        name: "Somachar News"
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Somachar News",
+        logo: {
+          "@type": "ImageObject",
+          url: `${process.env.SITE_URL}/logo.png`
+        }
+      },
+      articleSection: "News",
+      keywords: keywords
+    }
+  };
 };
 
 export default function RootLayout({ children }) {
@@ -58,7 +131,7 @@ export default function RootLayout({ children }) {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', 'G-59WNXYEQBZ');
-            `,
+            `
           }}
         />
         {/* Google Tag Manager from Google analytics -- code end --*/}
