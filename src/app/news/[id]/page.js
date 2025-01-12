@@ -15,7 +15,7 @@ import Share from "@/app/news/[id]/Modal/Share/Share";
 import getKeywords from "@/shared/functions/getKeywords";
 import {
   newsDetailsDescription,
-  newsDetailsTitle,
+  newsDetailsTitle
 } from "@/shared/constants/defaultSeoVariables";
 import { getSeoTimeFormat } from "@/shared/functions/convertTime";
 import { IoCameraReverseOutline } from "react-icons/io5";
@@ -41,7 +41,7 @@ const getNews = async (id) => {
   try {
     let response = await (
       await fetch(`${BACKEND_URL}/public/news/${id}`, {
-        cache: "no-store",
+        cache: "no-store"
       })
     ).json();
     if (response.data._id) {
@@ -67,18 +67,22 @@ const getNewsList = async () => {
     return {};
   }
 };
- 
+
 export const generateMetadata = async ({ params }) => {
   const newsDetails = await getNews(params.id);
   if (!newsDetails._id) {
     return;
   }
- 
+
   const pageUrl = `${process.env.SITE_URL}/news/${params.id}`;
   const keywords = getKeywords(newsDetails);
   const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
-    return { url: `${process.env.SITE_URL}${currentImage}` };
+    return {
+      url: `${process.env.SITE_URL}${currentImage}`,
+      width: 1260,
+      height: 800
+    };
   });
   // const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
   //   const currentImage = getImageUrl(imgInfo.src);
@@ -86,14 +90,14 @@ export const generateMetadata = async ({ params }) => {
   // });
   const jsonImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
-    return  `${process.env.SITE_URL}${currentImage}`;
+    return `${process.env.SITE_URL}${currentImage}`;
   });
   // const jsonImages = await newsDetails?.images?.map((imgInfo) => {
   //   const currentImage = getImageUrl(imgInfo.src);
   //   return currentImage;
   // });
   // const currentImage = fakeImg;
-  const currentImage = getImageUrl(newsDetails?.images); 
+  const currentImage = getImageUrl(newsDetails?.images);
   return {
     title: newsDetails?.title || newsDetailsTitle,
     description: newsDetails?.description || newsDetailsDescription,
@@ -102,18 +106,18 @@ export const generateMetadata = async ({ params }) => {
       type: "article",
       title: newsDetails?.title || newsDetailsTitle,
       description: newsDetails?.description || newsDetailsDescription,
-      images:  `${process.env.SITE_URL}${currentImage}`,
-      // images: openGraphImages || [],
+      // images:  `${process.env.SITE_URL}${currentImage}`,
+      images: openGraphImages || [],
       url: `${process.env.SITE_URL}/news/${params.id}`,
       "article:section": newsDetails.category || "News",
-      "article:tag": newsDetails.tags?.join(", ") || keywords,
+      "article:tag": newsDetails.tags?.join(", ") || keywords
     },
     twitter: {
       card: "summary_large_image",
       site: "@SomacharNews",
       title: newsDetails?.title,
       description: newsDetails?.description,
-      images: currentImage ? currentImage : undefined, // Use the first image for Twitter
+      images: currentImage ? currentImage : undefined // Use the first image for Twitter
     },
     schema: {
       "@context": "http://schema.org",
@@ -126,19 +130,19 @@ export const generateMetadata = async ({ params }) => {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "Somachar News",
+        name: "Somachar News"
       },
       publisher: {
         "@type": "Organization",
         name: "Somachar News",
         logo: {
           "@type": "ImageObject",
-          url: `${process.env.SITE_URL}/logo.png`,
-        },
+          url: `${process.env.SITE_URL}/logo.png`
+        }
       },
       articleSection: newsDetails.category || "News",
-      keywords,
-    },
+      keywords
+    }
   };
 };
 const Index = async ({ params: { id } }) => {
@@ -149,10 +153,9 @@ const Index = async ({ params: { id } }) => {
   const newsList = await getNewsList();
   const adsList = await getAds();
   const thumbnailInfo = newsDetails.images[0];
- 
-  return (
-    <Loading> 
 
+  return (
+    <Loading>
       <Header />
       <main className="container news-details-page">
         <div className="news-details-top-section">
@@ -217,7 +220,7 @@ const Index = async ({ params: { id } }) => {
                 dangerouslySetInnerHTML={{
                   __html: processDangerouslySetInnerHTML(
                     newsDetails.updateHtmlDescription
-                  ),
+                  )
                 }}
               />
               {newsDetails.createdAt && (
