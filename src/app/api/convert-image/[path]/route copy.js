@@ -1,12 +1,17 @@
 export const revalidate = 60;
 import { BACKEND_URL } from "@/shared/constants/ulrList";
+import getImageUrl from "@/shared/functions/getImageUrl";
 // const BACKEND_URL = "https://server.somacharnews.com"
 import sharp from "sharp";
 
 export async function GET(req, { params }) {
-    // console.log("Hello from api --", params)
+
+  const endpoint = getImageUrl(params.path);
+
+  const url = `${process.env.SITE_URL}${endpoint}` 
+    
   const format = req.nextUrl.searchParams.get("format") || "jpg";
-  const url = req.nextUrl.searchParams.get("url") || "";
+  // const url = req.nextUrl.searchParams.get("url") || "";
 
   // Validate format query parameter
 //   if (!["png", "jpg", "jpeg"].includes(format)) {
@@ -57,6 +62,7 @@ export async function GET(req, { params }) {
       },
     });
   } catch (error) {
+    console.log("Error --->>", error)
     return new Response(JSON.stringify({ error: "Internal Server Error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },

@@ -80,8 +80,8 @@ export const generateMetadata = async ({ params }) => {
     const currentImage = getImageUrl(imgInfo.src);
     let imgUrl = `${process.env.SITE_URL}${currentImage}`
     if (currentImage.includes(".webp")) {
-      imgUrl = `${process.env.SITE_URL}/api/convert-image/${imgInfo.src}`
-      // imgUrl = `${process.env.SITE_URL}/api/media/${imgInfo.src}?url=${imgUrl}`
+      // imgUrl = `${process.env.SITE_URL}/api/convert-image/${imgInfo.src}`
+      imgUrl = `${process.env.SITE_URL}/api/convert-image/${imgInfo.src}?url=${imgUrl}`
     }
     return {
       url: imgUrl,
