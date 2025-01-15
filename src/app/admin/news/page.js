@@ -180,7 +180,7 @@ const Index = () => {
               return (
                 <div key={index} className="new-cart">
                   <Link
-                    href={`/admin/news/edit/${news._id}`}
+                    href={`/news/${news._id}`}
                     className="image-container"
                   >
                     <div className="visitor">
