@@ -226,28 +226,7 @@ const Index = () => {
             );
           })}
         </div>
-        <div className="search-container">
-          <div>
-            <IoSearch />
-            <input
-              type="text"
-              placeholder="Search news"
-              value={input}
-              onChange={(e) => {
-                setInput(e.target.value);
-              }}
-            />
-            <button
-              onClick={() => {
-                setSearch(input);
-                setPage(1);
-                setCurrentPage(0);
-              }}
-            >
-              Search
-            </button>
-          </div>
-        </div>
+        
         <div className="filter-section">
           <div className="input-section">
             <div className="date">
