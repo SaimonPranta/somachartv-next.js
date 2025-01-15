@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import "./style.scss";
 import AdminLayouts from "@/shared/layouts/AdminLayouts/AdminLayouts";
@@ -30,6 +30,7 @@ const totalNews = [
 const Index = () => {
   const [search, setSearch] = useState("");
   const [input, setInput] = useState("");
+  const [filterInput, setFilterInput] = useState({submit: false});
   const [newsCount, setNewsCount] = useState({
     today: 0,
     total: 0,
@@ -37,10 +38,12 @@ const Index = () => {
   });
   const [news, setNews] = useState([]);
   const [page, setPage] = useState(1);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [currentPage, setCurrentPage] = useState(-1);
   const [loading, setLoading] = useState(false);
   const [initialSearch, setInitialSearch] = useState(false);
   const router = useRouter();
+  const debounceState = useRef();
 
   useEffect(() => {
     fetch(`${BACKEND_URL}/admin/news/total`)
@@ -56,54 +59,31 @@ const Index = () => {
         }
       });
   }, []);
-  useEffect(() => {
-    const callApi = () => {
-      if (loading) {
-        return;
-      }
-      setLoading(true);
-      fetch(`${BACKEND_URL}/admin/news?page=${page}&search=${search}`)
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.data) {
-            if (page === 1 && data.data.length < 8) {
-              setPage((state) => {
-                return state + 1;
-              });
-            }
-            setCurrentPage(page - 1);
-            setLoading(false);
 
-            if (search && !initialSearch) {
-              setInitialSearch(true);
-              setNews(data.data);
-            } else if (search && initialSearch) {
-              setInitialSearch(false);
-              setNews(data.data);
-            } else {
-              setNews((state) => {
-                return [...state, ...data.data];
-              });
-            }
-          }
-        })
-        .catch((error) => {});
-    };
-
-    const timeTaskContainer = setTimeout(callApi, 0);
-
-    return () => {
-      clearTimeout(timeTaskContainer);
-    };
-  }, [page, search]);
   const handleScroll = () => {
+    if (loading) {
+            return;
+          console.log("start scroll 2")
+        }
+      
+          if (total && total <= news.length) {
+            return;
+          }
     if (
       window.innerHeight + document.documentElement.scrollTop >=
       Number(document.documentElement.offsetHeight - 1)
     ) {
-      if (currentPage === page - 1) {
-        setPage((state) => state + 1);
-      }
+      setCurrentPage((currentPageState) => {
+        setPage((pageState) => {
+          if(currentPageState === pageState - 1){
+            return pageState + 1
+          }else{
+            return pageState
+          }
+        })
+
+        return currentPageState
+      })
     }
   };
 
@@ -114,6 +94,77 @@ const Index = () => {
     };
   }, []);
 
+  const resetTimeout = () => {
+    if (debounceState.current) {
+      clearTimeout(debounceState.current);
+    }
+  };
+  useEffect(() => {
+    resetTimeout();
+    debounceState.current = setTimeout(() => {
+      console.log("Hello")
+          fetch(`${BACKEND_URL}/admin/news/all-news?page=${page}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(filterInput)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.data) {
+            if (page === 1) {
+              setNews((state) => {
+                return [...data.data];
+              });
+            } else {
+              setNews((state) => {
+                return [...state, ...data.data];
+              });
+            }
+          } else {
+            setNews([]);
+          }
+          if (data.page) {
+            setCurrentPage(Number(data.page - 1));
+          }
+          if (data.total) {
+            setTotal(data.total);
+          }
+
+
+          //
+          // if (data.data) {
+          //   setCurrentPage(page - 1);
+          //   setLoading(false);
+
+          //   if (search && !initialSearch) {
+          //     setInitialSearch(true);
+          //     setNews(data.data);
+          //   } else if (search && initialSearch) {
+          //     setInitialSearch(false);
+          //     setNews(data.data);
+          //   } else {
+          //     setNews((state) => {
+          //       return [...state, ...data.data];
+          //     });
+          //   }
+          // }
+        })
+        .finally(() => {
+          setLoading(false)
+        })
+        .catch((error) => {})
+        
+    // };
+    }, 3000);
+
+    return () => {
+      resetTimeout();
+    };
+  }, [page, filterInput.submit]);
+
+ 
   const handleDeleteNews = (id) => {
     fetch(`${BACKEND_URL}/admin/news?id=${id}`, {
       method: "DELETE"
@@ -130,10 +181,33 @@ const Index = () => {
   const handleAddNewsNavigation = () => {
     router.push("/admin/news/add");
   };
+  const handleInputChange = (e) => {
+    const name = e.target.name
+    const value = e.target.value
+    setFilterInput((state) => {
+      return {
+        ...state,
+        [name]: value
+      }
+    })
+  }
+
+  console.log("filterInput ===>>", filterInput)
+  const handleFilterSubmit = () => {
+    console.log("HEllo form handleFilterSubmit")
+    setPage(1)
+    setCurrentPage(0)
+    setFilterInput((state) => {
+      return {
+        ...state,
+        submit: !state.submit
+      }
+    })
+  }
 
   return (
     <AdminLayouts>
-      <div className="admin-news-page">
+      <div className="admin-news-page" id="news-container" >
         <div className="add-news-container">
           <button onClick={handleAddNewsNavigation}>Add News</button>
         </div>
@@ -174,8 +248,48 @@ const Index = () => {
             </button>
           </div>
         </div>
+        <div className="filter-section">
+          <div className="input-section">
+            <div className="date">
+              <span>From</span>
+              <input
+                type="date"
+                name="fromDate"
+                value={filterInput.fromDate || ""}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="date">
+              <span>To</span>
+              <input
+                type="date"
+                name="toDate"
+                value={filterInput.toDate || ""}
+                onChange={handleInputChange}
+              />
+            </div>
+            {/* <select name="userType" onChange={handleInputChange}>
+              <option hidden>Select User</option>
+              <option>Active</option>
+              <option>Inactive</option>
+            </select> */}
+            <div className="date">
+            <input
+              type="text"
+              placeholder="Search here ..."
+              name="search"
+              value={filterInput.search || ""}
+              onChange={handleInputChange}
+            />
+          </div>
+          </div>
+
+          <div className="submit-section">
+            <button onClick={handleFilterSubmit}>Filter</button>
+          </div>
+        </div>
         <div className="news-container">
-          <div className="inner-container">
+          <div className="inner-container" >
             {news.map((news, index) => {
               return (
                 <div key={index} className="new-cart">
