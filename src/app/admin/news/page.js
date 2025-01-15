@@ -13,20 +13,19 @@ import { MdVisibility } from "react-icons/md";
 import { FaRegNewspaper } from "react-icons/fa";
 
 const totalNews = [
-    {
-        label: "Total News",
-        proparty: "total",
-    },
-    {
-        label: "Today News",
-        proparty: "today",
-    },
-    {
-        label: "Filter News",
-        proparty: "filter",
-    },
-]
-
+  {
+    label: "Total News",
+    proparty: "total"
+  },
+  {
+    label: "Today News",
+    proparty: "today"
+  },
+  {
+    label: "Filter News",
+    proparty: "filter"
+  }
+];
 
 const Index = () => {
   const [search, setSearch] = useState("");
@@ -34,7 +33,7 @@ const Index = () => {
   const [newsCount, setNewsCount] = useState({
     today: 0,
     total: 0,
-    filter: 0,
+    filter: 0
   });
   const [news, setNews] = useState([]);
   const [page, setPage] = useState(1);
@@ -45,20 +44,18 @@ const Index = () => {
 
   useEffect(() => {
     fetch(`${BACKEND_URL}/admin/news/total`)
-    .then((res) => res.json())
-    .then((data) => {
-if(data.data){
-    setNewsCount((state) => {
-
-        return {
-            ...state,
-            ...data.data
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.data) {
+          setNewsCount((state) => {
+            return {
+              ...state,
+              ...data.data
+            };
+          });
         }
-    })
-}
-    })
-
-  }, [])
+      });
+  }, []);
   useEffect(() => {
     const callApi = () => {
       if (loading) {
@@ -119,7 +116,7 @@ if(data.data){
 
   const handleDeleteNews = (id) => {
     fetch(`${BACKEND_URL}/admin/news?id=${id}`, {
-      method: "DELETE",
+      method: "DELETE"
     })
       .then((res) => res.json())
       .then((data) => {
@@ -164,11 +161,17 @@ if(data.data){
               value={input}
               onChange={(e) => {
                 setInput(e.target.value);
+              }}
+            />
+            <button
+              onClick={() => {
+                setSearch(input);
                 setPage(1);
                 setCurrentPage(0);
               }}
-            />
-            <button onClick={() => setSearch(input)}>Search</button>
+            >
+              Search
+            </button>
           </div>
         </div>
         <div className="news-container">

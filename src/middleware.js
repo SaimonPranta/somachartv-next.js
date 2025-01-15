@@ -30,10 +30,7 @@ export const middleware = async (request) => {
                     authorization: `Bearer ${token}`,
                 },
             });
-            console.log("res ==>", res)
-
             const data = await res?.json();
-            console.log("data ==>", data)
             if (data.verified) {
                 return NextResponse.redirect(new URL('/admin/news', request.url));
             }
