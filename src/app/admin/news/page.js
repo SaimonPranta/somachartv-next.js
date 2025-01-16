@@ -12,20 +12,26 @@ import { IoSearch } from "react-icons/io5";
 import { MdVisibility } from "react-icons/md";
 import { FaRegNewspaper } from "react-icons/fa";
 import { GoSortAsc, GoSortDesc } from "react-icons/go";
+import { GrView } from "react-icons/gr";
 
 const totalNews = [
   {
     label: "Total News",
     proparty: "total"
-  },
+  }, 
   {
     label: "Today News",
     proparty: "today"
   },
   {
     label: "Filter News",
-    proparty: "filter"
-  }
+    proparty: "filterNews"
+  },
+  {
+    label: "Filter News View",
+    proparty: "filterNewsView",
+    viewIcon: true
+  },
 ];
 
 const Index = () => {
@@ -38,7 +44,8 @@ const Index = () => {
   const [newsCount, setNewsCount] = useState({
     today: 0,
     total: 0,
-    filter: 0
+    filterNews: 0,
+    filterNewsView: 0,
   });
   const [news, setNews] = useState([]);
   const [page, setPage] = useState(1);
@@ -135,7 +142,8 @@ const Index = () => {
             setNewsCount((state) => {
               return {
                 ...state,
-                filter: data.total
+                filterNews: data.total,
+                filterNewsView: data.viewCount || 0
               };
             });
           }
@@ -230,7 +238,13 @@ const Index = () => {
             return (
               <div className="cart" key={index}>
                 <div className="icon">
-                  <FaRegNewspaper />
+                {
+                  !item.viewIcon &&  <FaRegNewspaper />
+                }
+                {
+                  item.viewIcon &&  <GrView />
+                }
+                 
                 </div>
                 <div className="des">
                   <h5>{newsCount[item.proparty]}</h5>
