@@ -11,6 +11,7 @@ import Image from "next/image";
 import { IoSearch } from "react-icons/io5";
 import { MdVisibility } from "react-icons/md";
 import { FaRegNewspaper } from "react-icons/fa";
+import { GoSortAsc, GoSortDesc } from "react-icons/go";
 
 const totalNews = [
   {
@@ -30,7 +31,10 @@ const totalNews = [
 const Index = () => {
   const [search, setSearch] = useState("");
   const [input, setInput] = useState("");
-  const [filterInput, setFilterInput] = useState({submit: false});
+  const [filterInput, setFilterInput] = useState({
+    sortByDate: "New",
+    submit: false
+  });
   const [newsCount, setNewsCount] = useState({
     today: 0,
     total: 0,
@@ -42,9 +46,9 @@ const Index = () => {
   const [currentPage, setCurrentPage] = useState(-1);
   const [loading, setLoading] = useState(false);
   const [initialSearch, setInitialSearch] = useState(false);
+  const [sortOrder, setSortOrder] = useState("newFirst");
   const router = useRouter();
   const debounceState = useRef();
-
   useEffect(() => {
     fetch(`${BACKEND_URL}/admin/news/total`)
       .then((res) => res.json())
@@ -62,28 +66,27 @@ const Index = () => {
 
   const handleScroll = () => {
     if (loading) {
-            return;
-          console.log("start scroll 2")
-        }
-      
-          if (total && total <= news.length) {
-            return;
-          }
+      return;
+    }
+
+    if (total && total <= news.length) {
+      return;
+    }
     if (
       window.innerHeight + document.documentElement.scrollTop >=
       Number(document.documentElement.offsetHeight - 1)
     ) {
       setCurrentPage((currentPageState) => {
         setPage((pageState) => {
-          if(currentPageState === pageState - 1){
-            return pageState + 1
-          }else{
-            return pageState
+          if (currentPageState === pageState - 1) {
+            return pageState + 1;
+          } else {
+            return pageState;
           }
-        })
+        });
 
-        return currentPageState
-      })
+        return currentPageState;
+      });
     }
   };
 
@@ -102,8 +105,7 @@ const Index = () => {
   useEffect(() => {
     resetTimeout();
     debounceState.current = setTimeout(() => {
-      console.log("Hello")
-          fetch(`${BACKEND_URL}/admin/news/all-news?page=${page}`, {
+      fetch(`${BACKEND_URL}/admin/news/all-news?page=${page}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -128,43 +130,29 @@ const Index = () => {
           if (data.page) {
             setCurrentPage(Number(data.page - 1));
           }
-          if (data.total) {
+          if (data.hasOwnProperty("total")) {
             setTotal(data.total);
+            setNewsCount((state) => {
+              return {
+                ...state,
+                filter: data.total
+              };
+            });
           }
-
-
-          //
-          // if (data.data) {
-          //   setCurrentPage(page - 1);
-          //   setLoading(false);
-
-          //   if (search && !initialSearch) {
-          //     setInitialSearch(true);
-          //     setNews(data.data);
-          //   } else if (search && initialSearch) {
-          //     setInitialSearch(false);
-          //     setNews(data.data);
-          //   } else {
-          //     setNews((state) => {
-          //       return [...state, ...data.data];
-          //     });
-          //   }
-          // }
         })
         .finally(() => {
-          setLoading(false)
+          setLoading(false);
         })
-        .catch((error) => {})
-        
-    // };
-    }, 3000);
+        .catch((error) => {});
+
+      // };
+    }, 500);
 
     return () => {
       resetTimeout();
     };
-  }, [page, filterInput.submit]);
+  }, [page, filterInput.sortByDate, filterInput.sortByView, filterInput.submit]);
 
- 
   const handleDeleteNews = (id) => {
     fetch(`${BACKEND_URL}/admin/news?id=${id}`, {
       method: "DELETE"
@@ -182,32 +170,58 @@ const Index = () => {
     router.push("/admin/news/add");
   };
   const handleInputChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
+    const name = e.target.name;
+    const value = e.target.value;
     setFilterInput((state) => {
       return {
         ...state,
         [name]: value
-      }
-    })
-  }
-
-  console.log("filterInput ===>>", filterInput)
+      };
+    });
+  };
   const handleFilterSubmit = () => {
-    console.log("HEllo form handleFilterSubmit")
-    setPage(1)
-    setCurrentPage(0)
+    setPage(1);
+    setCurrentPage(0);
     setFilterInput((state) => {
       return {
         ...state,
         submit: !state.submit
-      }
-    })
-  }
-
+      };
+    });
+  };
+  const toggleSortByDate = () => {
+    const map = {
+      New: "Old",
+      Old: "New"
+    };
+    setFilterInput((state) => {
+      delete state["sortByView"];
+      return {
+        ...state,
+        sortByDate: map[state.sortByDate] || "New"
+      };
+    });
+    setPage(1);
+    setCurrentPage(0);
+  };
+  const toggleSortByView = () => {
+    const map = {
+      Less: "Most",
+      Most: "Less"
+    };
+    setFilterInput((state) => {
+      delete state["sortByDate"];
+      return {
+        ...state,
+        sortByView: map[state.sortByView] || "Most"
+      };
+    });
+    setPage(1);
+    setCurrentPage(0);
+  };
   return (
     <AdminLayouts>
-      <div className="admin-news-page" id="news-container" >
+      <div className="admin-news-page" id="news-container">
         <div className="add-news-container">
           <button onClick={handleAddNewsNavigation}>Add News</button>
         </div>
@@ -226,7 +240,7 @@ const Index = () => {
             );
           })}
         </div>
-        
+
         <div className="filter-section">
           <div className="input-section">
             <div className="date">
@@ -247,20 +261,58 @@ const Index = () => {
                 onChange={handleInputChange}
               />
             </div>
+            <button className={`date sort ${filterInput.hasOwnProperty("sortByDate") ? "active" : ""}`}  onClick={toggleSortByDate}>
+              {filterInput?.sortByDate === "Old" ? (
+                <>
+                  <span>
+                    <GoSortAsc />
+                  </span>
+                  <span>Old First</span>
+                </>
+              ) : (
+                <>
+                  <span>
+                    <GoSortDesc />
+                  </span>
+                  <span>New First</span>
+                </>
+              )} 
+            </button>
+            <button className={`date sort ${filterInput.hasOwnProperty("sortByView") ? "active" : ""}`} onClick={toggleSortByView}>
+           
+              {filterInput?.sortByView === "Less" ? (
+                <>
+                  <span>
+                    <GoSortDesc />
+                  </span>
+                  <span>Less View</span>
+                </>
+              ) : (
+                <>
+                  <span>
+                    <GoSortAsc />
+                  </span>
+                  <span>Most View</span>
+                </>
+              )}
+            </button>
             {/* <select name="userType" onChange={handleInputChange}>
               <option hidden>Select User</option>
               <option>Active</option>
               <option>Inactive</option>
             </select> */}
-            <div className="date">
-            <input
-              type="text"
-              placeholder="Search here ..."
-              name="search"
-              value={filterInput.search || ""}
-              onChange={handleInputChange}
-            />
-          </div>
+            <div className="date search">
+              <span>
+                <IoSearch />
+              </span>
+              <input
+                type="text"
+                placeholder="Search news..."
+                name="search"
+                value={filterInput.search || ""}
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
 
           <div className="submit-section">
@@ -268,14 +320,11 @@ const Index = () => {
           </div>
         </div>
         <div className="news-container">
-          <div className="inner-container" >
+          <div className="inner-container">
             {news.map((news, index) => {
               return (
                 <div key={index} className="new-cart">
-                  <Link
-                    href={`/news/${news._id}`}
-                    className="image-container"
-                  >
+                  <Link href={`/news/${news._id}`} className="image-container">
                     <div className="visitor">
                       <MdVisibility /> <span>{news.viewCount}</span>{" "}
                     </div>
