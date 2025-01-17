@@ -6,7 +6,8 @@ import Image from "next/image";
 import Link from 'next/link';
 import getImageUrl from '@/shared/functions/getImageUrl';
 import textSlicer from "@/shared/functions/textSlicer";
-
+import BottomNewsList from './Components/BottomNewsList'
+import sliceTextByDelimiter from "@/shared/functions/sliceTextByDelimiter";
 
 const getCategory = async (category, subCategory) => {
     try {
@@ -21,7 +22,7 @@ const getCategory = async (category, subCategory) => {
 }
 const getNews = async (categoryLabel, subCategoryLabel) => {
     try {
-        const response = await (await fetch(`${BACKEND_URL}/public/news?limit=${12}&category=${categoryLabel}&subcategory=${subCategoryLabel}`, {  'cache': 'no-store', })).json();
+        const response = await (await fetch(`${BACKEND_URL}/public/news?limit=${6}&category=${categoryLabel}&subcategory=${subCategoryLabel}`, {  'cache': 'no-store', })).json();
 
 
         if (response.data?.length) {
@@ -58,13 +59,14 @@ const Index = async (props) => {
                                     <Image src={getImageUrl(newsInfo.images)} alt="" height={100} width={100} />
                                     <h2>{textSlicer(newsInfo.title, 70)}</h2>
                                     {
-                                        index === 0 ? <p>{textSlicer(newsInfo.description, 350, true)}</p> : <p>{textSlicer(newsInfo.description, 130, true)}</p>
+                                        index === 0 ? <p>{sliceTextByDelimiter(newsInfo.description, 400)}</p> : <p>{sliceTextByDelimiter(newsInfo.description, 160, true)}</p>
                                     }
                                 </Link>
 
                             })
                         }
                     </div>
+                    <BottomNewsList/>
                 </div>
             </div>
             <Footer />

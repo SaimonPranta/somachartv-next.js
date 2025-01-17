@@ -1,0 +1,75 @@
+.bottom-news-section {
+    .news-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+
+        .news-cart {
+            $img-section-size: 250px;
+            display: grid;
+            grid-template-columns: $img-section-size calc(100% - $img-section-size);
+            gap: 10px;
+            text-decoration: none;
+            height: 120px;
+            max-height: 120px;
+
+            .img-container {
+                height: inherit;
+                
+                img {
+                    width: $img-section-size;
+                    height: inherit;
+                }
+            }
+
+            .des-container {
+                h1 {
+                    box-sizing: border-box;
+                    color: rgba(0, 0, 0, 0.87);
+                    cursor: pointer;
+                    display: block;
+                    font-size: 20.016px;
+                    font-weight: 700;
+                    line-height: 28.0224px;
+                    overflow-wrap: break-word;
+                    text-rendering: optimizelegibility;
+                    text-size-adjust: 100%;
+                    transition-behavior: normal;
+                    transition-delay: 0s;
+                    transition-duration: 0.15s;
+                    transition-property: color;
+                    transition-timing-function: ease;
+                    word-break: break-word;
+                    -webkit-font-smoothing: antialiased;
+                }
+
+                p {
+                    background-color: rgba(0, 0, 0, 0);
+                    box-sizing: border-box;
+                    color: rgba(0, 0, 0, 0.68);
+                    cursor: pointer;
+                    display: block;
+                    font-size: 16.187px;
+                    font-weight: 400;
+                    line-height: 21.0432px;
+                    overflow-wrap: break-word;
+                    text-decoration-color: rgba(0, 0, 0, 0.68);
+                    text-decoration-line: none;
+                    text-decoration-style: solid;
+                    text-decoration-thickness: auto;
+                    text-rendering: optimizeLegibility;
+                    text-size-adjust: 100%;
+                    transition-behavior: normal;
+                    transition-delay: 0s;
+                    transition-duration: 0.15s;
+                    transition-property: color;
+                    transition-timing-function: ease;
+                    width: 608px;
+                    word-break: break-word;
+                    -webkit-font-smoothing: antialiased;
+                }
+            }
+        }
+
+    }
+}
