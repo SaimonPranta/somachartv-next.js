@@ -8,7 +8,7 @@ import getImageUrl from "@/shared/functions/getImageUrl";
 import textSlicer from "@/shared/functions/textSlicer";
 import BottomNewsList from "./Components/BottomNewsList";
 import sliceTextByDelimiter from "@/shared/functions/sliceTextByDelimiter";
-import getCategoryNewsList from "@/shared/functions/getCategoryNewsList";
+import getNewsList from "@/shared/functions/getNewsList";
 
 const getCategory = async (category, subCategory) => {
   try {
@@ -30,13 +30,13 @@ const getNews = async (category, subCategory, categoryGroup) => {
   try {
     let response = [];
     if (categoryGroup) {
-      response = await getCategoryNewsList({
+      response = await getNewsList({
         categoryGroup,
         page: 1,
         limit: 18
       });
     } else {
-      response = await getCategoryNewsList({
+      response = await getNewsList({
         category,
         subCategory,
         page: 1,

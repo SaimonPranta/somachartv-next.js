@@ -7,7 +7,7 @@ import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
 import MoreNews from '@/app/home/components/MoreNews'
 import getBanglaDateMonthYear from  '@/shared/functions/getBanglaDateMonthYear'
-import getCategoryNewsList from "@/shared/functions/getCategoryNewsList";
+import getNewsList from "@/shared/functions/getNewsList";
 
 const getTodayHotNew = async () => {
   try {
@@ -28,7 +28,7 @@ const getTodayHotNew = async () => {
 };
 const getInternalNews = async () => {
   try {
-    const response =  await getCategoryNewsList({
+    const response =  await getNewsList({
       categoryGroup: "খেলা", 
       limit: 5
     }); 

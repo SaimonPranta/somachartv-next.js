@@ -6,11 +6,11 @@ import { BACKEND_URL } from "@/shared/constants/ulrList";
 import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
 import MoreNews from "@/app/home/components/MoreNews";
-import getCategoryNewsList from "@/shared/functions/getCategoryNewsList";
+import getNewsList from "@/shared/functions/getNewsList";
 
 const getLifeStyleAndCultureNews = async () => {
   try {
-    const response = await getCategoryNewsList({
+    const response = await getNewsList({
       categoryGroup: "জীবনধারা ও সংস্কৃতি",
       limit: 8
     });
@@ -25,7 +25,7 @@ const getLifeStyleAndCultureNews = async () => {
 };
 const getTechnologyNews = async () => {
   try {
-    const response = await getCategoryNewsList({
+    const response = await getNewsList({
       categoryGroup: "প্রযুক্তি",
       limit: 2
     });

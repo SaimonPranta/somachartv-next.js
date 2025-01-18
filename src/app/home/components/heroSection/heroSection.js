@@ -8,14 +8,13 @@ import getImageUrl from "@/shared/functions/getImageUrl";
 import NewsList from "../NewsList/NewsList";
 import textSlicer from "@/shared/functions/textSlicer";
 import timeAgoInBengali from "@/shared/functions/timeAgoInBengali";
+import getNewsList from "@/shared/functions/getNewsList";
 
 const getHeroNews = async () => {
   try {
-    const response = await (
-      await fetch(`${BACKEND_URL}/public/news?limit={10}`, {
-        cache: "no-store",
-      })
-    ).json();
+    const response = await getNewsList({
+      limit:4
+    })
     if (response.data?.length) {
       return response.data;
     }
@@ -27,14 +26,10 @@ const getHeroNews = async () => {
 };
 const getJobsNews = async () => {
   try {
-    const response = await (
-      await fetch(
-        `${BACKEND_URL}/public/news?limit=${1}&categoryGroup=চাকরি বাজার`,
-        {
-          cache: "no-store",
-        }
-      )
-    ).json();
+    const response = await getNewsList({
+      categoryGroup: "চাকরি বাজার",
+      limit:1
+    })
     if (response.data?.length) {
       return response.data;
     }
@@ -63,7 +58,6 @@ const Index = async () => {
   const news = await getHeroNews();
   const jobsNews = await getJobsNews();
   const slidingNews = await getSlidingNews();
-
   return (
     <main className="container hero-section">
       <div className="top-section">

@@ -21,6 +21,7 @@ import { getSeoTimeFormat } from "@/shared/functions/convertTime";
 import { IoCameraReverseOutline } from "react-icons/io5";
 import processDangerouslySetInnerHTML from "@/shared/functions/processDangerouslySetInnerHTML";
 import Loading from "@/shared/components/Loading/index";
+import getNewsList from "@/shared/functions/getNewsList";
 
 const getAds = async () => {
   try {
@@ -53,20 +54,7 @@ const getNews = async (id) => {
   }
 };
 
-const getNewsList = async () => {
-  try {
-    let response = await (
-      await fetch(`${BACKEND_URL}/public/news`, { cache: "no-store" })
-    ).json();
 
-    if (response.data.length) {
-      return response.data;
-    }
-    return {};
-  } catch (error) {
-    return {};
-  }
-};
 
 export const generateMetadata = async ({ params }) => {
   const newsDetails = await getNews(params.id);
@@ -150,7 +138,13 @@ const Index = async ({ params: { id } }) => {
   if (!newsDetails._id) {
     return <></>;
   }
-  const newsList = await getNewsList();
+  const {data} = await getNewsList({
+    category: newsDetails?.category?.label,
+    subCategory: newsDetails?.subcategory?.label,
+    limit:10,
+  });
+  const newsList = data
+
   const adsList = await getAds();
   const thumbnailInfo = newsDetails.images[0];
 
@@ -258,7 +252,7 @@ const Index = async ({ params: { id } }) => {
             <div className="news-section ">
               <h2 className="common-section-title">এ সম্পর্কিত খবর</h2>
               <div className="related-news-list">
-                {newsList.slice(0, 5).map((news, index) => (
+                {newsList.map((news, index) => (
                   <Link
                     href={`/news/${news._id}`}
                     key={index}

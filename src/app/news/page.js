@@ -9,10 +9,14 @@ import Footer from '@/shared/components/Footer/Footer';
 import palyIcons from "../../assets/images/home/video-play-icon-11397.png";
 import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
+import getNewsList from "@/shared/functions/getNewsList";
+
 
 const getNews = async (search) => {
     try {
-        const response = await (await fetch(`${BACKEND_URL}/public/news?search=${search}`, { 'cache': 'no-store',})).json();
+        const response = await getNewsList({
+            search
+        })
         if (response.data?.length) {
             return response.data
         }

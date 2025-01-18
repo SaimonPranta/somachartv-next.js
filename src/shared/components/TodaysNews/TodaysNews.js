@@ -5,16 +5,18 @@ import Link from 'next/link';
 import getImageUrl from '@/shared/functions/getImageUrl';
 import { BACKEND_URL } from '@/shared/constants/ulrList';
 import textSlicer from '@/shared/functions/textSlicer';
+import getNewsList from "@/shared/functions/getNewsList";
+
 
 // Fetch today's news articles
 const getNews = async () => {
     try {
-        const response = await fetch(`${BACKEND_URL}/public/news?limit=6`, { cache: 'no-store' });
-        const data = await response.json();
+        const response = await getNewsList({
+            limit:12
+          })
 
-        return data.data.length ? data.data : [];
+        return response.data.length ? response.data : [];
     } catch (error) {
-        console.error("Error fetching today's news:", error);
         return [];
     }
 };

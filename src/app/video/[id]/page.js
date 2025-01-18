@@ -11,6 +11,7 @@ import { WiTime8 } from "react-icons/wi";
 import textSlicer from "@/shared/functions/textSlicer";
 import TodaysVideos from "@/shared/components/TodaysVideos/TodaysVideos"
 import Footer from '@/shared/components/Footer/Footer';
+import getNewsList from "@/shared/functions/getNewsList";
 
 const adsContainer = [
     "https://tpc.googlesyndication.com/simgad/9816891373495023339",
@@ -25,14 +26,16 @@ const getVideoDetails = async (id) => {
         if (response?.items[0]?.snippet) {
             return response?.items[0]?.snippet
         }
-        return {}
+        return []
     } catch (error) {
-        return {}
+        return []
     }
 }
 const getNewsList = async () => {
     try {
-        let response = await (await fetch(`${BACKEND_URL}/public/news`, { 'cache': 'no-store', })).json()
+        let response = await getNewsList({
+            limit: 5,
+        })
 
         if (response.data.length) {
             return response.data

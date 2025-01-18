@@ -10,7 +10,7 @@ import sliceTextByDelimiter from "@/shared/functions/sliceTextByDelimiter";
 import { MdReadMore } from "react-icons/md";
 import LoadingGip from "../../../../../../assets/images/global/Loading.gif";
 import timeAgoInBengali from "@/shared/functions/timeAgoInBengali";
-import getCategoryNewsList from "@/shared/functions/getCategoryNewsList";
+import getNewsList from "@/shared/functions/getNewsList";
 
 const Index = ({ categoryLabel, subCategoryLabel, categoryGroup }) => {
   const [news, setNews] = useState([]);
@@ -32,7 +32,7 @@ const Index = ({ categoryLabel, subCategoryLabel, categoryGroup }) => {
           categoryGroup
         };
       }
-      const newsList = await getCategoryNewsList({
+      const newsList = await getNewsList({
         ...query,
         page,
         limit: 18
@@ -62,7 +62,7 @@ const Index = ({ categoryLabel, subCategoryLabel, categoryGroup }) => {
         categoryGroup
       };
     }
-    const { data } = await getCategoryNewsList({
+    const { data } = await getNewsList({
       ...query,
       page: currentPage,
       limit: 18

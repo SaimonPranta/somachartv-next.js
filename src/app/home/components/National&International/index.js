@@ -7,11 +7,11 @@ import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
 import MoreNews from "@/app/home/components/MoreNews";
 import getBanglaDateMonthYear from "@/shared/functions/getBanglaDateMonthYear";
-import getCategoryNewsList from "@/shared/functions/getCategoryNewsList";
+import getNewsList from "@/shared/functions/getNewsList";
 
 const getNationalNews = async () => {
   try {
-    const response = await getCategoryNewsList({
+    const response = await getNewsList({
       categoryGroup: "জাতীয়",
       limit: 6
     });
@@ -26,7 +26,7 @@ const getNationalNews = async () => {
 };
 const getInternalNews = async () => {
   try {
-    const response = await getCategoryNewsList({
+    const response = await getNewsList({
       categoryGroup: "আন্তর্জাতিক",
       limit: 2
     });

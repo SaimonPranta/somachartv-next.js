@@ -1,9 +1,10 @@
 import { BACKEND_URL } from "../constants/ulrList";
 
-const getCategoryNewsList = async ({
+const getNewsList = async ({
   category = "",
   subCategory = "",
   categoryGroup = "",
+  search = "",
   page = 1,
   limit = 20
 }) => {
@@ -15,7 +16,7 @@ const getCategoryNewsList = async ({
   try {
     const response = await (
       await fetch(
-        `${BACKEND_URL}/public/news/category-news?limit=${limit}&page=${page}`,
+        `${BACKEND_URL}/public/news?limit=${limit}&page=${page}`,
         {
           method: "POST",
           headers: {
@@ -24,7 +25,8 @@ const getCategoryNewsList = async ({
           body: JSON.stringify({
             category,
             subCategory,
-            categoryGroup
+            categoryGroup,
+            search
           }),
           cache: "no-store"
         }
@@ -44,4 +46,4 @@ const getCategoryNewsList = async ({
   }
 };
 
-export default getCategoryNewsList;
+export default getNewsList;
