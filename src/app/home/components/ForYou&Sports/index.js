@@ -7,6 +7,7 @@ import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
 import MoreNews from '@/app/home/components/MoreNews'
 import getBanglaDateMonthYear from  '@/shared/functions/getBanglaDateMonthYear'
+import getCategoryNewsList from "@/shared/functions/getCategoryNewsList";
 
 const getTodayHotNew = async () => {
   try {
@@ -27,12 +28,10 @@ const getTodayHotNew = async () => {
 };
 const getInternalNews = async () => {
   try {
-    const response = await (
-      await fetch(
-        `${BACKEND_URL}/public/news?limit=${5}&categoryGroup=খেলা`,
-        { cache: "no-store" }
-      )
-    ).json();
+    const response =  await getCategoryNewsList({
+      categoryGroup: "খেলা", 
+      limit: 5
+    }); 
 
     if (response.data?.length) {
       return response.data;
@@ -85,7 +84,7 @@ const Index = async () => {
         <div className="sports-news-section">
           <div className="common-title">
             <h2>খেলা</h2>
-            <MoreNews route="/" />
+            <MoreNews route="/topic/latest?categoryGroup=খেলা" />
           </div>
           <div className="news-grid">
             {internationalNews.map((newsInfo, index) => {

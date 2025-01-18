@@ -5,17 +5,16 @@ import Image from "next/image";
 import { BACKEND_URL } from "@/shared/constants/ulrList";
 import textSlicer from "@/shared/functions/textSlicer";
 import getImageUrl from "@/shared/functions/getImageUrl";
-import MoreNews from '@/app/home/components/MoreNews'
-import getBanglaDateMonthYear from  '@/shared/functions/getBanglaDateMonthYear'
+import MoreNews from "@/app/home/components/MoreNews";
+import getBanglaDateMonthYear from "@/shared/functions/getBanglaDateMonthYear";
+import getCategoryNewsList from "@/shared/functions/getCategoryNewsList";
 
 const getNationalNews = async () => {
   try {
-    const response = await (
-      await fetch(
-        `${BACKEND_URL}/public/news?limit=${6}&categoryGroup=জাতীয়`,
-        { cache: "no-store" }
-      )
-    ).json();
+    const response = await getCategoryNewsList({
+      categoryGroup: "জাতীয়",
+      limit: 6
+    });
 
     if (response.data?.length) {
       return response.data;
@@ -27,12 +26,10 @@ const getNationalNews = async () => {
 };
 const getInternalNews = async () => {
   try {
-    const response = await (
-      await fetch(
-        `${BACKEND_URL}/public/news?limit=${2}&categoryGroup=আন্তর্জাতিক`,
-        { cache: "no-store" }
-      )
-    ).json();
+    const response = await getCategoryNewsList({
+      categoryGroup: "আন্তর্জাতিক",
+      limit: 2
+    });
 
     if (response.data?.length) {
       return response.data;
@@ -67,8 +64,7 @@ const Index = async () => {
         <div className="national-news-section">
           <div className="common-title">
             <h2>জাতীয়</h2>
-            <MoreNews route="/" />
-
+            <MoreNews route="/topic/latest?categoryGroup=জাতীয়" />
           </div>
           <div className="news-grid-container">
             <div className="news-grid-one">
@@ -98,42 +94,37 @@ const Index = async () => {
               })}
             </div>
             <div className="news-grid-two">
-              {[
-                ...nationalNews
-              ]
-                .slice(2, 6)
-                .map((newsInfo, index) => {
-                  return (
-                    <Link
-                      key={index}
-                      href={`/news/${newsInfo._id}`}
-                      className="news-cart"
-                    >
-                      <div className="img-container">
-                        <Image
-                          src={getImageUrl(newsInfo.images)}
-                          height={100}
-                          width={100}
-                          alt=""
-                        />
-                      </div>
-                      <div className="des-container">
-                        {" "}
-                        <h3>{newsInfo.title}</h3>
-                        <p>{newsInfo.description}</p>
-                        <time>{getBanglaDateMonthYear(newsInfo.createdAt)}</time>
-                      </div>
-                    </Link>
-                  );
-                })}
+              {[...nationalNews].slice(2, 6).map((newsInfo, index) => {
+                return (
+                  <Link
+                    key={index}
+                    href={`/news/${newsInfo._id}`}
+                    className="news-cart"
+                  >
+                    <div className="img-container">
+                      <Image
+                        src={getImageUrl(newsInfo.images)}
+                        height={100}
+                        width={100}
+                        alt=""
+                      />
+                    </div>
+                    <div className="des-container">
+                      {" "}
+                      <h3>{newsInfo.title}</h3>
+                      <p>{newsInfo.description}</p>
+                      <time>{getBanglaDateMonthYear(newsInfo.createdAt)}</time>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </div>
         <div className="international-news-section">
           <div className="common-title">
             <h2>আন্তর্জাতিক</h2>
-            <MoreNews route="/" />
-
+            <MoreNews route="/topic/latest?categoryGroup=আন্তর্জাতিক" />
           </div>
           <div className="news-grid">
             {internationalNews.slice(0, 2).map((newsInfo, index) => {

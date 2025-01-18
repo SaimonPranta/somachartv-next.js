@@ -7,30 +7,78 @@ import getImageUrl from "@/shared/functions/getImageUrl";
 import textSlicer from "@/shared/functions/textSlicer";
 import "./styles.scss";
 import sliceTextByDelimiter from "@/shared/functions/sliceTextByDelimiter";
+import { MdReadMore } from "react-icons/md";
+import LoadingGip from "../../../../../../assets/images/global/Loading.gif";
+import timeAgoInBengali from "@/shared/functions/timeAgoInBengali";
+import getCategoryNewsList from "@/shared/functions/getCategoryNewsList";
 
-const Index = ({ categoryLabel, subCategoryLabel }) => {
+const Index = ({ categoryLabel, subCategoryLabel, categoryGroup }) => {
   const [news, setNews] = useState([]);
+  const [page, setPage] = useState(2);
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    getNews();
+    const loadNews = async () => {
+      if (loading) {
+        return;
+      }
+      setLoading(true);
+      let query = {
+        categoryLabel,
+        subCategoryLabel
+      };
+      if (categoryGroup) {
+        query = {
+          categoryGroup
+        };
+      }
+      const newsList = await getCategoryNewsList({
+        ...query,
+        page,
+        limit: 9
+      });
+      if (newsList.data) {
+        setNews(newsList.data);
+      }
+      setLoading(false);
+    };
+    loadNews();
   }, []);
 
-  const getNews = async (categoryLabel, subCategoryLabel) => {
-    try {
-      const response = await (
-        await fetch(
-          `${BACKEND_URL}/public/news?limit=${6}&category=${categoryLabel}&subcategory=${subCategoryLabel}`,
-          { cache: "no-store" }
-        )
-      ).json();
-      if (response.data?.length) {
-        setNews(response.data);
-      }
-    } catch (error) {}
+  const loadMoreNews = async (currentPage) => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    setPage((state) => {
+      return state + 1;
+    });
+    let query = {
+      categoryLabel,
+      subCategoryLabel
+    };
+    if (categoryGroup) {
+      query = {
+        categoryGroup
+      };
+    }
+    const { data } = await getCategoryNewsList({
+      ...query,
+      page: currentPage,
+      limit: 9
+    });
+    setNews((state) => {
+      return [...state, ...data];
+    });
+    setLoading(false);
   };
   return (
     <div className="bottom-news-section">
       <div className="news-grid">
         {news.map((newsInfo, index) => {
+          if (newsInfo.title.length < 5) {
+            return <></>;
+          }
           return (
             <Link
               href={`/news/${newsInfo._id}`}
@@ -48,11 +96,25 @@ const Index = ({ categoryLabel, subCategoryLabel }) => {
               <div className="des-container">
                 <h1>{textSlicer(newsInfo.title, 70)}</h1>
                 <p>{sliceTextByDelimiter(newsInfo.description, 180, true)}</p>
-                <time >২৫ মিনিট আগে</time>
+                <time>{timeAgoInBengali(newsInfo.createdAt)}</time>
               </div>
             </Link>
           );
         })}
+      </div>
+      <div className="more-section">
+        <button
+          onClick={() => {
+            loadMoreNews(page + 1);
+          }}
+          disabled={loading}
+        >
+          <span>আরও</span>
+          {!loading && <MdReadMore />}
+          {loading && (
+            <Image height="100" width="100" alt="" src={LoadingGip} />
+          )}
+        </button>
       </div>
     </div>
   );
