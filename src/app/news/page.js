@@ -48,7 +48,7 @@ const Index = async ({searchParams: {search}}) => {
                     {
                         [...vidList].map((news, index) => {
                             return <Link className='news-cart' href={`/news/${news?._id}`} key={index} >
-                                <Image src={getImageUrl(news?.img)} alt='' height={100} width={100} />
+                                <Image src={getImageUrl(news?.images)} alt='' height={100} width={100} />
                                 <h2>{textSlicer(`${news?.title}`, 105, true)}</h2>
                             </Link>
                         })
