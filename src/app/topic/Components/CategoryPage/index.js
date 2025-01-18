@@ -26,21 +26,21 @@ const getCategory = async (category, subCategory) => {
     return {};
   }
 };
-const getNews = async (categoryLabel, subCategoryLabel, categoryGroup) => {
+const getNews = async (category, subCategory, categoryGroup) => {
   try {
     let response = [];
     if (categoryGroup) {
       response = await getCategoryNewsList({
         categoryGroup,
         page: 1,
-        limit: 9
+        limit: 18
       });
     } else {
       response = await getCategoryNewsList({
-        categoryLabel,
-        subCategoryLabel,
+        category,
+        subCategory,
         page: 1,
-        limit: 9
+        limit: 18
       });
     }
 
@@ -56,7 +56,7 @@ const Index = async (props) => {
   const {
     params: { category, subCategory },
     searchParams: { categoryGroup }
-  } = props; 
+  } = props;
 
   const { categoryLabel, subCategoryLabel } = await getCategory(
     category,

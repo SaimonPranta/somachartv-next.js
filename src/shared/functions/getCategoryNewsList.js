@@ -1,8 +1,8 @@
 import { BACKEND_URL } from "../constants/ulrList";
 
 const getCategoryNewsList = async ({
-  categoryLabel = "",
-  subCategoryLabel = "",
+  category = "",
+  subCategory = "",
   categoryGroup = "",
   page = 1,
   limit = 20
@@ -18,15 +18,15 @@ const getCategoryNewsList = async ({
         `${BACKEND_URL}/public/news/category-news?limit=${limit}&page=${page}`,
         {
           method: "POST",
-          cache: "no-store",
           headers: {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            categoryLabel,
-            subCategoryLabel,
+            category,
+            subCategory,
             categoryGroup
-          })
+          }),
+          cache: "no-store"
         }
       )
     ).json();

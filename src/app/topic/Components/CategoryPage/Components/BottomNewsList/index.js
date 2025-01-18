@@ -22,10 +22,10 @@ const Index = ({ categoryLabel, subCategoryLabel, categoryGroup }) => {
       if (loading) {
         return;
       }
-      setLoading(true);
+      setLoading(true); 
       let query = {
-        categoryLabel,
-        subCategoryLabel
+        category: categoryLabel,
+        subCategory: subCategoryLabel
       };
       if (categoryGroup) {
         query = {
@@ -35,7 +35,7 @@ const Index = ({ categoryLabel, subCategoryLabel, categoryGroup }) => {
       const newsList = await getCategoryNewsList({
         ...query,
         page,
-        limit: 9
+        limit: 18
       });
       if (newsList.data) {
         setNews(newsList.data);
@@ -54,8 +54,8 @@ const Index = ({ categoryLabel, subCategoryLabel, categoryGroup }) => {
       return state + 1;
     });
     let query = {
-      categoryLabel,
-      subCategoryLabel
+      category: categoryLabel,
+      subCategory: subCategoryLabel
     };
     if (categoryGroup) {
       query = {
@@ -65,7 +65,7 @@ const Index = ({ categoryLabel, subCategoryLabel, categoryGroup }) => {
     const { data } = await getCategoryNewsList({
       ...query,
       page: currentPage,
-      limit: 9
+      limit: 18
     });
     setNews((state) => {
       return [...state, ...data];
@@ -85,16 +85,17 @@ const Index = ({ categoryLabel, subCategoryLabel, categoryGroup }) => {
               key={index}
               className="news-cart"
             >
-              <div className="img-container">
+              <div className="top-container">
                 <Image
                   src={getImageUrl(newsInfo.images)}
                   alt=""
                   height={100}
                   width={100}
                 />
+                <h1>{sliceTextByDelimiter(newsInfo.title, 100)}</h1>
               </div>
               <div className="des-container">
-                <h1>{textSlicer(newsInfo.title, 70)}</h1>
+                <h1>{sliceTextByDelimiter(newsInfo.title, 100)}</h1>
                 <p>{sliceTextByDelimiter(newsInfo.description, 180, true)}</p>
                 <time>{timeAgoInBengali(newsInfo.createdAt)}</time>
               </div>

@@ -15,7 +15,25 @@
             margin-bottom: 15px;
             border-bottom: 1px solid #e4e4e4;
 
-            .img-container {
+            h1 {
+                box-sizing: border-box;
+                color: rgba(0, 0, 0, 0.87);
+                cursor: pointer; 
+                font-size: 20.016px;
+                font-weight: 700;
+                line-height: 28.0224px;
+                overflow-wrap: break-word;
+                text-rendering: optimizelegibility;
+                text-size-adjust: 100%;
+                transition-behavior: normal;
+                transition-delay: 0s;
+                transition-duration: 0.15s;
+                transition-property: color;
+                transition-timing-function: ease;
+                word-break: break-word;
+                -webkit-font-smoothing: antialiased;
+            }
+            .top-container {
                 // Ensure the container takes full height of its parent
                 height: 100%;
                 display: flex; // Flex ensures the child element can align properly
@@ -31,6 +49,10 @@
                         transform: scale(1.1);
                     }
                 }
+
+                h1 {
+                    display: none;
+                }
             }
 
             .des-container {
@@ -39,24 +61,8 @@
                 justify-content: space-between;
                 align-items: space-between;
 
-                h1 {
-                    box-sizing: border-box;
-                    color: rgba(0, 0, 0, 0.87);
-                    cursor: pointer;
+                h1 { 
                     display: block;
-                    font-size: 20.016px;
-                    font-weight: 700;
-                    line-height: 28.0224px;
-                    overflow-wrap: break-word;
-                    text-rendering: optimizelegibility;
-                    text-size-adjust: 100%;
-                    transition-behavior: normal;
-                    transition-delay: 0s;
-                    transition-duration: 0.15s;
-                    transition-property: color;
-                    transition-timing-function: ease;
-                    word-break: break-word;
-                    -webkit-font-smoothing: antialiased;
                 }
 
                 p {
@@ -134,39 +140,61 @@
 
 @media only screen and (min-width:200px) and (max-width:1200px) {
     .bottom-news-section {
-        .news-grid { 
-            grid-template-columns: 1fr 1fr; 
+        .news-grid {
+            grid-template-columns: 1fr 1fr;
 
             .news-cart {
                 $img-section-size: 200px;
                 grid-template-columns: $img-section-size calc(100% - $img-section-size);
- 
+
             }
 
 
         }
- 
+
     }
 }
+
 @media only screen and (min-width:200px) and (max-width:850px) {
     .bottom-news-section {
-        .news-grid { 
-            grid-template-columns: 1fr; 
+        .news-grid {
+            grid-template-columns: 1fr;
 
-        }
-        .news-cart {
-            $img-section-size: 250px;
-            grid-template-columns: $img-section-size calc(100% - $img-section-size);
+            .news-cart {
+                $img-section-size: 250px;
+                grid-template-columns: 1fr;
+                .top-container {
+                     display: grid;
+                     grid-template-columns: 20% 80%;
+                     gap: 5px;
+    
+                    img {
+                        width: 100%;
+                        object-fit: cover;
+                        aspect-ratio: 10/5;
+    
+                        &:hover {
+                            transform: scale(1.1);
+                        }
+                    }
+    
+                    h1 {
+                        display: inline-block;
+                    }
+                }
+    
+                .des-container { 
+                    h1 {
+                       display: none;
+                    }
+    
+                  
+                }
 
+            }
         }
+
     }
 }
-@media only screen and (min-width:200px) and (max-width:650px) {
-    .bottom-news-section {
-        .news-cart {
-            $img-section-size: 200px;
-            grid-template-columns: $img-section-size calc(100% - $img-section-size);
 
-        }
-    }
-}
+ 
