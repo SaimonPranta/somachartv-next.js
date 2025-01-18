@@ -31,20 +31,7 @@ const getVideoDetails = async (id) => {
         return []
     }
 }
-const getNewsList = async () => {
-    try {
-        let response = await getNewsList({
-            limit: 5,
-        })
 
-        if (response.data.length) {
-            return response.data
-        }
-        return []
-    } catch (error) {
-        return []
-    }
-}
 
 export const generateMetadata = async ({ params, searchParams }, parent) => {
     const id = params.id
@@ -63,7 +50,10 @@ export const generateMetadata = async ({ params, searchParams }, parent) => {
 
 const Index = async ({ params: { id } }) => {
     const videoDetails = await getVideoDetails(id)
-    const newsList = await getNewsList()
+    const { data } = await getNewsList({
+        limit: 5,
+      });
+      const newsList = data;
     return (
         <>
             <Header />
@@ -107,7 +97,7 @@ const Index = async ({ params: { id } }) => {
                             </div>
                             <div className="new-list">
                                 {
-                                    [...newsList].slice(0, 5).map((newsInfo, index) => {
+                                    newsList.map((newsInfo, index) => {
                                         return <Link href="" key={index} className="cart">
                                             <h6>{textSlicer(newsInfo.title, 79)}</h6>
                                             <Image src={getImageUrl(newsInfo.images)} height="100" width="100" alt="" />

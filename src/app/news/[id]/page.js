@@ -15,7 +15,7 @@ import Share from "@/app/news/[id]/Modal/Share/Share";
 import getKeywords from "@/shared/functions/getKeywords";
 import {
   newsDetailsDescription,
-  newsDetailsTitle
+  newsDetailsTitle,
 } from "@/shared/constants/defaultSeoVariables";
 import { getSeoTimeFormat } from "@/shared/functions/convertTime";
 import { IoCameraReverseOutline } from "react-icons/io5";
@@ -42,7 +42,7 @@ const getNews = async (id) => {
   try {
     let response = await (
       await fetch(`${BACKEND_URL}/public/news/${id}`, {
-        cache: "no-store"
+        cache: "no-store",
       })
     ).json();
     if (response.data._id) {
@@ -54,8 +54,6 @@ const getNews = async (id) => {
   }
 };
 
-
-
 export const generateMetadata = async ({ params }) => {
   const newsDetails = await getNews(params.id);
   if (!newsDetails._id) {
@@ -66,17 +64,17 @@ export const generateMetadata = async ({ params }) => {
   const keywords = getKeywords(newsDetails);
   const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
-    let imgUrl = `${process.env.SITE_URL}${currentImage}`
+    let imgUrl = `${process.env.SITE_URL}${currentImage}`;
     if (currentImage.includes(".webp")) {
       // imgUrl = `${process.env.SITE_URL}/api/convert-image/${imgInfo.src}`
-      imgUrl = `${process.env.SITE_URL}/api/convert-image/${imgInfo.src}?url=${imgUrl}`
+      imgUrl = `${process.env.SITE_URL}/api/convert-image/${imgInfo.src}?url=${imgUrl}`;
     }
     return {
       url: imgUrl,
       width: 1260,
-      height: 800
+      height: 800,
     };
-  }); 
+  });
   const jsonImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
     return `${process.env.SITE_URL}${currentImage}`;
@@ -84,7 +82,7 @@ export const generateMetadata = async ({ params }) => {
   // const jsonImages = await newsDetails?.images?.map((imgInfo) => {
   //   const currentImage = getImageUrl(imgInfo.src);
   //   return currentImage;
-  // }); 
+  // });
   const currentImage = getImageUrl(newsDetails?.images);
   return {
     title: newsDetails?.title || newsDetailsTitle,
@@ -98,14 +96,14 @@ export const generateMetadata = async ({ params }) => {
       images: openGraphImages || [],
       url: `${process.env.SITE_URL}/news/${params.id}`,
       "article:section": newsDetails.category || "News",
-      "article:tag": newsDetails.tags?.join(", ") || keywords
+      "article:tag": newsDetails.tags?.join(", ") || keywords,
     },
     twitter: {
       card: "summary_large_image",
       site: "@SomacharNews",
       title: newsDetails?.title,
       description: newsDetails?.description,
-      images: currentImage ? currentImage : undefined // Use the first image for Twitter
+      images: currentImage ? currentImage : undefined, // Use the first image for Twitter
     },
     schema: {
       "@context": "http://schema.org",
@@ -118,19 +116,19 @@ export const generateMetadata = async ({ params }) => {
       mainEntityOfPage: pageUrl,
       author: {
         "@type": "Organization",
-        name: "Somachar News"
+        name: "Somachar News",
       },
       publisher: {
         "@type": "Organization",
         name: "Somachar News",
         logo: {
           "@type": "ImageObject",
-          url: `${process.env.SITE_URL}/logo.png`
-        }
+          url: `${process.env.SITE_URL}/logo.png`,
+        },
       },
       articleSection: newsDetails.category || "News",
-      keywords
-    }
+      keywords,
+    },
   };
 };
 const Index = async ({ params: { id } }) => {
@@ -138,12 +136,12 @@ const Index = async ({ params: { id } }) => {
   if (!newsDetails._id) {
     return <></>;
   }
-  const {data} = await getNewsList({
+  const { data } = await getNewsList({
     category: newsDetails?.category?.label,
     subCategory: newsDetails?.subcategory?.label,
-    limit:10,
+    limit: 10,
   });
-  const newsList = data
+  const newsList = data;
 
   const adsList = await getAds();
   const thumbnailInfo = newsDetails.images[0];
@@ -214,7 +212,7 @@ const Index = async ({ params: { id } }) => {
                 dangerouslySetInnerHTML={{
                   __html: processDangerouslySetInnerHTML(
                     newsDetails.updateHtmlDescription
-                  )
+                  ),
                 }}
               />
               {newsDetails.createdAt && (
