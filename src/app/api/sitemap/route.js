@@ -14,7 +14,7 @@ const buildXml = (sitemap, { loc, lastmod, changefreq, priority }) => {
   return sitemap;
 };
 
-export const dynamic = "force-dynamic"; // Make the page dynamic in production
+// export const dynamic = "force-dynamic"; // Make the page dynamic in production
 
 export async function GET(req) {
   try {
