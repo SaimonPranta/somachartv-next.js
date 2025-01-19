@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import "./styles.scss";
-import AdminLayouts from "@/shared/layouts/AdminLayouts/AdminLayouts";
+import AdminLayouts from "@/shared/layouts/AdminLayout/AdminLayouts";
 import { useDispatch, useSelector } from "react-redux";
 import { addCategories } from "@/store/categories/reducer";
 import { BACKEND_URL } from "@/shared/constants/ulrList";

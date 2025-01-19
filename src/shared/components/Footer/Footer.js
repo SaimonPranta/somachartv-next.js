@@ -8,16 +8,14 @@ import {
   FaLinkedinIn,
 } from "react-icons/fa";
 import Link from "next/link";
-import Image from "next/image";
 import { SITE_CONFIG } from "@/shared/constants/siteConfig";
 
 const routes = [
   { route: "/", label: "Home" },
   { route: "/about-us", label: "About Us" },
-  { route: "/contact", label: "Contact" },
-  { route: "/terms", label: "Terms" },
+  { route: "/contact", label: "Contact" }, 
   { route: "/privacy-policy", label: "Privacy Policy" },
-  { route: "/advertisement", label: "Advertisement" },
+  { route: "/terms-of-service", label: "Terms of Service" }, 
 ];
 
 const socialList = [
@@ -29,7 +27,7 @@ const socialList = [
   },
   {
     svg: <FaTwitter />,
-    link: "https://twitter.com/PatraPatrika",
+    link: "https://twitter.com/somacharnews",
     color: "#1c9bf1",
     label: "Twitter",
   },

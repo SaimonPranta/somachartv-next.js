@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import "./style.scss";
-import AdminLayouts from '@/shared/layouts/AdminLayouts/AdminLayouts';
+import AdminLayouts from '@/shared/layouts/AdminLayout/AdminLayouts';
 import { BACKEND_URL } from '@/shared/constants/ulrList';
 import { MdArrowBackIosNew } from "react-icons/md";
 import { useRouter, useParams } from 'next/navigation';

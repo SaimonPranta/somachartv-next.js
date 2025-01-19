@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
-import AdminLayouts from "@/shared/layouts/AdminLayouts/AdminLayouts";
+import AdminLayouts from "@/shared/layouts/AdminLayout/AdminLayouts";
 import Image from "next/image";
 import { IoDuplicate } from "react-icons/io5";
 import { RiDeleteBin5Line } from "react-icons/ri";

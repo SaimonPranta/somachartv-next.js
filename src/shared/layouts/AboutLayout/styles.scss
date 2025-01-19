@@ -1,0 +1,16 @@
+.about-layout{
+    .page-title{
+        padding-left: 10px;
+        position: relative;
+        color: var(--default-color);
+        &::before{
+            position: absolute;
+            content: "";
+            left: 0px;
+            top: 0px;
+            height: 100%;
+            width: 5px;
+            background-color: var(--default-color);
+        }
+    }
+}

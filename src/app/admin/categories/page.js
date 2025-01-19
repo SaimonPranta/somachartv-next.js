@@ -2,7 +2,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import "./style.scss"
-import AdminLayouts from '@/shared/layouts/AdminLayouts/AdminLayouts';
+import AdminLayouts from '@/shared/layouts/AdminLayout/AdminLayouts';
 import Image from 'next/image';
 import { IoDuplicate } from "react-icons/io5"
 import AddCategories from "./Modal/AddCategories"

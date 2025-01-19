@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import "./style.scss";
-import AdminLayouts from "@/shared/layouts/AdminLayouts/AdminLayouts";
+import AdminLayouts from "@/shared/layouts/AdminLayout/AdminLayouts";
 import textSlicer from "@/shared/functions/textSlicer";
 import { BACKEND_URL } from "@/shared/constants/ulrList";
 import getImageUrl from "@/shared/functions/getImageUrl";
