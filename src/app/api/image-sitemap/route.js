@@ -1,8 +1,14 @@
 import { BACKEND_URL } from "@/shared/constants/ulrList";
 import { NextResponse } from "next/server";
-
+let linkObj ={}
 // Utility function to build XML for a news article's image
 const buildXml = (sitemap, { loc, imageLoc, imageTitle, imageCaption }) => {
+  if (linkObj[loc]) {
+    return 
+  }
+  linkObj[loc] = true
+
+
   sitemap += `  <url>\n`;
   sitemap += `    <loc>${loc}</loc>\n`;
   sitemap += `    <image:image>\n`;
@@ -18,6 +24,8 @@ export const dynamic = "force-dynamic"; // Make the page dynamic in production
 
 export async function GET(req) {
   try {
+    linkObj = {}
+
     const siteUrl = "https://somacharnews.com";
 
     const newsJson = await fetch(`${BACKEND_URL}/public/news/sitemap`, {
@@ -33,12 +41,15 @@ export async function GET(req) {
     // Add images for each news article
     newsData.forEach((news) => {
       news.images.forEach((image) => {
-        imageSitemap = buildXml(imageSitemap, {
+        const currentSitemap = buildXml(imageSitemap, {
           loc: `${siteUrl}/news/${news._id}`,
           imageLoc: `${siteUrl}/api/media/${image.src}`,
           imageTitle: news.title,
           imageCaption: image.figcaption || news.title,
         });
+        if (currentSitemap) {
+          imageSitemap = currentSitemap
+        }
       });
     });
 

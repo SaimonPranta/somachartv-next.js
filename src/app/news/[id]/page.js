@@ -65,9 +65,11 @@ export const generateMetadata = async ({ params }) => {
   const openGraphImages = await newsDetails?.images?.map((imgInfo) => {
     const currentImage = getImageUrl(imgInfo.src);
     let imgUrl = `${process.env.SITE_URL}${currentImage}`;
-    if (currentImage.includes(".webp")) {
+    const dumpFormat = '.webp'
+    if (currentImage.includes(dumpFormat)) {
+      const format = 'jpg'
       // imgUrl = `${process.env.SITE_URL}/api/convert-image/${imgInfo.src}`
-      imgUrl = `${process.env.SITE_URL}/api/convert-image/${imgInfo.src}?url=${imgUrl}`;
+      imgUrl = `${process.env.SITE_URL}/api/convert-image/${imgInfo.src?.replace(dumpFormat, `.${format}`)}?url=${imgUrl}&format=${format}`;
     }
     return {
       url: imgUrl,
