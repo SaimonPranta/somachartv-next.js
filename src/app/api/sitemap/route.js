@@ -1,6 +1,6 @@
 import { BACKEND_URL } from "@/shared/constants/ulrList";
 import { NextResponse } from "next/server";
-const linkObj ={}
+let linkObj ={}
 
 // Utility function to build XML for a URL
 const buildXml = (sitemap, { loc, lastmod, changefreq, priority }) => {
@@ -22,9 +22,8 @@ export const dynamic = "force-dynamic"; // Make the page dynamic in production
 
 export async function GET(req) {
   try {
-    
+    linkObj = {}
     const siteUrl = "https://somacharnews.com";
-
     // Fetch news and categories data
     const newsResponse = await fetch(`${BACKEND_URL}/public/news/sitemap`, {
       cache: "no-store",
@@ -78,7 +77,7 @@ export async function GET(req) {
         })
       }
     });
-
+console.log("newsData ===>>", newsData.length)
     // Add dynamic news pages
     newsData.forEach((news) => {
       const currentSitemap = buildXml(sitemap, {
@@ -91,7 +90,7 @@ export async function GET(req) {
         sitemap = currentSitemap
       }
     });
-
+console.log("End of sitemap 2===>>", Object.keys(linkObj).length)
     sitemap += `</urlset>`;
     
     // const publicDir = path.join(__dirname, "../../../../../public")
