@@ -5,7 +5,7 @@ const linkObj ={}
 // Utility function to build XML for a URL
 const buildXml = (sitemap, { loc, lastmod, changefreq, priority }) => {
   if (linkObj[loc]) {
-    return ""
+    return 
   }
   linkObj[loc] = true
 
@@ -42,42 +42,54 @@ export async function GET(req) {
     // Add static pages
     const staticPages = ["/"]; // Add your static pages here
     staticPages.forEach((page) => {
-      sitemap = buildXml(sitemap, {
+     const currentSitemap = buildXml(sitemap, {
         loc: `${siteUrl}${page}`,
         lastmod: new Date().toISOString(),
         changefreq: "monthly",
         priority: "0.8",
       });
+      if (currentSitemap) {
+        sitemap = currentSitemap
+      }
     });
 
     // Add category pages
     categories.forEach((category) => {
-      sitemap = buildXml(sitemap, {
+      const currentSitemap  = buildXml(sitemap, {
         loc: `${siteUrl}/topic/${category.route}`, // Ensure `category.path` is correctly set
         lastmod: new Date().toISOString(),
         changefreq: "weekly",
         priority: "0.8",
       });
+      if (currentSitemap) {
+        sitemap = currentSitemap
+      }
       if (category?.subCategories?.length > 0) {
         category?.subCategories.forEach((subCategory) => {
-          sitemap = buildXml(sitemap, {
+          const currentSitemap  =  buildXml(sitemap, {
             loc: `${siteUrl}/topic/${category.route}/${subCategory.route}`, // Ensure `category.path` is correctly set
             lastmod: new Date().toISOString(),
             changefreq: "weekly",
             priority: "0.8",
           });
+          if (currentSitemap) {
+            sitemap = currentSitemap
+          }
         })
       }
     });
 
     // Add dynamic news pages
     newsData.forEach((news) => {
-      sitemap = buildXml(sitemap, {
+      const currentSitemap = buildXml(sitemap, {
         loc: `${siteUrl}/news/${news._id}`,
         lastmod: new Date(news.updatedAt).toISOString(),
         changefreq: "daily",
         priority: "0.9",
       });
+      if (currentSitemap) {
+        sitemap = currentSitemap
+      }
     });
 
     sitemap += `</urlset>`;
