@@ -5,10 +5,10 @@ const linkObj ={}
 // Utility function to build XML for a URL
 const buildXml = (sitemap, { loc, lastmod, changefreq, priority }) => {
   if (linkObj[loc]) {
-    return
+    return ""
   }
   linkObj[loc] = true
-  
+
   sitemap += `  <url>\n`;
   sitemap += `    <loc>${loc}</loc>\n`;
   sitemap += `    <lastmod>${lastmod}</lastmod>\n`;
